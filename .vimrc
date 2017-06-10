@@ -8,9 +8,9 @@ endfunc
 
 colorscheme evening
 
+syntax on
 set nocompatible
 set number
-syntax on
 set cursorline
 set ruler
 
@@ -21,6 +21,7 @@ set showcmd
 set background=dark
 
 set nobackup
+
 set ignorecase smartcase
 set nowrapscan
 set incsearch
@@ -30,8 +31,9 @@ set autoindent
 set smartindent
 set cindent
 
-set encoding=utf-8
-set termencoding=utf-8
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Auto_Open=1
 
 map <F4> <Esc>:call SetMouse()<cr><Esc>
 map <F1> <Esc>0i//<Esc>
@@ -42,8 +44,8 @@ set mouse=n
 "set paste
 set pastetoggle=
 
-
 set encoding=utf-8
+set termencoding=utf-8
 "set langmenu=zh_CN.UTF-8
 "language message zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
