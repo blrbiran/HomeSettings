@@ -57,3 +57,13 @@ set backspace=indent,eol,start
 set showmatch
 set matchtime=2
 set noexpandtab
+
+"setting system clipboard
+if has('win32')
+	vmap <C-Insert> "+y
+	nmap <C-Insert> "+y
+	vmap <S-Insert> "-d"+gP
+	nmap <S-Insert> "+gP
+elseif has('unix')
+elseif has('mac')
+endif
