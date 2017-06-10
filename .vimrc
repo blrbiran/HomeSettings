@@ -31,10 +31,6 @@ set autoindent
 set smartindent
 set cindent
 
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Auto_Open=1
-
 map <F4> <Esc>:call SetMouse()<cr><Esc>
 map <F1> <Esc>0i//<Esc>
 "save cursor position
@@ -67,3 +63,9 @@ if has('win32')
 elseif has('unix')
 elseif has('mac')
 endif
+
+map <C-F12> <Esc>:!ctags -R .<CR>
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Auto_Open=1
+set cscopequickfix=s-,c-,d-,i-,t-,e-
