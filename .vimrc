@@ -38,7 +38,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 "enable mouse function
 set mouse=n
 "set paste
-set pastetoggle=
+set pastetoggle=<F11>
 
 set encoding=utf-8
 set termencoding=utf-8
