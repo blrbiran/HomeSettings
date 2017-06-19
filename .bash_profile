@@ -11,7 +11,7 @@ PATH=$PATH:~/code/shell
 export $PATH
 
 # set bash as vi mode
-# set -o vi
+set -o vi
 # set -o emacs
 export VISUAL=/usr/bin/vim
 export EDITOR=/usr/bin/vim
