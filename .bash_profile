@@ -7,8 +7,10 @@ alias gc='grep -i --color'
 
 alias sa='~/code/shell/searchFiles.sh'
 
-PATH=$PATH:~/code/shell
+PATH=~/code/shell:~/usr/bin:$PATH
 export $PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:~/usr/lib/pkgconfig
 
 # set bash as vi mode
 set -o vi
