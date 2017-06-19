@@ -31,15 +31,6 @@ set autoindent
 set smartindent
 set cindent
 
-map <F4> <Esc>:call SetMouse()<cr><Esc>
-map <F1> <Esc>0i//<Esc>
-"save cursor position
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-"enable mouse function
-set mouse=n
-"set paste
-set pastetoggle=<F11>
-
 set encoding=utf-8
 set termencoding=utf-8
 "set langmenu=zh_CN.UTF-8
@@ -52,7 +43,21 @@ filetype indent on
 set backspace=indent,eol,start
 set showmatch
 set matchtime=2
+
 set noexpandtab
+set noerrorbells	"no bells when occurs error
+
+map <F4> <Esc>:call SetMouse()<cr><Esc>
+map <F1> <Esc>0i//<Esc>
+"save cursor position
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+"enable mouse function
+set mouse=n
+"set paste
+set pastetoggle=<F11>
+
+inoremap jj <Esc>
+let mapleader=","
 
 "setting system clipboard
 if has('win32')
