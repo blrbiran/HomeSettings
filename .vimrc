@@ -74,3 +74,23 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Auto_Open=1
 set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+"press F5 for compile & run
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		exec "!g++ % -DLOCAL -o   %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		exec "!g++ % -std=c++11 -DLOCAL -Dxiaoai -o    %<"
+		exec "!time ./%<"
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		exec "!time python %"
+	endif
+endfunc
