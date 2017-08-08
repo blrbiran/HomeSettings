@@ -3,7 +3,7 @@ alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias cd....='cd ../../../..'
-alias gc='grep -i --color'
+alias gc='grep -i --color=always -e'
 
 alias sa='~/code/shell/searchFiles.sh'
 
