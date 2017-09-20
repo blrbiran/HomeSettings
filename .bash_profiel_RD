@@ -1,0 +1,42 @@
+export PATH=/mtkoss/git:$PATH
+alias ll='ls -alh --color'
+alias cd.='cd ..'
+alias cd..='cd ../..'
+alias cd...='cd ../../..'
+alias cd....='cd ../../../..'
+unalias grep
+alias gc='grep -i --color=always' 
+alias gcr='grep -rni --color=always' 
+alias gcre='grep -rni --color=always -E' 
+
+PATH=~/code/shell:/worktmp/home/usr/bin:$PATH
+export PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/worktmp/home/usr/lib
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/worktmp/home/usr/lib/pkgconfig
+
+alias sa='~/code/shell/searchFiles.sh'
+
+export P4PORT=10.17.1.181:2008
+export P4USER=ran.bi
+
+source /mtktools/perforce/bash_p4
+
+export PYTHONPATH=/worktmp/home/usr/lib/python2.7/site-packages
+
+set -o vi
+# set -o emacs
+export VISUAL=/usr/bin/vim
+export EDITOR=/usr/bin/vim
+# go into command mode
+bind -m vi-insert '\c-j':vi-movement-mode
+# clear screen
+bind -m vi-insert '\c-l':clear-screen
+# jump to end
+bind -m vi-insert '\c-e':end-of-line
+# jump to start
+bind -m vi-insert '\c-a':beginning-of-line
+# jump to later word
+bind -m vi-insert '\c-b':backward-word
+# jump to former word
+bind -m vi-insert '\c-f':forward-word
+
