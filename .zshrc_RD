@@ -64,7 +64,7 @@ alias sa='~/code/shell/searchFiles.sh'
 export P4PORT=10.17.1.181:2008
 export P4USER=ran.bi
 
-source /mtktools/perforce/bash_p4
+# source /mtktools/perforce/bash_p4
 
 export PYTHONPATH=/worktmp/home/usr/lib/python2.7/site-packages
 # export MANPATH="/usr/local/man:$MANPATH"
