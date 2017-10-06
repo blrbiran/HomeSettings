@@ -82,12 +82,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ll='ls -al'
+alias ll='ls -alh'
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias cd....='cd ../../../..'
-alias sa='~/code/shell/searchFiles.sh'
+unalias grep
+alias gc='grep -i --color=always'
+alias gcr='grep -rni --color=always'
+alias gcre='grep -rni --color=always -E'
 
 # zsh vi mode
 # Emacs mode
@@ -186,3 +189,5 @@ alias hstart="$HADOOP_HOME/sbin/start-dfs.sh;$HADOOP_HOME/sbin/start-yarn.sh"
 alias hstop="$HADOOP_HOME/sbin/stop-dfs.sh;$HADOOP_HOME/sbin/stop-yarn.sh"
 alias sstart="$SPARK_HOME/sbin/start-all.sh"
 alias sstop="$SPARK_HOME/sbin/stop-all.sh"
+
+export LANG=en_US.UTF-8
