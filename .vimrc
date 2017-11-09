@@ -48,6 +48,7 @@ set noexpandtab
 set noerrorbells	"no bells when occurs error
 
 map <F4> <Esc>:call SetMouse()<cr><Esc>
+map <12> <Esc>:set list!<cr><Esc>
 map <F1> <Esc>0i//<Esc>
 "save cursor position
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
