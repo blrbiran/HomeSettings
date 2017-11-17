@@ -82,6 +82,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+setopt hist_ignore_space
+alias cd=' cd'
+alias ls=' ls'
+
 alias ll='ls -alh'
 alias cd.='cd ..'
 alias cd..='cd ../..'
@@ -91,6 +95,8 @@ unalias grep
 alias gc='grep -i --color=always'
 alias gcr='grep -rni --color=always'
 alias gcre='grep -rni --color=always -E'
+alias h='history'
+alias duc='du -h --max-depth=1'
 
 # zsh vi mode
 # Emacs mode
