@@ -1,13 +1,19 @@
 export PATH=/mtkoss/git:$PATH
+
+alias cd=' cd'
+alias ls=' ls'
+
 alias ll='ls -alh --color'
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias cd....='cd ../../../..'
 unalias grep
-alias gc='grep -i --color=always' 
-alias gcr='grep -rni --color=always' 
-alias gcre='grep -rni --color=always -E' 
+alias gc='grep -i --color=always'
+alias gcr='grep -rni --color=always'
+alias gcre='grep -rni --color=always -E'
+alias h='history'
+alias duc='du -h --max-depth=1'
 
 PATH=~/code/shell:/worktmp/home/usr/bin:$PATH
 export PATH
