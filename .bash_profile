@@ -1,9 +1,17 @@
+alias cd=' cd'
+alias ls=' ls'
+
 alias ll='ls -alh --color'
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias cd....='cd ../../../..'
-alias gc='grep -i --color=always -e'
+unalias grep
+alias gc='grep -i --color=always'
+alias gcr='grep -rni --color=always'
+alias gcre='grep -rni --color=always -E'
+alias h='history'
+alias duc='du -h --max-depth=1'
 
 alias sa='~/code/shell/searchFiles.sh'
 
