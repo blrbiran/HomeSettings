@@ -71,12 +71,25 @@ elseif has('mac')
 endif
 
 map <C-F12> <Esc>:!ctags -R .<CR>
-map <F6> <Esc>:TlistToggle<cr><Esc>
+"map <F6> <Esc>:TlistToggle<cr><Esc>
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Use_Right_Window=1
 let Tlist_Auto_Open=1
 let Tlist_Close_On_Select=1
+
+" Open the TagList Plugin <F3>
+nnoremap <silent> <F6> :Tlist<CR>
+
+" Next Tab
+nnoremap <silent> <C-Right> :tabnext<CR>
+
+" Previous Tab
+nnoremap <silent> <C-Left> :tabprevious<CR>
+
+" New Tab
+nnoremap <silent> <C-t> :tabnew<CR>
+
 
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
@@ -99,3 +112,5 @@ func! CompileRunGcc()
 		exec "!time python %"
 	endif
 endfunc
+
+" reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
