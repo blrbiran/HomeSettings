@@ -71,9 +71,13 @@ elseif has('mac')
 endif
 
 map <C-F12> <Esc>:!ctags -R .<CR>
+map <F6> <Esc>:TlistToggle<cr><Esc>
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
+let Tlist_Use_Right_Window=1
 let Tlist_Auto_Open=1
+let Tlist_Close_On_Select=1
+
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 "press F5 for compile & run
