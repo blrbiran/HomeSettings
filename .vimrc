@@ -118,4 +118,12 @@ func! CompileRunGcc()
 	endif
 endfunc
 
+" Plugins
+" powerline
+" before this, run "pip install powerline_status"
+set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
+set laststatus=2
+set t_Co=256
+let g:Powerline_symbols = 'fancy'
+
 " reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
