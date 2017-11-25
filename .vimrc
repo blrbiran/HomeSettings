@@ -47,18 +47,26 @@ set matchtime=2
 set noexpandtab
 set noerrorbells	"no bells when occurs error
 
-map <F4> <Esc>:call SetMouse()<cr><Esc>
-map <12> <Esc>:set list!<cr><Esc>
+let mapleader="\<Space>"
+
+map <F12> <Esc>:set list!<cr><Esc>
 map <F1> <Esc>0i//<Esc>
+
+map <F4> <Esc>:call SetMouse()<cr><Esc>
 "save cursor position
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 "enable mouse function
 set mouse=n
+
 "set paste
-set pastetoggle=<F11>
+set pastetoggle=<F10>
 
 inoremap jj <Esc>
-let mapleader=","
+
+"create a new file
+nnoremap <Leader>o :CtrlP<CR>
+"save current file
+nnoremap <Leader>w :w<CR>
 
 "setting system clipboard
 if has('win32')
@@ -78,20 +86,19 @@ let Tlist_Use_Right_Window=1
 let Tlist_Auto_Open=1
 let Tlist_Close_On_Select=1
 
-" Open the TagList Plugin <F3>
-nnoremap <silent> <F6> :Tlist<CR>
-
-" Next Tab
-nnoremap <silent> <C-Right> :tabnext<CR>
-
-" Previous Tab
-nnoremap <silent> <C-Left> :tabprevious<CR>
-
-" New Tab
-nnoremap <silent> <C-t> :tabnew<CR>
-
+" Open the TagList Plugin <F6>
+nnoremap <silent> <F6> :TlistToggle<CR>
 
 set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+" Next Tab
+nnoremap <silent> <C-h> gT
+" Previous Tab
+nnoremap <silent> <C-l> gt
+" New Tab
+nnoremap <silent> <C-c> :tabnew<CR>
+
+
 
 "press F5 for compile & run
 map <F5> :call CompileRunGcc()<CR>
