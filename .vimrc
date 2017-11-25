@@ -48,7 +48,7 @@ set noexpandtab
 set noerrorbells	"no bells when occurs error
 
 map <F4> <Esc>:call SetMouse()<cr><Esc>
-map <12> <Esc>:set list!<cr><Esc>
+map <F12> <Esc>:set list!<cr><Esc>
 map <F1> <Esc>0i//<Esc>
 "save cursor position
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
@@ -82,14 +82,13 @@ let Tlist_Close_On_Select=1
 nnoremap <silent> <F6> :Tlist<CR>
 
 " Next Tab
-nnoremap <silent> <C-Right> :tabnext<CR>
+nnoremap <silent> <C-h> gT
 
 " Previous Tab
-nnoremap <silent> <C-Left> :tabprevious<CR>
+nnoremap <silent> <C-l> gt
 
 " New Tab
-nnoremap <silent> <C-t> :tabnew<CR>
-
+nnoremap <silent> <C-c> :tabnew<CR>
 
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
