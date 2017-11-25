@@ -91,14 +91,12 @@ nnoremap <silent> <F6> :TlistToggle<CR>
 
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
+" New Tab
+nnoremap <silent> <C-c> :tabnew<CR>
 " Next Tab
 nnoremap <silent> <C-h> gT
 " Previous Tab
 nnoremap <silent> <C-l> gt
-" New Tab
-nnoremap <silent> <C-c> :tabnew<CR>
-
-
 
 "press F5 for compile & run
 map <F5> :call CompileRunGcc()<CR>
