@@ -58,6 +58,9 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
+export TERM="xterm-256color"
+alias tmux="tmux -2"
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
