@@ -1,7 +1,7 @@
 export PATH=/mtkoss/git:$PATH
 
-alias cd=' cd'
 alias ls=' ls'
+alias cd=' cd'
 
 alias ll='ls -alh --color'
 alias cd.='cd ..'
@@ -13,6 +13,8 @@ alias gc='grep -i --color=always'
 alias gcr='grep -rni --color=always'
 alias gcre='grep -rni --color=always -E'
 alias h='history'
+alias p='ps -f'
+alias upb='mtkbuild -o . -l'
 alias duc='du -h --max-depth=1'
 
 PATH=~/code/shell:/worktmp/home/usr/bin:$PATH
