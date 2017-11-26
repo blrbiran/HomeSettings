@@ -95,7 +95,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ll='ls -alh --color'
+setopt hist_ignore_space
+alias cd=' cd'
+alias ls=' ls'
+
+if [[ "$(uname)" = "Darwin" ]]; then # MacOS
+  alias ll='ls -alh -G'
+else # Linux
+  alias ll='ls -alh --color'
+fi
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
@@ -104,6 +112,9 @@ unalias grep
 alias gc='grep -i --color=always'
 alias gcr='grep -rni --color=always'
 alias gcre='grep -rni --color=always -E'
+alias h='history'
+alias duc='du -h --max-depth=1'
+
 
 # zsh vi mode
 # Emacs mode
