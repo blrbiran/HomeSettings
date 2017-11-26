@@ -14,9 +14,9 @@ set number
 set cursorline
 set ruler
 
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=8
+set softtabstop=8
+set tabstop=8
 set showcmd
 set background=dark
 
@@ -117,6 +117,10 @@ func! CompileRunGcc()
 		exec "!time python %"
 	endif
 endfunc
+
+if exists('$TMUX')
+	set term=screen-256color
+endif
 
 " Plugins
 " powerline
