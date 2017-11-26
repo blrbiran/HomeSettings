@@ -86,7 +86,11 @@ setopt hist_ignore_space
 alias cd=' cd'
 alias ls=' ls'
 
-alias ll='ls -alh'
+if [[ "$(uname)" = "Darwin" ]]; then # MacOS
+  alias ll='ls -alh -G'
+else # Linux
+  alias ll='ls -alh --color'
+fi
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
