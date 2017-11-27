@@ -6,8 +6,6 @@ func! SetMouse()
   endif
 endfunc
 
-"colorscheme evening
-
 syntax on
 set nocompatible
 set number
@@ -129,5 +127,13 @@ set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
 let g:Powerline_symbols = 'fancy'
+
+" Color theme
+syntax enable
+set background=dark
+"set background=light
+colorscheme solarized
+let g:solarized_termcolors=256
+"colorscheme evening
 
 " reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
