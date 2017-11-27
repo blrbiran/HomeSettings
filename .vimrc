@@ -6,7 +6,7 @@ func! SetMouse()
   endif
 endfunc
 
-colorscheme evening
+"colorscheme evening
 
 syntax on
 set nocompatible
