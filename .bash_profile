@@ -30,7 +30,7 @@ set -o vi
 export VISUAL=/usr/bin/vim
 export EDITOR=/usr/bin/vim
 # go into command mode
-bind -m vi-insert '\c-j':vi-movement-mode
+bind -m vi-insert '\c-h':vi-movement-mode
 # clear screen
 bind -m vi-insert '\c-l':clear-screen
 # go into command mode
