@@ -138,7 +138,7 @@ bindkey -v
 
 
 # VI MODE KEYBINDINGS (ins mode)
-bindkey -M viins '^j'    vi-cmd-mode
+bindkey -M viins '^h'    vi-cmd-mode
 bindkey -M viins '^a'    beginning-of-line
 bindkey -M viins '^e'    end-of-line
 bindkey -M viins '^k'    kill-line
@@ -149,7 +149,7 @@ bindkey -M viins '^n'    down-line-or-history
 bindkey -M viins '^y'    yank
 bindkey -M viins '^w'    backward-kill-word
 bindkey -M viins '^u'    backward-kill-line
-bindkey -M viins '^h'    backward-delete-char
+#bindkey -M viins '^h'    backward-delete-char
 bindkey -M viins '^?'    backward-delete-char
 bindkey -M viins '^_'    undo
 bindkey -M viins '^x^r'  redisplay
