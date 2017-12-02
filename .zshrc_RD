@@ -119,6 +119,8 @@ alias h='history'
 #alias p='ps -f'
 alias upb='mtkbuild -o . -l'
 alias duc='du -h --max-depth=1'
+alias vs='emacs -nw'
+alias vc='emacsclient -nw'
 
 # Command line head / tail shortcuts
 alias -g G='| grep -i --color=auto'
