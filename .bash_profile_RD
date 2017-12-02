@@ -16,6 +16,8 @@ alias h='history'
 alias p='ps -f'
 alias upb='mtkbuild -o . -l'
 alias duc='du -h --max-depth=1'
+alias vs='emacs -nw'
+alias vc='emacsclient -nw'
 
 PATH=~/code/shell:/worktmp/home/usr/bin:$PATH
 export PATH
