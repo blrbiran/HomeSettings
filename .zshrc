@@ -132,6 +132,8 @@ alias gcr='grep -rni --color=always'
 alias gcre='grep -rni --color=always -E'
 alias h='history'
 alias duc='du -h --max-depth=1'
+alias vs='emacs -nw'
+alias vc='emacsclient -nw'
 
 # zsh vi mode
 # Emacs mode
