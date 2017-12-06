@@ -33,6 +33,20 @@ source /mtktools/perforce/bash_p4
 
 export PYTHONPATH=/worktmp/home/usr/lib/python2.7/site-packages
 
+# maven and build env setting
+if [ "`cat /etc/issue |grep 10.04`" != "" ]; then
+echo "10.04"
+export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-10.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:/mtkoss/python/2.7.3-ubuntu-10.04/x86_64/bin:$PATH
+elif [ "`cat /etc/issue |grep 12.04`" != ""  ]; then
+echo "12.04"
+export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-12.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
+elif [ "`cat /etc/issue |grep 14.04`" != ""  ]; then
+echo "14.04"
+export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-12.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
+else
+echo "Unknown Version"
+fi
+
 set -o vi
 # set -o emacs
 export VISUAL=/usr/bin/vim
