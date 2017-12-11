@@ -64,3 +64,9 @@ bind -m vi-insert '\c-b':backward-word
 # jump to former word
 bind -m vi-insert '\c-f':forward-word
 
+export JAVA_HOME=/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64
+export ANDROID_JAVA_HOME=/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64
+export PATH=$PATH:/mtkoss/git/Jungle_scripts
+export PATH=.repo/repo:$PATH
+export PATH=$HOME/bin:$PATH
+alias repo='/mtkoss/git/mtk_repo'
