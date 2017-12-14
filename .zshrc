@@ -27,13 +27,16 @@ if [[ "$(uname)" = "Darwin" ]]; then # MacOS
 
   ZSH_THEME="powerline"
 else # Linux
-  POWERLINE_HIDE_USER_NAME="true"
-  POWERLINE_HIDE_HOST_NAME="true"
-  POWERLINE_PATH="short"
-  POWERLINE_DETECT_SSH="true"
+  if false;then
+    POWERLINE_HIDE_USER_NAME="true"
+    POWERLINE_HIDE_HOST_NAME="true"
+    POWERLINE_PATH="short"
+    POWERLINE_DETECT_SSH="true"
 
-  ZSH_THEME="powerline"
-#  ZSH_THEME="robbyrussell"
+    ZSH_THEME="powerline"
+  else
+    ZSH_THEME="robbyrussell"
+  fi
 fi
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
