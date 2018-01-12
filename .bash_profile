@@ -14,6 +14,7 @@ unalias grep
 alias gc='grep -i --color=always'
 alias gcr='grep -rni --color=always'
 alias gcre='grep -rni --color=always -E'
+alias gcrp='grep -rni --color=always -P'
 alias h='history'
 alias duc='du -h --max-depth=1'
 alias vs='emacs -nw'
