@@ -43,7 +43,8 @@ echo "12.04"
 export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-12.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
 elif [ "`cat /etc/issue |grep 14.04`" != ""  ]; then
 echo "14.04"
-export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-12.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
+# export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-12.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
+export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/2.6.4-ubuntu-14.04/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
 else
 echo "Unknown Version"
 fi
