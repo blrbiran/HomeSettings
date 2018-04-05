@@ -240,3 +240,5 @@ alias sstop="$SPARK_HOME/sbin/stop-all.sh"
 
 export LANG=en_US.UTF-8
 
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
