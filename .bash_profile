@@ -17,8 +17,8 @@ alias gcre='grep -rni --color=always -E'
 alias gcrp='grep -rni --color=always -P'
 alias h='history'
 alias duc='du -h --max-depth=1'
-alias vs='emacs -nw'
-alias vc='emacsclient -nw'
+alias vs='emacs'
+alias vc='emacsclient'
 
 alias sa='~/code/shell/searchFiles.sh'
 
