@@ -1,0 +1,11 @@
+[alias]
+	st = status
+	ci = commit
+  cia = commit --amend
+	co = checkout
+	br = branch
+  df = diff
+  dfc = diff --cached
+ 	ls = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --date=relative
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset %C(bold blue)<%an>%Creset ---%C(yellow)%d%Creset %s %Cgreen(%cr)' --abbrev-commit
+  
