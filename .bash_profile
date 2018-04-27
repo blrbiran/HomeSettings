@@ -11,16 +11,21 @@ alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias cd....='cd ../../../..'
 unalias grep
-alias gc='grep -i --color=always'
-alias gcr='grep -rni --color=always'
-alias gcre='grep -rni --color=always -E'
-alias gcrp='grep -rni --color=always -P'
+alias gc='grep -i --color=auto'
+alias gcr='grep -rni --color=auto'
+alias gcre='grep -rni --color=auto -E'
+alias gcrp='grep -rni --color=auto -P'
 alias h='history'
 alias duc='du -h --max-depth=1'
 alias vs='emacs'
 alias vc='emacsclient'
-
-alias sa='~/code/shell/searchFiles.sh'
+alias ggbi='git remote -v && git branch -a | head -n 10'
+alias ggs='git status'
+alias ggb='git branch -a'
+alias ggc='git commit'
+alias ggca='git commit --amend'
+alias ggco='git checkout'
+#alias sa='~/code/shell/searchFiles.sh'
 
 PATH=~/code/shell:~/usr/bin:$PATH
 export $PATH
