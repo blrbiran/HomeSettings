@@ -16,16 +16,21 @@ if [[ "$(uname)" = "Darwin" ]]; then # MacOS
 #  POWERLINE_RIGHT_A_COLOR_FRONT="black"
 #  POWERLINE_RIGHT_A_COLOR_BACK="red"
 #  POWERLINE_DISABLE_RPROMPT="false"
-  POWERLINE_HIDE_USER_NAME="true"
 #  POWERLINE_SHORT_HOST_NAME="true"
-  POWERLINE_HIDE_HOST_NAME="true"
-  POWERLINE_PATH="short"
 #  POWERLINE_SHOW_GIT_ON_RIGHT="false"
-  POWERLINE_DETECT_SSH="true"
 #  POWERLINE_HIDE_VIRTUAL_ENV="true"
 #  POWERLINE_CUSTOM_CURRENT_PATH="%3~"
+  if false;then
+    POWERLINE_HIDE_USER_NAME="true"
+    POWERLINE_HIDE_HOST_NAME="true"
+    POWERLINE_PATH="short"
+    POWERLINE_DETECT_SSH="true"
 
-  ZSH_THEME="powerline"
+    ZSH_THEME="powerline"
+  else
+    export DEFAULT_USER="biran"
+    ZSH_THEME="agnoster"
+  fi
 else # Linux
   if false;then
     POWERLINE_HIDE_USER_NAME="true"
@@ -38,6 +43,8 @@ else # Linux
     ZSH_THEME="robbyrussell"
   fi
 fi
+
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -212,10 +219,27 @@ function zle-line-init zle-keymap-select {
     zle reset-prompt
 }
 
-zle -N zle-line-init
-zle -N zle-keymap-select
-export KEYTIMEOUT=1
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+#export KEYTIMEOUT=1
 
+function powerline_precmd() {
+#    PS1="$(powerline-shell --shell zsh $?)"
+    export PS1="$(powerline-shell $? --shell zsh 2> /dev/null)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+#    install_powerline_precmd
+fi
 
 export NODE_PATH=/usr/local/lib/node_modules
 
