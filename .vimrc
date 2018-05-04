@@ -59,7 +59,13 @@ set mouse=n
 "set paste
 set pastetoggle=<F10>
 
+" Quit insert mode
 inoremap jj <Esc>
+
+" Move to the start of line
+nnoremap H ^
+" Move to the end of line
+nnoremap L $
 
 "create a new file
 nnoremap <Leader>o :CtrlP<CR>
