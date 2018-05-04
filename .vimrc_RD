@@ -122,6 +122,10 @@ if exists('$TMUX')
 	set term=screen-256color
 endif
 
+" Highlight over 80 char
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%>80v.\+/
+
 " Plugins
 " powerline
 " before this, run "pip install powerline_status"
