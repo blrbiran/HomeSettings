@@ -151,6 +151,7 @@ alias ggb='git branch -a'
 alias ggc='git commit'
 alias ggca='git commit --amend'
 alias ggco='git checkout'
+alias ggll='git ll'
 
 # zsh vi mode
 # Emacs mode
@@ -250,8 +251,8 @@ export GO15VENDOREXPERIMENT=1
 export PATH=$PATH:$GOBIN
 export PATH=$PATH:/usr/local/mysql/bin
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home
-export JRE_HOME=$JAVA_HOME/jre
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
+export PATH=$PATH:$JAVA_HOME/bin
 
 export HADOOP_HOME=/usr/local/hadoop-2.7.3
 export HADOOP_HOME_WARN_SUPPRESS=1
