@@ -129,6 +129,8 @@ alias ggc='git commit'
 alias ggca='git commit --amend'
 alias ggco='git checkout'
 alias ggll='git ll'
+alias ggdf='git diff'
+alias ggdfc='git diff --cached'
 
 # Command line head / tail shortcuts
 alias -g G='| grep -i --color=auto'
