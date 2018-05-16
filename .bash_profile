@@ -26,6 +26,8 @@ alias ggc='git commit'
 alias ggca='git commit --amend'
 alias ggco='git checkout'
 alias ggll='git ll'
+alias ggdf='git diff'
+alias ggdfc='git diff --cached'
 #alias sa='~/code/shell/searchFiles.sh'
 
 PATH=~/code/shell:~/usr/bin:$PATH

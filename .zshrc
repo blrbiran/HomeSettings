@@ -152,6 +152,8 @@ alias ggc='git commit'
 alias ggca='git commit --amend'
 alias ggco='git checkout'
 alias ggll='git ll'
+alias ggdf='git diff'
+alias ggdfc='git diff --cached'
 
 # zsh vi mode
 # Emacs mode
