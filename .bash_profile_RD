@@ -29,7 +29,7 @@ alias ggdf='git diff'
 alias ggdfc='git diff --cached'
 alias ggll='git ll'
 alias ggl='git ls'
-alias ggstash = 'git stash'
+alias ggstash='git stash'
 
 PATH=~/code/shell:/worktmp/home/usr/bin:$PATH
 export PATH
