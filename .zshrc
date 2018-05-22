@@ -151,9 +151,11 @@ alias ggb='git branch -a'
 alias ggc='git commit'
 alias ggca='git commit --amend'
 alias ggco='git checkout'
-alias ggll='git ll'
 alias ggdf='git diff'
 alias ggdfc='git diff --cached'
+alias ggll='git ll'
+alias ggl='git ls'
+alias ggstash='git stash'
 
 # zsh vi mode
 # Emacs mode
