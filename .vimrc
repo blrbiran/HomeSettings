@@ -128,8 +128,20 @@ if exists('$TMUX')
 endif
 
 " Highlight over 80 char
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%>80v.\+/
+let g:wordline_on = "n"
+
+func! Set80Word()
+  if g:wordline_on == "n"
+    let g:wordline_on = "y"
+    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+    match OverLength /\%>80v.\+/
+  else
+    hi clear
+    let g:wordline_on = "n"
+  endif
+endfunc
+
+map <F9> <Esc>:call Set80Word()<cr><Esc>
 
 " Plugins
 " powerline
