@@ -84,6 +84,7 @@ elseif has('unix')
 elseif has('mac')
 endif
 
+set tags=tags;
 map <C-F12> <Esc>:!ctags -R .<CR>
 "map <F6> <Esc>:TlistToggle<cr><Esc>
 let Tlist_Show_One_File=1
