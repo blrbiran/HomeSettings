@@ -139,6 +139,7 @@ alias cd....='cd ../../../..'
 unalias grep
 alias gc='grep -i --color=auto'
 alias gcr='grep -rni --color=auto'
+alias gcrng='grep -rni --color=auto --exclude-dir=".git"'
 alias gcre='grep -rni --color=auto -E'
 alias gcrp='grep -rni --color=auto -P'
 alias h='history'
