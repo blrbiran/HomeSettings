@@ -146,7 +146,9 @@ alias h='history'
 alias duc='du -h --max-depth=1'
 alias vs='emacs'
 alias vc='emacsclient'
-#alias gg='git'
+unalias gg
+unalias gga
+alias gg='git'
 alias ggbi='git remote -v && git branch -a | head -n 10'
 alias ggs='git status'
 alias ggb='git branch -a'
