@@ -160,3 +160,7 @@ let g:solarized_termcolors=256
 "colorscheme evening
 
 " reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
+
+"解决crontab -e时，提示crontab: temp file must be edited in place
+autocmd filetype crontab setlocal nobackup nowritebackup
+
