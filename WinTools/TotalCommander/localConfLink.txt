@@ -1,0 +1,1 @@
+"D:\totalcmd\TOTALCMD.EXE" /I=".\wincmd.ini" /F=".\wcx_ftp.ini"
