@@ -143,13 +143,8 @@ endfunc
 
 map <F9> <Esc>:call Set80Word()<cr><Esc>
 
-" Plugins
-" powerline
-" before this, run "pip install powerline_status"
-set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
-set laststatus=2
-set t_Co=256
-let g:Powerline_symbols = 'fancy'
+"解决crontab -e时，提示crontab: temp file must be edited in place
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Color theme
 syntax enable
@@ -161,6 +156,48 @@ let g:solarized_termcolors=256
 
 " reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
 
-"解决crontab -e时，提示crontab: temp file must be edited in place
-autocmd filetype crontab setlocal nobackup nowritebackup
+" Plugins
+" powerline
+" before this, run "pip install powerline_status"
+set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
+set laststatus=2
+set t_Co=256
+let g:Powerline_symbols = 'fancy'
+
+" easy motion
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+" Move to word
+map  <Leader>W <Plug>(easymotion-bd-w)
+nmap <Leader>W <Plug>(easymotion-overwin-w)
+
+" CtrlP
+" Change the default mapping and the default command to invoke CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
+let g:ctrlp_working_path_mode = 'ra'
+" If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers
+let g:ctrlp_root_markers = ['pom.xml', '.p4ignore']
+" Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore. If a custom listing command is being used, exclusions are ignored
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+"set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+" Use a custom file listing command
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+"let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+" Ignore files in .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
