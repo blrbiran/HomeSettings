@@ -70,7 +70,7 @@ nnoremap L $
 "create a new file
 nnoremap <Leader>o :CtrlP<CR>
 "save current file
-nnoremap <Leader>w :w<CR>
+nnoremap <Leader>s :w<CR>
 
 "setting system clipboard
 if has('win32')
@@ -169,13 +169,13 @@ let g:Powerline_symbols = 'fancy'
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
+nmap S <Plug>(easymotion-overwin-f2)
 " Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
+map <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
 " Move to word
-map  <Leader>W <Plug>(easymotion-bd-w)
-nmap <Leader>W <Plug>(easymotion-overwin-w)
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " CtrlP
 " Change the default mapping and the default command to invoke CtrlP
