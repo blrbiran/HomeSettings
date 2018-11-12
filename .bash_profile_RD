@@ -13,9 +13,16 @@ alias gc='grep -i --color=auto'
 alias gcr='grep -rni --color=auto'
 alias gcre='grep -rni --color=auto -E'
 alias gcrp='grep -rni --color=auto -P'
+alias fdn='find . -name'
+alias lc='ll | grep --color=auto'
+alias lsc='ls | grep '
+alias rebash='soruce ~/.bash_profile'
+alias rezsh='soruce ~/.zshrc'
 alias h='history'
 alias p='ps -f'
-alias upb='mtkbuild -o . -l'
+alias upb='mtkbuild -o . -l -i'
+alias upx='mtkbuild -o . -l -i -x'
+alias upp='mtkbuild -o . -l -i -d -x'
 alias duc='du -h --max-depth=1'
 alias vs='emacs -nw'
 alias vc='emacsclient -nw'
@@ -31,6 +38,12 @@ alias ggdfc='git diff --cached'
 alias ggll='git ll'
 alias ggl='git ls'
 alias ggstash='git stash'
+
+alias yocas='export CAS_CONFIG=CONFIG_YOCTO_GCN_SPICE'
+alias unyocas='unset CAS_CONFIG'
+
+bbpush() { git push mediatek HEAD:refs/for/$1 ; }
+bbcaslb() { cas-labels -b alps-mp-$1 ; }
 
 PATH=~/code/shell:/worktmp/home/usr/bin:$PATH
 export PATH
