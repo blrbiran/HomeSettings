@@ -1,0 +1,53 @@
+# using C-a to replace C-b
+unbind C-b
+set -g prefix C-a
+
+# Default shell
+#set-option -g default-shell /bin/bash
+set-option -g default-shell /bin/zsh
+
+# Using mouse-wheel (but without copy and paste)
+set -g mouse on
+#set-window-option -g mode-mouse on
+#set -g mouse-select-pane on
+#set -g mouse-resize-pane on
+#set -g mouse-select-window on
+
+# Enable 256 term color
+set -g default-terminal "screen-256color"
+
+# Remap window navigation to vim
+unbind-key j
+bind-key j select-pane -D
+unbind-key k
+bind-key k select-pane -U
+unbind-key h
+bind-key h select-pane -L
+unbind-key l
+bind-key l select-pane -R
+unbind-key m
+bind-key m last-window
+
+# bind a reload key
+#bind r source-file ~/.tmux.conf ; display-message "Config reloaded..."
+bind r source-file ~/.tmux.conf
+
+# Status bar customization
+#set -g status-utf8 on
+set -g status-interval 5
+# color
+set -g status-bg black
+set -g status-fg white
+# align
+set-option -g status-justify centre
+# left
+set-option -g status-left-length 20
+set-option -g status-left "#[bg=black,fg=green][#[fg=cyan]#S#[fg=green]]"
+# right
+set-option -g status-right "#[fg=green][#[fg=cyan]%Y-%m-%d#[fg=green]]"
+# window list
+setw -g automatic-rename on
+set-window-option -g window-status-format "#[dim]#I:#[default]#W#[fg=grey,dim]"
+set-window-option -g window-status-current-format "#[fg=cyan,bold]#I#[fg=blue]:#[fg=cyan]#W#[fg=dim]"
+
+# reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
