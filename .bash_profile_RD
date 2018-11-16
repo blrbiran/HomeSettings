@@ -13,16 +13,19 @@ alias cd5='cd.... ; cd.'
 alias cd6='cd.... ; cd..'
 alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
+
 unalias grep
 alias gc='grep -i --color=auto'
 alias gcr='grep -rni --color=auto'
 alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
 alias gcre='grep -rni --color=auto -E'
 alias gcrp='grep -rni --color=auto -P'
+
 alias fdn='find . -name'
 alias lc='ll | grep --color=auto'
 alias lsc='ls | grep'
 alias rebash='source ~/.bash_profile'
+
 alias ta='tmux -f ~/.tmux.conf.zsh_RD attach -t'
 alias tab='tmux -f ~/.tmux.conf attach -t'
 alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sessions | sed "s/^/[bash] /g"'
@@ -39,6 +42,8 @@ alias vs='emacs'
 alias vc='emacsclient'
 alias cdb='cd /worktmp/codebase/'
 alias cdc='cd ~/casws_mtk14576/'
+
+unalias gg
 alias gg='git'
 alias ggbi='git remote -v && git branch -a | head -n 10'
 alias ggs='git status'
