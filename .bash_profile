@@ -23,11 +23,11 @@ alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
 alias gcre='grep -rni --color=auto -E'
 alias gcrp='grep -rni --color=auto -P'
 
-alias ta='tmux -f ~/.tmux.conf.zsh attach -t'
-alias tab='tmux -f ~/.tmux.conf attach -t'
+alias ta='tmux -f ~/.tmux.conf attach -t'
+alias tab='tmux -f ~/.tmux.conf.bash attach -t'
 alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sessions | sed "s/^/[bash] /g"'
-alias ts='tmux -f ~/.tmux.conf.zsh -L zsh new-session -s'
-alias tsb='tmux -f ~/.tmux.conf -L bash new-session -s'
+alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
+alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
 
 unalias gg
 alias gg='git'
