@@ -158,7 +158,6 @@ alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sess
 alias ts='tmux -f ~/.tmux.conf.zsh_RD -L zsh new-session -s'
 alias tsb='tmux -f ~/.tmux.conf -L bash new-session -s'
 
-unalias gg
 alias gg='git'
 alias ggbi='git remote -v && git branch -a | head -n 10'
 alias ggs='git status'
