@@ -97,7 +97,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 source $ZSH/oh-my-zsh.sh
 
 export TERM="xterm-256color"
-alias tmux="tmux -2"
+unalias tmux
+#alias tmux="tmux -2"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -171,7 +172,7 @@ alias ggstash='git stash'
 alias fdn='find . -name'
 alias lc='ll | grep --color=auto'
 alias lsc='ls | grep '
-alias rezsh='soruce ~/.zshrc'
+alias rezsh='source ~/.zshrc'
 alias h='history'
 alias duc='du -h --max-depth=1'
 alias vs='emacs'

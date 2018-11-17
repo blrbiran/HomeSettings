@@ -2,6 +2,8 @@
 unbind C-b
 set -g prefix C-a
 
+setw -g mode-keys vi
+
 # Default shell
 #set-option -g default-shell /bin/bash
 set-option -g default-shell /bin/zsh
@@ -29,8 +31,8 @@ unbind-key m
 bind-key m last-window
 
 # bind a reload key
-#bind r source-file ~/.tmux.conf ; display-message "Config reloaded..."
-bind r source-file ~/.tmux.conf
+bind r source-file ~/.tmux.conf ; display-message "Config reloaded..."
+#bind r source-file ~/.tmux.conf
 
 # Status bar customization
 #set -g status-utf8 on
