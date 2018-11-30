@@ -5,12 +5,12 @@ set termencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 if has("win32")
 	set fileencoding=gb18030
+	" fix menu
+	source $VIMRUNTIME\delmenu.vim
+	source $VIMRUNTIME\menu.vim
 else
 	set fileencoding=utf-8
 endif
-" fix menu
-source $VIMRUNTIME\delmenu.vim
-source $VIMRUNTIME\menu.vim
 
 " For Vundle plugins
 set nocompatible              " be iMproved, required
@@ -26,7 +26,8 @@ Plugin 'gmarik/Vundle.vim'
 " let plugin installed
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
