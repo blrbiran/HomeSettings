@@ -35,13 +35,13 @@ set termencoding=utf-8
 "language message zh_CN.UTF-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 if has("win32")
-set fileencoding=gb18030
+	set fileencoding=gb18030
+	" fix chinese menu encoding
+	source $VIMRUNTIME/delmenu.vim
+	source $VIMRUNTIME/menu.vim
 else
-set fileencoding=utf-8
+	set fileencoding=utf-8
 endif
-" fix chinese menu encoding
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
 
 filetype on
 filetype indent on
