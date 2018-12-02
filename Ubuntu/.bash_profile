@@ -30,6 +30,13 @@ export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=$PATH:${JAVA_HOME}/bin
 
+# set go env
+export GOROOT=$HOME/usr
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export GO15VENDOREXPERIMENT=1
+export PATH=$PATH:$GOBIN
+
 # set bash as vi mode
 set -o vi
 # set -o emacs

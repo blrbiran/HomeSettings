@@ -238,6 +238,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " Vim-go
 " Disable auto download
 let g:go_disable_autoinstall = 0
+" Disable warning for Vim 7.4
+let g:go_version_warning = 0
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
