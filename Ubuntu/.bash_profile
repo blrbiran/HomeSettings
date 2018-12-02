@@ -19,10 +19,8 @@ alias duc='du -h --max-depth=1'
 alias vs='emacs -nw'
 alias vc='emacsclient -nw'
 
-alias sa='~/code/shell/searchFiles.sh'
+export PATH=~/code/shell:~/usr/bin:$PATH
 
-PATH=~/code/shell:~/usr/bin:~/bin:$PATH
-export $PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:~/usr/lib/pkgconfig
 
