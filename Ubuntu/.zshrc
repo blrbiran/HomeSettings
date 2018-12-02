@@ -268,12 +268,11 @@ fi
 
 export NODE_PATH=/usr/local/lib/node_modules
 
-export GOROOT=/usr
+export GOROOT=$HOME/usr
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export GO15VENDOREXPERIMENT=1
 export PATH=$PATH:$GOBIN
-export PATH=$PATH:/usr/local/mysql/bin
 
 # set jdk env
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
