@@ -281,9 +281,6 @@ export JRE_HOME=${JAVA_HOME}/jre
 export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
 export PATH=$PATH:${JAVA_HOME}/bin
 
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
-#export PATH=$PATH:$JAVA_HOME/bin
-
 export HADOOP_HOME=/usr/local/hadoop-2.7.3
 export HADOOP_HOME_WARN_SUPPRESS=1
 export PATH=$PATH:$HADOOP_HOME/bin
@@ -292,7 +289,7 @@ export SCALA_HOME=/usr/local/share/scala
 export SPARK_HOME=/usr/local/spark
 export PATH=$PATH:$SCALA_HOME/bin:$SPARK_HOME/bin
 
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/usr/bin
 
 alias hstart="$HADOOP_HOME/sbin/start-dfs.sh;$HADOOP_HOME/sbin/start-yarn.sh"
 alias hstop="$HADOOP_HOME/sbin/stop-dfs.sh;$HADOOP_HOME/sbin/stop-yarn.sh"
