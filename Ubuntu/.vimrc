@@ -182,7 +182,8 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Color theme
 syntax enable
-set background=dark
+autocmd ColorScheme solarized hi Normal ctermbg=black
+"set background=dark
 "set background=light
 colorscheme solarized
 let g:solarized_termcolors=256
