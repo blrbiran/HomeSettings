@@ -21,8 +21,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Install Vundle
-" "mkdir -p ~/.vim/bundle
-" "git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"mkdir -p ~/.vim/bundle
+"git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
@@ -179,22 +179,22 @@ map <F9> <Esc>:call Set80Word()<cr><Esc>
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Color theme
-" "syntax enable
-" "autocmd ColorScheme solarized hi Normal ctermbg=black
-" "autocmd ColorScheme evening hi Normal ctermbg=black
-" "set background=dark
-" "set background=light
-" "colorscheme evening
-" "colorscheme ir_black
-" "colorscheme grb256
-" "colorscheme distinguished
-" "colorscheme guardian2
-" "colorscheme twilight
-" "colorscheme vividchalk
-" colorscheme jellybeans
-" "colorscheme github
-" let g:solarized_termcolors=256
-" "colorscheme solarized
+"syntax enable
+"autocmd ColorScheme solarized hi Normal ctermbg=black
+"autocmd ColorScheme evening hi Normal ctermbg=black
+"set background=dark
+"set background=light
+"colorscheme evening
+"colorscheme ir_black
+"colorscheme grb256
+"colorscheme distinguished
+"colorscheme guardian2
+"colorscheme twilight
+"colorscheme vividchalk
+colorscheme jellybeans
+"colorscheme github
+let g:solarized_termcolors=256
+"colorscheme solarized
 
 " reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
 
