@@ -112,6 +112,7 @@ elseif has('unix')
 elseif has('mac')
 endif
 
+" Auto search tags file
 set tags=tags;
 map <C-F12> <Esc>:!ctags -R .<cr>
 map <F8> <Esc>:TlistToggle<cr><Esc>
