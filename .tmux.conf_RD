@@ -4,17 +4,22 @@ set -g prefix C-a
 
 set-window-option -g mode-keys vi
 
+# Bind ", %, c with current path
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+
 # Default shell
 set-option -g default-shell /bin/bash
 #set-option -g default-shell /bin/zsh
 #set-option -g default-shell /worktmp/home/usr/bin/zsh
 
 # Using mouse-wheel (but without copy and paste)
-#set -g mouse on
-set-window-option -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-set -g mouse-select-window on
+set -g mouse on
+#set-window-option -g mode-mouse on
+#set -g mouse-select-pane on
+#set -g mouse-resize-pane on
+#set -g mouse-select-window on
 
 # Enable 256 term color
 set -g default-terminal "screen-256color"
@@ -32,9 +37,9 @@ unbind-key m
 bind-key m last-window
 
 # copy mode
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
-bind-key -t vi-copy 'r' rectangle-toggle
+#bind-key -t vi-copy 'v' begin-selection
+#bind-key -t vi-copy 'y' copy-selection
+#bind-key -t vi-copy 'r' rectangle-toggle
 
 # bind a reload key
 #bind r source-file ~/.tmux.conf ; display-message "Config reloaded..."
@@ -57,5 +62,11 @@ set-option -g status-right "#[fg=green][#[fg=cyan]%Y-%m-%d#[fg=green]]"
 setw -g automatic-rename on
 set-window-option -g window-status-format "#[dim]#I:#[default]#W#[fg=grey,dim]"
 set-window-option -g window-status-current-format "#[fg=cyan,bold]#I#[fg=blue]:#[fg=cyan]#W#[fg=dim]"
+
+# Plugins
+# tmux-resurrect
+set -g @resurrect-save 'C-s'
+set -g @resurrect-restore 'C-r'
+run-shell ~/.tmux/tmux-resurrect/resurrect.tmux
 
 # reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
