@@ -82,7 +82,7 @@ plugins=(common-aliases)
 # User configuration
 
 export PATH=/mtkoss/git:$PATH
-PATH=~/code/shell:/worktmp/home/usr/bin:$PATH
+PATH=~/usr/bin:~/code/shell:/worktmp/home/usr/bin:$PATH
 export PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/worktmp/home/usr/lib
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/worktmp/home/usr/lib/pkgconfig
@@ -139,6 +139,12 @@ alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias cd....='cd ../../../..'
+alias .='cd ..'
+alias ..='cd ../..'
+alias ...='cd ../../..'
+alias ....='cd ../../../..'
+alias .....='cd ../../../../..'
+alias cd3='cd...'
 alias cd4='cd....'
 alias cd5='cd.... ; cd.'
 alias cd6='cd.... ; cd..'
@@ -158,6 +164,7 @@ alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sess
 alias ts='tmux -f ~/.tmux.conf.zsh_RD -L zsh new-session -s'
 alias tsb='tmux -f ~/.tmux.conf -L bash new-session -s'
 
+unalias gg
 alias gg='git'
 alias ggbi='git remote -v && git branch -a | head -n 10'
 alias ggs='git status'
@@ -185,6 +192,8 @@ alias vs='emacs'
 alias vc='emacsclient'
 alias cdb='cd /worktmp/codebase/'
 alias cdc='cd ~/casws_mtk14576/'
+alias cdpl='cd ./vendor/mediatek/proprietary/bootable/bootloader/preloader/'
+alias cdlk='cd ./vendor/mediatek/proprietary/bootable/bootloader/lk/'
 
 # Command line head / tail shortcuts
 alias -g G='| grep -i --color=auto'
