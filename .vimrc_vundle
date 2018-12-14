@@ -126,6 +126,8 @@ endif
 
 " Open tagbar plugin <F6>
 nmap <F6> :TagbarToggle<CR>
+" For tagbar update slow
+set updatetime=500
 
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
