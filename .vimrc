@@ -112,9 +112,6 @@ elseif has('unix')
 elseif has('mac')
 endif
 
-" Auto search tags file
-set tags=tags;
-"map <C-F12> <Esc>:!ctags -R .<cr>
 "map <F6> <Esc>:TlistToggle<cr><Esc>
 "let Tlist_Show_One_File=1
 "let Tlist_Exit_OnlyWindow=1
@@ -285,4 +282,19 @@ let g:tagbar_type_go = {
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 nmap <S-j> <Esc>:cn<cr>
 nmap <S-k> <Esc>:cp<cr>
+
+" Auto search tags file
+set tags=tags;
+"map <C-F12> <Esc>:!ctags -R .<cr>
+" Default search tag than cscope
+set cscopetagorder=0
+
+nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
