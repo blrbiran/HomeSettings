@@ -124,6 +124,8 @@ endif
 
 " Open tagbar plugin <F6>
 nmap <F6> :TagbarToggle<cr>
+" For tagbar update slow
+set updatetime=500
 
 " New Tab
 nnoremap <silent> <C-c> :tabnew<cr>
