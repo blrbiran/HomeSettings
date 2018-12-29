@@ -222,6 +222,9 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " Change the default mapping and the default command to invoke CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+" search more sub folders
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=5
 " When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
 let g:ctrlp_working_path_mode = 'ra'
 " If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers
