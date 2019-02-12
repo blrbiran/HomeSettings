@@ -30,6 +30,7 @@ Plugin 'gmarik/Vundle.vim'
 " let plugin installed
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 
@@ -245,6 +246,36 @@ let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 " Ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
+" NERDTree
+""将F2设置为开关NERDTree的快捷键
+map <f2> :NERDTreeToggle<cr>
+""开启Nerdtree时自动显示Bookmarks
+"let NERDTreeShowBookmarks=1
+""自动开启Nerdtree
+"autocmd vimenter * NERDTree
+"打开vim时如果没有文件自动打开NERDTree
+autocmd vimenter * if !argc()|NERDTree|endif
+"当NERDTree为剩下的唯一窗口时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+""修改树的显示图标
+"let g:NERDTreeDirArrowExpandable = '+'
+"let g:NERDTreeDirArrowCollapsible = '-'
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+""窗口位置
+let g:NERDTreeWinPos='left'
+""Window Size
+let g:NERDTreeSize=30
+""窗口是否显示行号
+let g:NERDTreeShowLineNumbers=1
+""不显示隐藏文件
+let g:NERDTreeHidden=0
+""过滤所有.pyc文件不显示
+let NERDTreeIgnore = ['\.pyc$']
+""Making it prettier
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
 " Vim-go
 " Disable auto download
 let g:go_disable_autoinstall = 0
@@ -302,4 +333,3 @@ nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-
