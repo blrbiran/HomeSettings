@@ -70,6 +70,7 @@ alias unyocas='unset CAS_CONFIG'
 
 alias bbdf='df -h | gc -vP "worktmp(?=/)"'
 alias bbviewcode='source ~/code/shell/readCode.sh'
+alias bbcr='source ~/code/shell/readCode.sh'
 bbpush() { git push mediatek HEAD:refs/for/$1 ; }
 bbcaslb() { cas-labels -b alps-mp-$1 ; }
 bbmeld() { meld $1/$3 $2/$3 ; }
