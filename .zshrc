@@ -179,6 +179,13 @@ alias duc='du -h --max-depth=1'
 alias vs='emacs'
 alias vc='emacsclient'
 
+alias cdconfig='cd ./arch/arm64/configs/'
+alias cdconfig32='cd ./arch/arm/configs/'
+alias cddts='cd ./arch/arm64/boot/dts/mediatek/'
+alias cddts32='cd ./arch/arm/boot/dts/mediatek/'
+alias cdusb='cd ./drivers/usb/'
+alias bbcr='source ~/code/shell/readCode.sh'
+
 # zsh vi mode
 # Emacs mode
 # bindkey -e
