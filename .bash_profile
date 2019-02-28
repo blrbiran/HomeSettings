@@ -57,6 +57,7 @@ alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
+bbgcrpv() { vi $(gcrp $1 -l) ; }
 
 PATH=~/code/shell:~/usr/bin:$PATH
 export $PATH
