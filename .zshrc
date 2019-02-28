@@ -186,6 +186,7 @@ alias cddts32='cd ./arch/arm/boot/dts/mediatek/'
 alias cdusb='cd ./drivers/usb/'
 alias bbcr='source ~/code/shell/readCode.sh'
 bbgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
+bbgcrpv() { vi $(gcrp $1 -l) ; }
 
 # zsh vi mode
 # Emacs mode
