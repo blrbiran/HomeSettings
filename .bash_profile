@@ -54,6 +54,7 @@ alias vs='emacs'
 alias vc='emacsclient'
 
 bbmeld() { meld $1/$3 $2/$3 ; }
+bbgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 
 PATH=~/code/shell:~/usr/bin:$PATH
 export $PATH
