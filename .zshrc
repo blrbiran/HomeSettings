@@ -185,9 +185,9 @@ alias cddts='cd ./arch/arm64/boot/dts/mediatek/'
 alias cddts32='cd ./arch/arm/boot/dts/mediatek/'
 alias cdusb='cd ./drivers/usb/'
 alias bbcr='source ~/code/shell/readCode.sh'
-bbvig() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
-bbgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
-bbgcrpv() { vi $(gcrp $1 -l) ; }
+bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
+bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
+bbvgcr() { vi $(gcrp $1 -l) ; }
 
 # zsh vi mode
 # Emacs mode
