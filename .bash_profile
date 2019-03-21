@@ -56,9 +56,9 @@ alias vc='emacsclient'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
 bbmeld() { meld $1/$3 $2/$3 ; }
-bbvig() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
-bbgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
-bbgcrpv() { vi $(gcrp $1 -l) ; }
+bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
+bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
+bbvgcr() { vi $(gcrp $1 -l) ; }
 
 PATH=~/code/shell:~/usr/bin:$PATH
 export $PATH
