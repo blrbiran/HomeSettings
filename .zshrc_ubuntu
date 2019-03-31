@@ -92,7 +92,6 @@ plugins=(common-aliases)
 # User configuration
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:~/Library/Python/2.7/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -285,15 +284,17 @@ fi
 
 export NODE_PATH=/usr/local/lib/node_modules
 
-export GOROOT=/usr/local/go
+export GOROOT=$HOME/usr
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export GO15VENDOREXPERIMENT=1
 export PATH=$PATH:$GOBIN
-export PATH=$PATH:/usr/local/mysql/bin
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
-export PATH=$PATH:$JAVA_HOME/bin
+# set jdk env
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=$PATH:${JAVA_HOME}/bin
 
 export HADOOP_HOME=/usr/local/hadoop-2.7.3
 export HADOOP_HOME_WARN_SUPPRESS=1
@@ -303,7 +304,7 @@ export SCALA_HOME=/usr/local/share/scala
 export SPARK_HOME=/usr/local/spark
 export PATH=$PATH:$SCALA_HOME/bin:$SPARK_HOME/bin
 
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/usr/bin
 
 alias hstart="$HADOOP_HOME/sbin/start-dfs.sh;$HADOOP_HOME/sbin/start-yarn.sh"
 alias hstop="$HADOOP_HOME/sbin/stop-dfs.sh;$HADOOP_HOME/sbin/stop-yarn.sh"
