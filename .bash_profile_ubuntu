@@ -65,6 +65,9 @@ bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$l
 bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 bbvgcr() { vi $(gcrp "$1" -l) ; }
 
+# Useless bb
+bbhmost() { cat ~/.bash_history | sort | uniq -c | sort -rn | head -n 10 ; }
+
 PATH=~/code/shell:~/usr/bin:$PATH
 export $PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
