@@ -220,6 +220,9 @@ bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$l
 bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 bbvgcr() { vi $(gcrp "$1" -l) ; }
 
+# Useless bb
+bbhmost() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | LC_ALL=C sort | uniq -c | LC_ALL=C sort -rn | head -n 20 ; }
+
 # zsh vi mode
 # Emacs mode
 # bindkey -e
