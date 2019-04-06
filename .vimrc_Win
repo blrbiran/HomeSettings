@@ -5,7 +5,6 @@ set termencoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 if has("win32")
 	set fileencoding=gb18030
-
 	" fix menu
 	source $VIMRUNTIME\delmenu.vim
 	source $VIMRUNTIME\menu.vim
@@ -16,22 +15,26 @@ else
 	set fileencoding=utf-8
 endif
 
+if exists('$TMUX')
+	set term=screen-256color
+endif
+
 " For Vundle plugins
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+" Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Install Vundle
-"mkdir -p ~/.vim/bundle
-"git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" mkdir -p ~/.vim/bundle
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
-" let Vundle manage Vundle, required
+" Let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" let plugin installed
+" Let plugin installed
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
@@ -44,14 +47,7 @@ Plugin 'mileszs/ack.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-func! SetMouse()
-  if &mouse == "n"
-    set mouse=
-  else
-    set mouse=n
-  endif
-endfunc
-
+" Normal Settings
 syntax on
 set nocompatible
 set number
@@ -84,33 +80,19 @@ set noerrorbells	"no bells when occurs error
 
 let mapleader="\<Space>"
 
-map <F1> <Esc>0i//<Esc>
-map <F3> <Esc>:Ack<Space>
-map <F4> <Esc>:call SetMouse()<cr><Esc>
-map <F12> <Esc>:set list!<cr><Esc>
-
-"save cursor position
+" Save cursor position
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-"enable mouse function
+" Enable mouse function
 set mouse=n
+func! SetMouse()
+  if &mouse == "n"
+    set mouse=
+  else
+    set mouse=n
+  endif
+endfunc
 
-"set paste
-set pastetoggle=<F10>
-
-" Quit insert mode
-inoremap jj <Esc>
-
-" Move to the start of line
-nnoremap H ^
-" Move to the end of line
-nnoremap L $
-
-"create a new file
-nnoremap <Leader>o :CtrlP<cr>
-"save current file
-nnoremap <Leader>s :w<cr>
-
-"setting system clipboard
+" Setting system clipboard
 if has('win32')
 	vmap <C-Insert> "+y
 	nmap <C-Insert> "+y
@@ -120,69 +102,7 @@ elseif has('unix')
 elseif has('mac')
 endif
 
-"map <F6> <Esc>:TlistToggle<cr><Esc>
-"let Tlist_Show_One_File=1
-"let Tlist_Exit_OnlyWindow=1
-"let Tlist_Use_Right_Window=1
-"let Tlist_Auto_Open=1
-"let Tlist_Close_On_Select=1
-
-" Open the TagList Plugin <F6>
-"nnoremap <silent> <F6> :TlistToggle<cr>
-
-" Open tagbar plugin <F6>
-nmap <F6> :TagbarToggle<cr>
-" For tagbar update slow
-set updatetime=500
-
-" New Tab
-nnoremap <silent> <C-c> :tabnew<cr>
-" Next Tab
-nnoremap <silent> <C-h> gT
-" Previous Tab
-nnoremap <silent> <C-l> gt
-
-"press F5 for compile & run
-map <F5> :call CompileRunGcc()<cr>
-func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -DLOCAL -o   %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -std=c++11 -DLOCAL -Dxiaoai -o    %<"
-		exec "!time ./%<"
-	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		exec "!time python %"
-	endif
-endfunc
-
-if exists('$TMUX')
-	set term=screen-256color
-endif
-
-" Highlight over 80 char
-let g:wordline_on = "n"
-
-func! Set80Word()
-  if g:wordline_on == "n"
-    let g:wordline_on = "y"
-    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-    match OverLength /\%>80v.\+/
-  else
-    hi clear
-    let g:wordline_on = "n"
-  endif
-endfunc
-
-map <F9> <Esc>:call Set80Word()<cr><Esc>
-
-"解决crontab -e时，提示crontab: temp file must be edited in place
+" 解决crontab -e时，提示crontab: temp file must be edited in place
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 " Color theme
@@ -206,21 +126,22 @@ let g:solarized_termcolors=256
 " reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
 
 " Plugins
-" powerline
-" before this, run "pip install powerline_status"
+" Powerline
+" Before this, run "pip install powerline_status"
 set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
 set laststatus=2
 set t_Co=256
 let g:Powerline_symbols = 'fancy'
+" Reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
 
-" easy motion
+" Easy Motion
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
 nmap S <Plug>(easymotion-overwin-f2)
 " Move to line
-map <Leader>l <Plug>(easymotion-bd-jk)
+map  <Leader>l <Plug>(easymotion-bd-jk)
 nmap <Leader>l <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
@@ -230,7 +151,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " Change the default mapping and the default command to invoke CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-" search more sub folders
+" Search more sub folders
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=5
 " When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
@@ -254,8 +175,6 @@ let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " NERDTree
-""将F2设置为开关NERDTree的快捷键
-map <f2> :NERDTreeToggle<cr>
 ""开启Nerdtree时自动显示Bookmarks
 "let NERDTreeShowBookmarks=1
 ""自动开启Nerdtree
@@ -340,4 +259,83 @@ nmap <C-@>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+" Open the TagList Plugin
+"let Tlist_Show_One_File=1
+"let Tlist_Exit_OnlyWindow=1
+"let Tlist_Use_Right_Window=1
+"let Tlist_Auto_Open=1
+"let Tlist_Close_On_Select=1
+
+" For tagbar update slow
+set updatetime=500
+
+" Press F5 for compile & run
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		exec "!g++ % -DLOCAL -o   %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		exec "!g++ % -std=c++11 -DLOCAL -Dxiaoai -o    %<"
+		exec "!time ./%<"
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		exec "!time python %"
+	endif
+endfunc
+
+" Highlight over 80 char
+let g:wordline_on = "n"
+
+func! Set80Word()
+  if g:wordline_on == "n"
+    let g:wordline_on = "y"
+    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+    match OverLength /\%>80v.\+/
+  else
+    hi clear
+    let g:wordline_on = "n"
+  endif
+endfunc
+
+" Short Key Bindings
+" Quit insert mode
+inoremap jj <Esc>
+
+" Move to the start of line
+nnoremap H ^
+" Move to the end of line
+nnoremap L $
+
+" Create a new file
+nnoremap <Leader>o :CtrlP<cr>
+" Save current file
+nnoremap <Leader>s :w<cr>
+
+" New Tab
+nnoremap <silent> <C-c> :tabnew<cr>
+" Next Tab
+nnoremap <silent> <C-h> gT
+" Previous Tab
+nnoremap <silent> <C-l> gt
+
+" Short keys
+map <F1> <Esc>0i//<Esc>
+""将F2设置为开关NERDTree的快捷键
+map <F2> :NERDTreeToggle<cr>
+map <F3> <Esc>:Ack<Space>
+map <F4> <Esc>:call SetMouse()<cr><Esc>
+map <F5> :call CompileRunGcc()<cr>
+" Open tagbar plugin <F6>
+nmap <F6> :TagbarToggle<cr>
+"map <F8> <Esc>:TlistToggle<cr><Esc>
+map <F9> <Esc>:call Set80Word()<cr><Esc>
+" Set paste
+set pastetoggle=<F10>
+map <F12> <Esc>:set list!<cr><Esc>
 
