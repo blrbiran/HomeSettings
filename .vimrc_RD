@@ -80,10 +80,11 @@ set noerrorbells	"no bells when occurs error
 
 let mapleader="\<Space>"
 
-map <F12> <Esc>:set list!<cr><Esc>
 map <F1> <Esc>0i//<Esc>
-
+map <F3> <Esc>:Ack<Space>
 map <F4> <Esc>:call SetMouse()<cr><Esc>
+map <F12> <Esc>:set list!<cr><Esc>
+
 "save cursor position
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 "enable mouse function
