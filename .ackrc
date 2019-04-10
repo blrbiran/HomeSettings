@@ -1,5 +1,5 @@
 --smart-case
 --heading
 --flush
---color-line=blue
---color-match=yellow
+--color-line=bold blue
+--color-match=bold yellow
