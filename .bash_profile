@@ -33,7 +33,7 @@ alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
 
 unalias gg
 alias gg='git'
-alias ggbi='git remote -v && git branch -a | head -n 10'
+alias ggbi='git remote -v && git branch -a | head -n 10 && echo "" && git branch -a | grep "\->"'
 alias ggs='git status'
 alias ggb='git branch'
 alias ggba='git branch -a'
@@ -60,10 +60,11 @@ alias vc='emacsclient'
 
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
+alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
 bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
-bbvgcr() { vi $(gcrp "$1" -l) ; }
+bbvgcr() { vi $(grep -rni -P "$1" -l) ; }
 
 # Useless bb
 bbhmost() { cat ~/.bash_history | sort | uniq -c | sort -rn | head -n 10 ; }

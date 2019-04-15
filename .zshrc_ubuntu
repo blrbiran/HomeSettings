@@ -158,7 +158,7 @@ alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
 alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
 
 alias gg='git'
-alias ggbi='git remote -v && git branch -a | head -n 10'
+alias ggbi='git remote -v && git branch -a | head -n 10 && echo "" && git branch -a | grep "\->"'
 alias ggs='git status'
 alias ggb='git branch'
 alias ggba='git branch -a'
@@ -189,9 +189,10 @@ alias cddts='cd ./arch/arm64/boot/dts/mediatek/'
 alias cddts32='cd ./arch/arm/boot/dts/mediatek/'
 alias cdusb='cd ./drivers/usb/'
 alias bbcr='source ~/code/shell/readCode.sh'
+alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
 bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
-bbvgcr() { vi $(gcrp "$1" -l) ; }
+bbvgcr() { vi $(grep -rni -P "$1" -l) ; }
 
 # Useless bb
 bbhmost() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | LC_ALL=C sort | uniq -c | LC_ALL=C sort -rn | head -n 20 ; }
