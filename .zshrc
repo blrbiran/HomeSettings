@@ -92,7 +92,8 @@ plugins=(common-aliases)
 # User configuration
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$PATH:~/Library/Python/2.7/bin
+# export PATH=$PATH:~/Library/Python/2.7/bin
+export PATH=$PATH:/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -316,5 +317,5 @@ alias sstop="$SPARK_HOME/sbin/stop-all.sh"
 
 export LANG=en_US.UTF-8
 
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 
