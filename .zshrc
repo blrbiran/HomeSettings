@@ -153,11 +153,11 @@ alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
 alias gcre='grep -rni --color=auto -E'
 alias gcrp='grep -rni --color=auto -P'
 
-alias ta='tmux -f ~/.tmux.conf attach -t'
-alias tab='tmux -f ~/.tmux.conf.bash attach -t'
-alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sessions | sed "s/^/[bash] /g"'
-alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
-alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
+# alias ta='tmux -f ~/.tmux.conf attach -t'
+# alias tab='tmux -f ~/.tmux.conf.bash attach -t'
+# alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sessions | sed "s/^/[bash] /g"'
+# alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
+# alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
 
 alias gg='git'
 alias ggbi='git remote -v && git branch -a | head -n 10 && echo "" && git branch -a | grep "\->"'
@@ -297,7 +297,7 @@ export GO15VENDOREXPERIMENT=1
 export PATH=$PATH:$GOBIN
 export PATH=$PATH:/usr/local/mysql/bin
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.1.jdk/Contents/Home
 export PATH=$PATH:$JAVA_HOME/bin
 
 export HADOOP_HOME=/usr/local/hadoop-2.7.3
