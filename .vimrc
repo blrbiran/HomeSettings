@@ -307,7 +307,8 @@ func! Set80Word_v2()
     set colorcolumn=+1
     hi ColorColumn ctermbg=lightgrey guibg=lightgrey
   else
-    hi clear
+    "hi clear
+    set colorcolumn=
     let g:wordline_on = "n"
   endif
 endfunc
