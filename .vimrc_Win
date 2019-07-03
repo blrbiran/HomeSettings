@@ -303,6 +303,18 @@ func! Set80Word()
   endif
 endfunc
 
+func! Set80Word_v2()
+  if g:wordline_on == "n"
+    let g:wordline_on = "y"
+    set textwidth=80
+    set colorcolumn=+1
+    hi ColorColumn ctermbg=lightgrey guibg=lightgrey
+  else
+    hi clear
+    let g:wordline_on = "n"
+  endif
+endfunc
+
 " Short Key Bindings
 " Quit insert mode
 inoremap jj <Esc>
@@ -334,7 +346,8 @@ map <F5> :call CompileRunGcc()<cr>
 " Open tagbar plugin <F6>
 nmap <F6> :TagbarToggle<cr>
 "map <F8> <Esc>:TlistToggle<cr><Esc>
-map <F9> <Esc>:call Set80Word()<cr><Esc>
+call Set80Word_v2()
+map <F9> <Esc>:call Set80Word_v2()<cr><Esc>
 " Set paste
 set pastetoggle=<F10>
 map <F12> <Esc>:set list!<cr><Esc>
