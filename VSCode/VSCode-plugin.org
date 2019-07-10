@@ -1,0 +1,43 @@
+#+TITLE: VSCode Plugins
+#+AUTHOR: <Brian>
+#+EMAIL: <blrbiran@yeah.net>
+#+DATE: <2019-07-02 Tue 13:05>
+#+OPTIONS: ^:nil \n:t
+
+#+LaTeX_HEADER: \usepackage{xeCJK}
+#+LaTeX_HEADER: \setCJKmainfont{SimSun}
+
+* Installed Plugins
+
+** Beautify
+
+** Bookmarks
+
+** Bracket Pair Colorizer
+
+** C/C++
+
+** Debugger for Chrome
+
+** Go
+
+** jshint
+
+npm install -g jshint
+
+** markdownlint
+
+** npm
+
+** npm Intellisense
+
+** Python
+
+** Trailing Spaces
+
+** TSLint
+
+** Vim
+
+** YAML
+
