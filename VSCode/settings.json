@@ -11,27 +11,22 @@
         "after": ["<Esc>"]
     }],
     "vim.normalModeKeyBindingsNonRecursive": [{
-            "before": ["<leader>", "s"],
-            "commands": ["workbench.action.files.save"]
-        },
-        {
-            "before": ["<leader>", "m"],
-            "commands": ["bookmarks.toggle"]
-        },
-        {
-            "before": ["<leader>", "b"],
-            "commands": ["bookmarks.list"]
-        }
-    ],
+        "before": ["<leader>", "s"],
+        "commands": ["workbench.action.files.save"]
+    }, {
+        "before": ["<leader>", "m"],
+        "commands": ["bookmarks.toggle"]
+    }, {
+        "before": ["<leader>", "b"],
+        "commands": ["bookmarks.list"]
+    }],
     "vim.visualModeKeyBindingsNonRecursive": [{
-            "before": [">"],
-            "commands": ["editor.action.indentLines"]
-        },
-        {
-            "before": ["<"],
-            "commands": ["editor.action.outdentLines"]
-        },
-    ],
+        "before": [">"],
+        "commands": ["editor.action.indentLines"]
+    }, {
+        "before": ["<"],
+        "commands": ["editor.action.outdentLines"]
+    }],
     "vim.handleKeys": {},
     // easy motion settings
     "vim.easymotion": true,
