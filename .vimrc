@@ -39,6 +39,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
