@@ -148,11 +148,11 @@ alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
 
 unalias grep
-alias gc='grep -i --color=auto'
-alias gcr='grep -rni --color=auto'
-alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
-alias gcre='grep -rni --color=auto -E'
-alias gcrp='grep -rni --color=auto -P'
+alias gc='grep -i --color=auto '
+alias gcr='grep -rni --color=auto '
+alias gcrng='grep -rni --color=auto --exclude-dir={.git} '
+alias gcre='grep -rni --color=auto -E '
+alias gcrp='grep -rni --color=auto -P '
 
 alias ta='tmux -f ~/.tmux.conf.zsh_RD attach -t'
 alias tab='tmux -f ~/.tmux.conf attach -t'
@@ -179,8 +179,8 @@ alias ggl='git ls'
 alias ggstash='git stash'
 
 alias fdn='find . -name'
-alias lc='ll | grep --color=auto'
-alias lsc='ls | grep'
+alias lc='ll | grep --color=auto '
+alias lsc='ls | grep '
 alias rezsh='source ~/.zshrc'
 alias h='history'
 alias ht='history | tail -n '
@@ -240,7 +240,7 @@ bindkey -v
 
 # VI MODE KEYBINDINGS (ins mode)
 bindkey -M viins '^h'    vi-cmd-mode
-bindkey -M viins '^a'    beginning-of-line
+bindkey -M viins '^q'    beginning-of-line
 bindkey -M viins '^e'    end-of-line
 bindkey -M viins '^k'    kill-line
 bindkey -M viins '^r'    history-incremental-pattern-search-backward
@@ -263,7 +263,7 @@ bindkey -M viins '\ed'   kill-word         # Alt-d
 
 
 # VI MODE KEYBINDINGS (cmd mode)
-bindkey -M vicmd '^a'    beginning-of-line
+bindkey -M vicmd '^q'    beginning-of-line
 bindkey -M vicmd '^e'    end-of-line
 bindkey -M vicmd '^k'    kill-line
 bindkey -M vicmd '^r'    history-incremental-pattern-search-backward
@@ -282,6 +282,31 @@ bindkey -M vicmd '\ed'   kill-word                         # Alt-d
 bindkey -M vicmd '\e[5~' history-beginning-search-backward # PageUp
 bindkey -M vicmd '\e[6~' history-beginning-search-forward  # PageDown
 
+# key bindings （HomeKey and EndKey)
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\eOc" emacs-forward-word
+bindkey "\e[5D" backward-word
+bindkey "\eOd" emacs-backward-word
+bindkey "\ee[C" forward-word
+bindkey "\ee[D" backward-word
+bindkey "^H" backward-delete-word
+# for rxvt
+bindkey "\e[8~" end-of-line
+bindkey "\e[7~" beginning-of-line
+# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+# for freebsd console
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
+# completion in the middle of a line
+bindkey '^i' expand-or-complete-prefix
 
 
 function zle-line-init zle-keymap-select {

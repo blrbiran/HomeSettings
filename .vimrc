@@ -60,6 +60,7 @@ set ruler
 set shiftwidth=8
 set softtabstop=8
 set tabstop=8
+set noexpandtab
 set showcmd
 set background=dark
 
@@ -78,7 +79,6 @@ set backspace=indent,eol,start
 set showmatch
 set matchtime=2
 
-set noexpandtab
 set noerrorbells	"no bells when occurs error
 
 let mapleader="\<Space>"
@@ -199,8 +199,8 @@ let g:NERDTreeSize=30
 let g:NERDTreeShowLineNumbers=1
 ""不显示隐藏文件
 let g:NERDTreeHidden=0
-""过滤所有.pyc文件不显示
-let NERDTreeIgnore = ['\.pyc$']
+""过滤文件不显示
+let NERDTreeIgnore = ['\.pyc$', '\.swp']
 ""Making it prettier
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -319,6 +319,24 @@ func! Set80Word_v2()
   endif
 endfunc
 
+let g:kerStyle="y"
+func! KernelStyle()
+  if g:kerStyle == "y"
+    let g:kerStyle="n"
+    set shiftwidth=4
+    set softtabstop=4
+    set tabstop=4
+    set expandtab
+  else
+    let g:kerStyle="y"
+    set shiftwidth=8
+    set softtabstop=8
+    set tabstop=8
+    set noexpandtab
+  endif
+endfunc
+
+
 " Short Key Bindings
 " Quit insert mode
 inoremap jj <Esc>
@@ -329,7 +347,9 @@ nnoremap H ^
 nnoremap L $
 
 " Create a new file
-nnoremap <Leader>o :CtrlP<cr>
+nnoremap <Leader>o :CtrlP .<cr>
+nnoremap <Leader>b :CtrlPBuffer<cr>
+nnoremap <Leader>t :CtrlPFunky<cr>
 " Save current file
 nnoremap <Leader>s :w<cr>
 
@@ -349,7 +369,8 @@ map <F4> <Esc>:call SetMouse()<cr><Esc>
 map <F5> :call CompileRunGcc()<cr>
 " Open tagbar plugin <F6>
 nmap <F6> :TagbarToggle<cr>
-"map <F8> <Esc>:TlistToggle<cr><Esc>
+map <F7> <Esc>:call KernelStyle()<cr><Esc>
+" map <F8> <Esc>:TlistToggle<cr><Esc>
 call Set80Word_v2()
 map <F9> <Esc>:call Set80Word_v2()<cr><Esc>
 " Set paste

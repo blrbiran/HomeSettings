@@ -19,11 +19,11 @@ alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
 
 unalias grep
-alias gc='grep -i --color=auto'
-alias gcr='grep -rni --color=auto'
-alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
-alias gcre='grep -rni --color=auto -E'
-alias gcrp='grep -rni --color=auto -P'
+alias gc='grep -i --color=auto '
+alias gcr='grep -rni --color=auto '
+alias gcrng='grep -rni --color=auto --exclude-dir={.git} '
+alias gcre='grep -rni --color=auto -E '
+alias gcrp='grep -rni --color=auto -P '
 
 alias ta='tmux -f ~/.tmux.conf attach -t'
 alias tab='tmux -f ~/.tmux.conf.bash attach -t'
@@ -50,13 +50,18 @@ alias ggl='git ls'
 alias ggstash='git stash'
 
 alias fdn='find . -name'
-alias lc='ll | grep --color=auto'
+alias lc='ll | grep --color=auto '
 alias lsc='ls | grep '
 alias rebash='source ~/.bash_profile'
 alias h='history'
 alias duc='du -h --max-depth=1'
 alias vs='emacs'
 alias vc='emacsclient'
+alias cdconfig='cd ./arch/arm64/configs/'
+alias cdconfig32='cd ./arch/arm/configs/'
+alias cddts='cd ./arch/arm64/boot/dts/mediatek/'
+alias cddts32='cd ./arch/arm/boot/dts/mediatek/'
+alias cdusb='cd ./drivers/usb/'
 
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
@@ -83,14 +88,14 @@ export EDITOR=/usr/bin/vim
 bind -m vi-insert '\c-h':vi-movement-mode
 # clear screen
 bind -m vi-insert '\c-l':clear-screen
-# go into command mode
+# jump to end
 bind -m vi-insert '\c-e':end-of-line
-# go into command mode
+# jump to start
 bind -m vi-insert '\c-a':beginning-of-line
-# go into command mode
-bind -m vi-insert '\c-b':backward-mode
-# go into command mode
-bind -m vi-insert '\c-f':forward-mode
+# jump to later word
+bind -m vi-insert '\c-b':backward-word
+# jump to former word
+bind -m vi-insert '\c-f':forward-word
 
 # added by Anaconda3 2019.03 installer
 # >>> conda init >>>
