@@ -213,6 +213,9 @@ alias bbdf='df -h | gc -vP "worktmp(?=/)"'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
+alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
+alias csd='cscope -d'
+alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
 bbpush() { git push mediatek HEAD:refs/for/$1 ; }
 bbcaslb() { cas-labels -b alps-mp-$1 ; }
 bbmeld() { meld $1/$3 $2/$3 ; }
@@ -220,6 +223,7 @@ bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
 bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 bbvgcr() { vi $(grep -rni -P "$1" -l) ; }
+bbvlc() { vi $(ls | grep "$1") ; }
 
 # Useless bb
 bbhmost() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | LC_ALL=C sort | uniq -c | LC_ALL=C sort -rn | head -n 20 ; }
@@ -295,7 +299,7 @@ bindkey "\e[5D" backward-word
 bindkey "\eOd" emacs-backward-word
 bindkey "\ee[C" forward-word
 bindkey "\ee[D" backward-word
-bindkey "^H" backward-delete-word
+#bindkey "^H" backward-delete-word
 # for rxvt
 bindkey "\e[8~" end-of-line
 bindkey "\e[7~" beginning-of-line

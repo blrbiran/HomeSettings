@@ -16,7 +16,7 @@ function scandir() {
   else
     cur_dir=$(pwd)
   fi
-  
+
   for dirlist in $(ls ${cur_dir})
   do
     if [ -d ${dirlist} ];then

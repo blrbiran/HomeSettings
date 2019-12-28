@@ -187,9 +187,14 @@ alias cddts32='cd ./arch/arm/boot/dts/mediatek/'
 alias cdusb='cd ./drivers/usb/'
 alias bbcr='source ~/code/shell/readCode.sh'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
+alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
+alias csd='cscope -d'
+alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
+bbmeld() { meld $1/$3 $2/$3 ; }
 bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
 bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 bbvgcr() { vi $(grep -rni -P "$1" -l) ; }
+bbvlc() { vi $(ls | grep "$1") ; }
 
 # Useless bb
 bbhmost() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | LC_ALL=C sort | uniq -c | LC_ALL=C sort -rn | head -n 20 ; }
@@ -265,7 +270,7 @@ bindkey "\e[5D" backward-word
 bindkey "\eOd" emacs-backward-word
 bindkey "\ee[C" forward-word
 bindkey "\ee[D" backward-word
-bindkey "^H" backward-delete-word
+#bindkey "^H" backward-delete-word
 # for rxvt
 bindkey "\e[8~" end-of-line
 bindkey "\e[7~" beginning-of-line
@@ -341,7 +346,9 @@ alias sstop="$SPARK_HOME/sbin/stop-all.sh"
 
 export LANG=en_US.UTF-8
 
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+#export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export HOMEBREW_NO_AUTO_UPDATE=true
 
 source ~/.machine-related.zsh
 
