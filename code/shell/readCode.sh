@@ -8,6 +8,13 @@ bbcscope ()
     cscope -Rbq -P $HERE
 }
 
+bbcurcscope ()
+{
+    PWD= /bin/pwd && \
+    local HERE=$PWD && \
+    cscope -Rbq -P $HERE
+}
+
 bbctags ()
 {
     bbcg && \

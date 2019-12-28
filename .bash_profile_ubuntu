@@ -66,10 +66,14 @@ alias cdusb='cd ./drivers/usb/'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
+alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
+alias csd='cscope -d'
+alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
 bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 bbvgcr() { vi $(grep -rni -P "$1" -l) ; }
+bbvlc() { vi $(ls | grep "$1") ; }
 
 # Useless bb
 bbhmost() { cat ~/.bash_history | sort | uniq -c | sort -rn | head -n 10 ; }
