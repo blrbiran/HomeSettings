@@ -4,7 +4,6 @@
 export GOROOT=/usr/local
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export GO15VENDOREXPERIMENT=1
 export PATH=$PATH:$GOBIN
 
 # For MacOS in Black Apple
