@@ -1,5 +1,12 @@
 #!/bin/zsh
 
+# Golang related
+export GOROOT=/usr/local
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export GO15VENDOREXPERIMENT=1
+export PATH=$PATH:$GOBIN
+
 # For MacOS in Black Apple
 
 # added by Anaconda3 2019.03 installer
