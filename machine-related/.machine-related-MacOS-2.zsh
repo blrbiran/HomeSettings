@@ -1,10 +1,10 @@
 #!/bin/zsh
 
 # Golang related
-export GOROOT=/usr/local
+export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN
+export PATH=$PATH:$GOROOT/bin:$GOBIN
 
 # For MacOS in Black Apple
 
