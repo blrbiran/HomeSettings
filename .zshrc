@@ -324,6 +324,7 @@ export PATH=$PATH:/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Ver
 # export MANPATH="/usr/local/man:$MANPATH"
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.1.jdk/Contents/Home
+export CLASSPATH=.:$JAVA_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin
 
 export HADOOP_HOME=/usr/local/hadoop-2.7.3
