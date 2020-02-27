@@ -127,8 +127,9 @@ alias tmux="tmux -2"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 setopt hist_ignore_space
-alias cd=' cd'
+
 alias ls=' ls'
+alias cd=' cd'
 
 if [[ "$(uname)" = "Darwin" ]]; then # MacOS
   alias ll='ls -alh -G'
@@ -139,6 +140,7 @@ alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias cd....='cd ../../../..'
+alias cd1='cd.'
 alias cd2='cd..'
 alias cd3='cd...'
 alias cd4='cd....'
@@ -148,11 +150,11 @@ alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
 
 unalias grep
-alias gc='grep -i --color=auto '
-alias gcr='grep -rni --color=auto '
-alias gcrng='grep -rni --color=auto --exclude-dir={.git} '
-alias gcre='grep -rni --color=auto -E '
-alias gcrp='grep -rni --color=auto -P '
+alias gc='grep -i --color=auto'
+alias gcr='grep -rni --color=auto'
+alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
+alias gcre='grep -rni --color=auto -E'
+alias gcrp='grep -rni --color=auto -P'
 
 alias ta='tmux -f ~/.tmux.conf.zsh_RD attach -t'
 alias tab='tmux -f ~/.tmux.conf attach -t'
@@ -162,7 +164,7 @@ alias tsb='tmux -f ~/.tmux.conf -L bash new-session -s'
 
 unalias gg
 alias gg='git'
-alias ggbi='git remote -v && git branch -a | head -n 10 && echo "" && git branch -a | grep "\->"'
+alias ggbi='git remote -v && git branch -a | head -n 20 && echo "" && git branch -a | grep "\->"'
 alias ggs='git status'
 alias ggb='git branch'
 alias ggba='git branch -a'
@@ -179,8 +181,8 @@ alias ggl='git ls'
 alias ggstash='git stash'
 
 alias fdn='find . -name'
-alias lc='ll | grep --color=auto '
-alias lsc='ls | grep '
+alias lc='ll | grep --color=auto'
+alias lsc='ls | grep'
 alias rezsh='source ~/.zshrc'
 alias h='history'
 alias ht='history | tail -n '
@@ -195,12 +197,18 @@ alias cdb='cd /worktmp/codebase/'
 alias cdc='cd ~/casws_mtk14576/'
 alias cdpl='cd ./vendor/mediatek/proprietary/bootable/bootloader/preloader/'
 alias cdlk='cd ./vendor/mediatek/proprietary/bootable/bootloader/lk/'
-alias cdconfig='cd ./arch/arm64/configs/'
-alias cdconfig32='cd ./arch/arm/configs/'
-alias cddts='cd ./arch/arm64/boot/dts/mediatek/'
-alias cddts32='cd ./arch/arm/boot/dts/mediatek/'
-alias cdusb='cd ./drivers/usb/'
-alias cdusb20='cd ./drivers/misc/mediatek/usb20/'
+alias cdconfig='bbcg1 && cd ./arch/arm64/configs/'
+alias cdconfig32='bbcg1 && cd ./arch/arm/configs/'
+alias cddts='bbcg1 && cd ./arch/arm64/boot/dts/mediatek/'
+alias cddts32='bbcg1 && cd ./arch/arm/boot/dts/mediatek/'
+alias cdusb='bbcg1 && cd ./drivers/usb/'
+alias cdgadget='bbcg1 && cd ./drivers/usb/gadget/'
+alias cdusb20='bbcg1 && cd ./drivers/misc/mediatek/usb20/'
+alias cdusb11='bbcg1 && cd ./drivers/misc/mediatek/usb11/'
+alias cdspi='bbcg1 && cd ./drivers/spi/'
+alias cdinc='bbcg1 && cd ./include/'
+alias cdinclinux='bbcg1 && cd ./include/linux/'
+alias cdmtk='bbcg1 && cd ./drivers/misc/mediatek/'
 
 # Command line head / tail shortcuts
 alias -g G='| grep -i --color=auto'
@@ -208,6 +216,7 @@ alias -g H='| head -n'
 
 alias yocas='export CAS_CONFIG=CONFIG_YOCTO_GCN_SPICE'
 alias unyocas='unset CAS_CONFIG'
+alias casrm='cas-remove'
 
 alias bbdf='df -h | gc -vP "worktmp(?=/)"'
 alias bbviewcode='source ~/code/shell/readCode.sh'
@@ -216,17 +225,24 @@ alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
+bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old && echo "start rm old folder" && rm -rf old ; }
 bbpush() { git push mediatek HEAD:refs/for/$1 ; }
-bbcaslb() { cas-labels -b alps-mp-$1 ; }
+bbcl() { cas-labels -b alps-mp-$1 ; }
+bbct() { s1=( $(sed -r "s/(alps)-(mp|dev)-([0-9a-z.]*)-/\3-$2-/g" <<< "$1"));
+cas-take $1 -n $s1 ;
+}
+bbct2() { s0=( $(grep --color=auto -Po "(?<=alps-mp-)[a-zA-Z0-9.\-_]*" <<< "$1") ) ;
+s1=( $(grep --color=auto -Eo "[a-zA-Z0-9.]*-" <<< "$s0" ) ) ;
+s2=$s1$2-${s0:${#s1}:${#s0}} ; cas-take $1 -n $s2 ; }
+bbct3() { cas-take alps-mp-$1 -n $2 ; }
 bbmeld() { meld $1/$3 $2/$3 ; }
+bbmeldc() { cur=${PWD} ; meld $1/ $cur/ ; }
 bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
+bb2ack() { ack "$1" -l | xargs -I {} ack "$2" {} -H ; }
 bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 bbvgcr() { vi $(grep -rni -P "$1" -l) ; }
 bbvlc() { vi $(ls | grep "$1") ; }
-
-# Useless bb
-bbhmost() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | LC_ALL=C sort | uniq -c | LC_ALL=C sort -rn | head -n 20 ; }
 
 # zsh vi mode
 # Emacs mode
@@ -286,31 +302,6 @@ bindkey -M vicmd '\ed'   kill-word                         # Alt-d
 bindkey -M vicmd '\e[5~' history-beginning-search-backward # PageUp
 bindkey -M vicmd '\e[6~' history-beginning-search-forward  # PageDown
 
-# key bindings （HomeKey and EndKey)
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[4~" end-of-line
-bindkey "\e[5~" beginning-of-history
-bindkey "\e[6~" end-of-history
-bindkey "\e[3~" delete-char
-bindkey "\e[2~" quoted-insert
-bindkey "\e[5C" forward-word
-bindkey "\eOc" emacs-forward-word
-bindkey "\e[5D" backward-word
-bindkey "\eOd" emacs-backward-word
-bindkey "\ee[C" forward-word
-bindkey "\ee[D" backward-word
-#bindkey "^H" backward-delete-word
-# for rxvt
-bindkey "\e[8~" end-of-line
-bindkey "\e[7~" beginning-of-line
-# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
-bindkey "\eOH" beginning-of-line
-bindkey "\eOF" end-of-line
-# for freebsd console
-bindkey "\e[H" beginning-of-line
-bindkey "\e[F" end-of-line
-# completion in the middle of a line
-bindkey '^i' expand-or-complete-prefix
 
 
 function zle-line-init zle-keymap-select {
