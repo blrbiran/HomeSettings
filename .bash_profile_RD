@@ -81,6 +81,7 @@ alias yocas='export CAS_CONFIG=CONFIG_YOCTO_GCN_SPICE'
 alias unyocas='unset CAS_CONFIG'
 alias casrm='cas-remove'
 
+alias bbconf='vi ~/.bash_profile ~/.zshrc ~/.vimrc'
 alias bbdf='df -h | gc -vP "worktmp(?=/)"'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
@@ -88,24 +89,34 @@ alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
-bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old && echo "start rm old folder" && rm -rf old ; }
+bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old && \
+	echo "start rm old folder" && rm -rf old ; }
 bbpush() { git push mediatek HEAD:refs/for/$1 ; }
 bbcl() { cas-labels -b alps-mp-$1 ; }
 bbct() { s1=( $(sed -r "s/(alps)-(mp|dev)-([0-9a-z.]*)-/\3-$2-/g" <<< "$1"));
 cas-take $1 -n $s1 ;
 }
-bbct2() { s0=( $(grep --color=auto -Po "(?<=alps-mp-)[a-zA-Z0-9.\-_]*" <<< "$1") ) ;
+bbct2() {
+s0=( $(grep --color=auto -Po "(?<=alps-mp-)[a-zA-Z0-9.\-_]*" <<< "$1") ) ;
 s1=( $(grep --color=auto -Eo "[a-zA-Z0-9.]*-" <<< "$s0" ) ) ;
 s2=$s1$2-${s0:${#s1}:${#s0}} ; cas-take $1 -n $s2 ; }
 bbct3() { cas-take alps-mp-$1 -n $2 ; }
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbmeldc() { cur=${PWD} ; meld $1/ $cur/ ; }
 bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
-bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
+bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};
+	vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
 bb2ack() { ack "$1" -l | xargs -I {} ack "$2" {} -H ; }
-bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
+bbfgcr() { var=$* ;
+	find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 bbvgcr() { vi $(grep -rni -P "$1" -l) ; }
 bbvlc() { vi $(ls | grep "$1") ; }
+
+# Useless bb
+bbhmost() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
+	LC_ALL=C sort | uniq -c | LC_ALL=C sort -rn | head -n 20 ; }
+bbhgc() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
+	grep -i "$1" | uniq -c | sort -n ; }
 
 PATH=~/usr/bin:~/code/shell:/worktmp/home/usr/bin:$PATH
 export PATH
@@ -168,3 +179,4 @@ export PATH=/mtkoss/git:$PATH
 # autojump
 [[ -s /proj/mtk14576/.autojump/etc/profile.d/autojump.sh ]] && \
 . /proj/mtk14576/.autojump/etc/profile.d/autojump.sh
+
