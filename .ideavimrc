@@ -109,3 +109,4 @@ vnoremap <Leader>tl y<CR>:action ActivateTerminalToolWindow<CR>
 " ideavimrc ref: https://github.com/liuchengxu/dotfiles/blob/master/ideavimrc
 " Linux && MacOS should put into ~/.ideavimrc
 " Windows should put into C:\Users\Username\.ideavimrc
+set clipboard+=ideaput
