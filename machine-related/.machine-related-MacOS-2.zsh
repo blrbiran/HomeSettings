@@ -6,9 +6,16 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
 
+# Java related
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.1.jdk/Contents/Home
+export MAVEN_HOME=$HOME/apache-maven-3.6.3
+export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
+
 # Tomcat related
-export CATALINA_HOME=/Users/biran/tomcat
+export CATALINA_HOME=$HOME/tomcat
+export CATALINA_BASE=$CATALINA_HOME
 export PATH=$PATH:$CATALINA_HOME/bin
+export CLASSPATH=.:$JAVA_HOME/lib:$CATALINA_HOME/lib
 
 # For MacOS in Black Apple
 
