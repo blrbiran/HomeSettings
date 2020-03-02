@@ -7,7 +7,7 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
 
 # Tomcat related
-export CATALINA_HOME=/home/biran/tomcat
+export CATALINA_HOME=/Users/biran/tomcat
 export PATH=$PATH:$CATALINA_HOME/bin
 
 # For MacOS in Black Apple
