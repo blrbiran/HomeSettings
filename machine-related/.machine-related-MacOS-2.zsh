@@ -6,6 +6,10 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
 
+# Tomcat related
+export CATALINA_HOME=/home/biran/tomcat
+export PATH=$PATH:$CATALINA_HOME/bin
+
 # For MacOS in Black Apple
 
 # added by Anaconda3 2019.03 installer
