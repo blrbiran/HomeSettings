@@ -323,24 +323,6 @@ export PATH=$PATH:/usr/local/mysql/bin
 export PATH=$PATH:/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.1.jdk/Contents/Home
-export CLASSPATH=.:$JAVA_HOME/lib
-export MAVEN_HOME=$HOME/apache-maven-3.6.3
-export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
-
-export HADOOP_HOME=/usr/local/hadoop-2.7.3
-export HADOOP_HOME_WARN_SUPPRESS=1
-export PATH=$PATH:$HADOOP_HOME/bin
-
-export SCALA_HOME=/usr/local/share/scala
-export SPARK_HOME=/usr/local/spark
-export PATH=$PATH:$SCALA_HOME/bin:$SPARK_HOME/bin
-
-alias hstart="$HADOOP_HOME/sbin/start-dfs.sh;$HADOOP_HOME/sbin/start-yarn.sh"
-alias hstop="$HADOOP_HOME/sbin/stop-dfs.sh;$HADOOP_HOME/sbin/stop-yarn.sh"
-alias sstart="$SPARK_HOME/sbin/start-all.sh"
-alias sstop="$SPARK_HOME/sbin/stop-all.sh"
-
 export LANG=en_US.UTF-8
 
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
