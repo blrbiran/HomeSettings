@@ -320,6 +320,7 @@ func! Set80Word_v2()
   else
     "hi clear
     set colorcolumn=
+    set textwidth=0
     let g:wordline_on = "n"
   endif
 endfunc
@@ -390,3 +391,4 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
