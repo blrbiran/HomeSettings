@@ -195,17 +195,36 @@ alias vs='emacs'
 alias vc='emacsclient'
 alias cdb='cd /worktmp/codebase/'
 alias cdc='cd ~/casws_mtk14576/'
-alias cdpl='cd ./vendor/mediatek/proprietary/bootable/bootloader/preloader/'
-alias cdlk='cd ./vendor/mediatek/proprietary/bootable/bootloader/lk/'
+alias cdvendor='bbcg2 && cd ./vendor/mediatek/proprietary/'
+cdpl() {
+. ~/code/shell/readCode.sh && bbcgrepo && \
+cd ./vendor/mediatek/proprietary/bootable/bootloader/preloader/ ;
+if [ "$?" == "1" ];then
+	echo "no common preloader folder, try another"
+	cd ./bootable/bootloader/preloader-mtk/
+fi ; }
+cdlk() {
+. ~/code/shell/readCode.sh && bbcgrepo && \
+cd ./vendor/mediatek/proprietary/bootable/bootloader/lk/ ;
+if [ "$?" == "1" ];then
+	echo "no common lk folder, try another"
+	cd ./bootable/bootloader/lk-mtk/
+fi ; }
 alias cdconfig='bbcg1 && cd ./arch/arm64/configs/'
 alias cdconfig32='bbcg1 && cd ./arch/arm/configs/'
 alias cddts='bbcg1 && cd ./arch/arm64/boot/dts/mediatek/'
 alias cddts32='bbcg1 && cd ./arch/arm/boot/dts/mediatek/'
 alias cdusb='bbcg1 && cd ./drivers/usb/'
+alias vvusb='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/usb/"'
 alias cdgadget='bbcg1 && cd ./drivers/usb/gadget/'
+alias vvgadget='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/usb/gadget/"'
 alias cdusb20='bbcg1 && cd ./drivers/misc/mediatek/usb20/'
+alias vvusb20='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/misc/mediatek/usb20/"'
 alias cdusb11='bbcg1 && cd ./drivers/misc/mediatek/usb11/'
 alias cdspi='bbcg1 && cd ./drivers/spi/'
+alias cdrtc='bbcg1 && cd ./drivers/rtc/'
+alias vvrtc='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/rtc/"'
+alias cdmfd='bbcg1 && cd ./drivers/mfd/'
 alias cdinc='bbcg1 && cd ./include/'
 alias cdinclinux='bbcg1 && cd ./include/linux/'
 alias cdmtk='bbcg1 && cd ./drivers/misc/mediatek/'
@@ -223,6 +242,7 @@ alias bbdf='df -h | gc -vP "worktmp(?=/)"'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
+alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
