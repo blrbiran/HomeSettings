@@ -57,4 +57,11 @@ setw -g automatic-rename on
 set-window-option -g window-status-format "#[dim]#I:#[default]#W#[fg=grey,dim]"
 set-window-option -g window-status-current-format "#[fg=cyan,bold]#I#[fg=blue]:#[fg=cyan]#W#[fg=dim]"
 
+# Plugins
+# tmux-resurrect
+#git clone https://github.com/tmux-plugins/tmux-resurrect.git
+set -g @resurrect-save 'C-s'
+set -g @resurrect-restore 'C-r'
+run-shell ~/.tmux/tmux-resurrect/resurrect.tmux
+
 # reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
