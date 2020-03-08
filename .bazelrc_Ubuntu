@@ -1,0 +1,3 @@
+build --experimental_repository_cache=/home/biran/.bazel/cache
+fetch --experimental_repository_cache=/home/biran/.bazel/cache
+
