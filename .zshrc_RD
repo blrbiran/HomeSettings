@@ -127,6 +127,7 @@ alias tmux="tmux -2"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 setopt hist_ignore_space
+unsetopt share_history
 
 alias ls=' ls'
 alias cd=' cd'

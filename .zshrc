@@ -121,6 +121,8 @@ export TERM="xterm-256color"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 setopt hist_ignore_space
+unsetopt share_history
+
 alias cd=' cd'
 alias ls=' ls'
 
@@ -331,3 +333,6 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 
 source ~/.machine-related.zsh
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

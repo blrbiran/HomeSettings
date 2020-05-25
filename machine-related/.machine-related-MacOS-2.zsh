@@ -28,7 +28,8 @@ export PATH="/usr/local/opt/python@3.8/bin:$PATH"
 #   export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
 
 # sqlite & openssl
-export PATH="/usr/local/opt/sqlite/bin:/usr/local/opt/openssl@1.1/bin:$PATH"
+export PATH=/usr/local/opt/sqlite/bin:$PATH
+export PATH=/usr/local/opt/openssl@1.1/bin:$PATH
 
 # Java related
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.1.jdk/Contents/Home
@@ -42,6 +43,10 @@ export PATH=$PATH:$CATALINA_HOME/bin
 export CLASSPATH=.:$JAVA_HOME/lib:$CATALINA_HOME/lib
 
 # flutter related
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+#export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn
+#export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn
 export PATH=$PATH:$HOME/flutter/bin
 
 # For MacOS in Black Apple
