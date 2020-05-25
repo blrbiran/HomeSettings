@@ -15,6 +15,7 @@ alias cd5='cd.... ; cd.'
 alias cd6='cd.... ; cd..'
 alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
+mkcd() { mkdir $1 ; cd $1 ; }
 
 unalias grep
 alias gc='grep -i --color=auto'
@@ -46,6 +47,7 @@ alias ggdfc='git diff --cached'
 alias ggll='git ll'
 alias ggl='git ls'
 alias ggstash='git stash'
+ggrb() { git rebase -i HEAD~$1 ; }
 
 alias fdn='find . -name'
 alias lc='ll | grep --color=auto'
@@ -92,6 +94,7 @@ alias cdspi='bbcg1 && cd ./drivers/spi/'
 alias cdrtc='bbcg1 && cd ./drivers/rtc/'
 alias vvrtc='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/rtc/"'
 alias cdmfd='bbcg1 && cd ./drivers/mfd/'
+alias vvmfd='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/mfd/"'
 alias cdinc='bbcg1 && cd ./include/'
 alias cdinclinux='bbcg1 && cd ./include/linux/'
 alias cdmtk='bbcg1 && cd ./drivers/misc/mediatek/'
@@ -109,11 +112,11 @@ alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
-bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old && \
+bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old ; \
 	echo "start rm old folder" && rm -rf old ; }
 bbpush() { git push mediatek HEAD:refs/for/$1 ; }
 bbcl() { cas-labels -b alps-mp-$1 ; }
-bbct() { s1=( $(sed -r "s/(alps)-(mp|dev)-([0-9a-z.]*)-/\3-$2-/g" <<< "$1"));
+bbct() { s1=( $(sed -r "s/(alps)-(mp|dev|trunk)-([0-9a-z.]*)-/\3-$2-/g" <<< "$1"));
 cas-take $1 -n $s1 ;
 }
 bbct2() {
@@ -122,7 +125,12 @@ s1=( $(grep --color=auto -Eo "[a-zA-Z0-9.]*-" <<< "$s0" ) ) ;
 s2=$s1$2-${s0:${#s1}:${#s0}} ; cas-take $1 -n $s2 ; }
 bbct3() { cas-take alps-mp-$1 -n $2 ; }
 bbmeld() { meld $1/$3 $2/$3 ; }
-bbmeldc() { cur=${PWD} ; meld $1/ $cur/ ; }
+bbmeldc() { cur=${PWD} ;
+if [ "$2" == "" ];then
+	meld $cur/ $1/ ;
+else
+	meld $cur/$2 $1/$2 ;
+fi ; }
 bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};
 	vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }

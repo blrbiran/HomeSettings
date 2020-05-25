@@ -1,18 +1,31 @@
 #!/bin/sh
 
+#bbcscope ()
+#{
+    #bbcg && \
+    #PWD= /bin/pwd && \
+    #local HERE=$PWD && \
+    #cscope -Rbkq -P $HERE
+#}
+
+#bbcurcscope ()
+#{
+    #PWD= /bin/pwd && \
+    #local HERE=$PWD && \
+    #cscope -Rbkq -P $HERE
+#}
+
 bbcscope ()
 {
     bbcg && \
-    PWD= /bin/pwd && \
-    local HERE=$PWD && \
-    cscope -Rbq -P $HERE
+    find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" > cscope.files && \
+    cscope -Rbkq -i cscope.files
 }
 
 bbcurcscope ()
 {
-    PWD= /bin/pwd && \
-    local HERE=$PWD && \
-    cscope -Rbq -P $HERE
+    find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" > cscope.files && \
+    cscope -Rbkq -i cscope.files
 }
 
 bbctags ()
