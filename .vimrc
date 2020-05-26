@@ -1,22 +1,5 @@
-set encoding=utf-8
-set termencoding=utf-8
-"set langmenu=zh_CN.UTF-8
-"language message zh_CN.UTF-8
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
-if has("win32")
-	set fileencoding=gb18030
-	" fix menu
-	source $VIMRUNTIME\delmenu.vim
-	source $VIMRUNTIME\menu.vim
-else
-	set fileencoding=utf-8
-endif
+" Vundle Plugins: {{{1
 
-if exists('$TMUX')
-	set term=screen-256color
-endif
-
-" For Vundle plugins
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -50,66 +33,59 @@ Plugin 'honza/vim-snippets'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" Normal Settings
+" }}}
+" Common Settings: {{{1
+
 syntax on
 set nocompatible
 set number
 set cursorline
 set ruler
-
-set shiftwidth=8
-set softtabstop=8
-set tabstop=8
-set noexpandtab
-set showcmd
+set showcmd " display incomplete commands
 set background=dark
-
-set nobackup
-
-set ignorecase smartcase
+set nobackup " do not keep a backup file
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set showmatch
+set matchtime=2
+set noerrorbells " no bells when occurs error
+set wrap
 set nowrapscan
-set incsearch
+set incsearch " do incremental searching
 set hlsearch
+set ignorecase smartcase
 
 set autoindent
 set smartindent
 set cindent
 
-set backspace=indent,eol,start
-set showmatch
-set matchtime=2
+set shiftwidth=8
+set softtabstop=8
+set tabstop=8
+set noexpandtab
 
-set noerrorbells	"no bells when occurs error
+set encoding=utf-8
+set termencoding=utf-8
+"set langmenu=zh_CN.UTF-8
+"language message zh_CN.UTF-8
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+if has("win32")
+	set fileencoding=gb18030
+	" fix menu
+	source $VIMRUNTIME\delmenu.vim
+	source $VIMRUNTIME\menu.vim
+else
+	set fileencoding=utf-8
+endif
+
+if exists('$TMUX')
+	set term=screen-256color
+endif
 
 let mapleader="\<Space>"
 
-" Save cursor position
-au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-" Enable mouse function
-set mouse=n
-func! SetMouse()
-  if &mouse == "n"
-    set mouse=
-  else
-    set mouse=n
-  endif
-endfunc
+" }}}
+" Color Theme: {{{1
 
-" Setting system clipboard
-if has('win32')
-	vmap <C-Insert> "+y
-	nmap <C-Insert> "+y
-	vmap <S-Insert> "-d"+gP
-	nmap <S-Insert> "+gP
-elseif has('unix')
-elseif has('mac')
-endif
-
-" 解决crontab -e时，提示crontab: temp file must be edited in place
-autocmd filetype crontab setlocal nobackup nowritebackup
-
-" Color theme
-"syntax enable
 "autocmd ColorScheme solarized hi Normal ctermbg=black
 "autocmd ColorScheme evening hi Normal ctermbg=black
 "set background=dark
@@ -128,7 +104,9 @@ let g:solarized_termcolors=256
 
 " reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
 
-" Plugins
+" }}}
+" Plugin Settings: {{{1
+
 " Powerline
 " Before this, run "pip install powerline_status"
 set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
@@ -215,6 +193,14 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+" Open the TagList Plugin
+"let Tlist_Show_One_File=1
+"let Tlist_Exit_OnlyWindow=1
+"let Tlist_Use_Right_Window=1
+"let Tlist_Auto_Open=1
+"let Tlist_Close_On_Select=1
+
+" Tagbar
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -242,15 +228,19 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+" For tagbar update slow
+set updatetime=500
+
+" Ctags
+" Auto search tags file
+set tags=tags;
+"map <C-F12> <Esc>:!ctags -R .<cr>
 
 " Cscope
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 nmap <S-j> <Esc>:cn<cr>
 nmap <S-k> <Esc>:cp<cr>
 
-" Auto search tags file
-set tags=tags;
-"map <C-F12> <Esc>:!ctags -R .<cr>
 " Default search tag than cscope
 set cscopetagorder=0
 
@@ -263,15 +253,28 @@ nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-" Open the TagList Plugin
-"let Tlist_Show_One_File=1
-"let Tlist_Exit_OnlyWindow=1
-"let Tlist_Use_Right_Window=1
-"let Tlist_Auto_Open=1
-"let Tlist_Close_On_Select=1
+" UltiSnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<S-j>"
+let g:UltiSnipsJumpBackwardTrigger="<S-k>"
+"let g:UltiSnipsListSnippets="<c-i>"
 
-" For tagbar update slow
-set updatetime=500
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" }}}
+" My Functions: {{{1
+
+" Enable mouse function
+set mouse=n
+func! SetMouse()
+  if &mouse == "n"
+    set mouse=
+  else
+    set mouse=n
+  endif
+endfunc
 
 " Press F5 for compile & run
 func! CompileRunGcc()
@@ -294,6 +297,8 @@ endfunc
 
 " Highlight over 80 char
 let g:wordline_on = "n"
+let g:CC_ctermbg = &bg
+let g:CC_guibg = &bg
 
 func! Set80Word()
   if g:wordline_on == "n"
@@ -309,12 +314,15 @@ endfunc
 func! Set80Word_v2()
   if g:wordline_on == "n"
     let g:wordline_on = "y"
-    set textwidth=80
-    set colorcolumn=+1
+    set textwidth=0
+    "set textwidth=80
+    "set colorcolumn=+1
+    set colorcolumn=81
     hi ColorColumn ctermbg=lightgrey guibg=lightgrey
   else
     "hi clear
     set colorcolumn=
+    "set textwidth=0
     let g:wordline_on = "n"
   endif
 endfunc
@@ -336,9 +344,10 @@ func! KernelStyle()
   endif
 endfunc
 
+" }}}
+" Hot Key Bindings: {{{1
 
-" Short Key Bindings
-" Quit insert mode
+" Quit from insert mode
 inoremap jj <Esc>
 
 " Move to the start of line
@@ -353,8 +362,26 @@ nnoremap <Leader>t :CtrlPFunky<cr>
 " Save current file
 nnoremap <Leader>s :w<cr>
 
+" Setting system clipboard
+if has('win32')
+	"vmap <C-Insert> "+y
+	"nmap <C-Insert> "+y
+	"vmap <S-Insert> "-d"+gP
+	"nmap <S-Insert> "+gP
+	vnoremap <C-c> "+y
+	nnoremap <C-c> "+y
+	vnoremap <C-v> "+p
+	nnoremap <C-v> "+p
+elseif has('unix')
+	vnoremap <C-c> "+y
+	nnoremap <C-c> "+y
+	vnoremap <C-v> "+p
+	nnoremap <C-v> "+p
+elseif has('mac')
+endif
+
 " New Tab
-nnoremap <silent> <C-c> :tabnew<cr>
+nnoremap <silent> <C-n> :tabnew<cr>
 " Next Tab
 nnoremap <silent> <C-h> gT
 " Previous Tab
@@ -377,11 +404,24 @@ map <F9> <Esc>:call Set80Word_v2()<cr><Esc>
 set pastetoggle=<F10>
 map <F12> <Esc>:set list!<cr><Esc>
 
-" UltiSnips
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" }}}
+" Autocmd: {{{1
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" Reload .vimrc when changed
+augroup Reload_vimrc
+	autocmd!
+	autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
+	" Fold .vimrc when loaded
+	autocmd! BufEnter $MYVIMRC set foldenable | set foldmethod=marker
+augroup END
+
+" Save cursor position
+"au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe("normal! g`\"") | endif
+
+" 解决crontab -e时，提示crontab: temp file must be edited in place
+autocmd filetype crontab setlocal nobackup nowritebackup
+
+autocmd filetype c,cpp set shiftwidth=8|set softtabstop=8|set tabstop=8|set noexpandtab
+
+" }}}
