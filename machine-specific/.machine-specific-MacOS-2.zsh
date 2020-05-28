@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Machine related aliases
-alias vi='nvim'
+alias nv='nvim'
 
 # nvim related
 export XDG_CONFIG_HOME=~/.config/
