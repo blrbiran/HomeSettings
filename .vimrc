@@ -260,6 +260,8 @@ let NERDTreeDirArrows = 1
 " ===
 " Disable auto download
 let g:go_disable_autoinstall = 0
+" Disable warning for Vim 7.4
+let g:go_version_warning = 0
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -573,3 +575,4 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 autocmd filetype c,cpp set shiftwidth=8|set softtabstop=8|set tabstop=8|set noexpandtab
 
 " }}}
+source ~/.machine-specific.vim
