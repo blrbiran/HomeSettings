@@ -48,7 +48,7 @@ bbct3() { cas-take alps-mp-$1 -n $2 ; }
 bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 
 # == PATH settings
-export PATH=${HOME}/bin:${HOME}/usr/bin:${HOME}/code/shell:/worktmp/home/usr/bin:$PATH
+export PATH=~/bin:~/usr/bin:$~/code/shell:/worktmp/home/usr/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/worktmp/home/usr/lib
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/worktmp/home/usr/lib/pkgconfig
 
