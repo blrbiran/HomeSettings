@@ -1,7 +1,7 @@
 " Vundle Plugins: {{{1
 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible " be iMproved, required
+filetype off " required
 
 " Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -21,6 +21,14 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'mbbill/undotree'
+
+" Color Theme
+Plugin 'ajmwagar/vim-deus'
+
+" Visual Enhancement
+Plugin 'luochen1990/rainbow'
+Plugin 'RRethy/vim-illuminate'
 
 " Snippets
 "Plugin 'Valloric/YouCompleteMe'
@@ -37,22 +45,29 @@ filetype plugin indent on    " required
 " Common Settings: {{{1
 
 syntax on
-set nocompatible
-set number
+set nocompatible " Not compatible to VI
+set number " nu: set nu!(Toggle), set nu?(Status)
+set relativenumber " rnu
 set cursorline
 set ruler
 set showcmd " display incomplete commands
+set wildmenu " using tab to switch into command shortlist
+set wildmode=longest:list,full " display command shortlist
 set background=dark
-set nobackup " do not keep a backup file
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
-set showmatch
+set showmatch " show matched (,[,{
 set matchtime=2
 set noerrorbells " no bells when occurs error
-set wrap
+set wrap " auto wrap line
+set linebreak " no wrap in word
 set nowrapscan
+set scrolloff=3 " cursor position when scroll
 set incsearch " do incremental searching
-set hlsearch
+set hlsearch " highlight searching results
 set ignorecase smartcase
+set autochdir " auto change workdir
+set autoread " notify when file changed
+set history=1000
 
 set autoindent
 set smartindent
@@ -62,6 +77,20 @@ set shiftwidth=8
 set softtabstop=8
 set tabstop=8
 set noexpandtab
+
+"set noswapfile " no .*.swp file
+set nobackup " do not keep a *~ backup file
+set noundofile " do not keep a .un~* file
+"" Set global backup,swap,undo files
+"silent !mkdir -p $HOME/.cache/.vim/backup/
+"silent !mkdir -p $HOME/.cache/.vim/swp/
+"silent !mkdir -p $HOME/.cache/.vim/undo/
+set backupdir=$HOME/.cache/.vim/backup//,. " set backup folder, // means absolute path
+set directory=$HOME/.cache/.vim/swp//,. " set swap folder
+set undodir=$HOME/.cache/.vim/undo//,. " set undo folder
+"if has('persistent_undo')
+"	set undofile
+"endif
 
 set encoding=utf-8
 set termencoding=utf-8
@@ -73,6 +102,9 @@ if has("win32")
 	" fix menu
 	source $VIMRUNTIME\delmenu.vim
 	source $VIMRUNTIME\menu.vim
+
+	" Set GVIM font size
+	set guifont=Courier\ New:h12
 else
 	set fileencoding=utf-8
 endif
@@ -81,15 +113,15 @@ if exists('$TMUX')
 	set term=screen-256color
 endif
 
-let mapleader="\<Space>"
-
 " }}}
 " Color Theme: {{{1
 
-"autocmd ColorScheme solarized hi Normal ctermbg=black
-"autocmd ColorScheme evening hi Normal ctermbg=black
 "set background=dark
 "set background=light
+"autocmd ColorScheme solarized hi Normal ctermbg=black
+"autocmd ColorScheme evening hi Normal ctermbg=black
+let g:solarized_termcolors=256
+"colorscheme solarized
 "colorscheme evening
 "colorscheme ir_black
 "colorscheme grb256
@@ -97,17 +129,18 @@ let mapleader="\<Space>"
 "colorscheme guardian2
 "colorscheme twilight
 "colorscheme vividchalk
-colorscheme jellybeans
 "colorscheme github
-let g:solarized_termcolors=256
-"colorscheme solarized
+"colorscheme jellybeans
+color deus
 
 " reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
 
 " }}}
 " Plugin Settings: {{{1
 
-" Powerline
+" ===
+" === Powerline
+" ===
 " Before this, run "pip install powerline_status"
 "set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
 set rtp+=/worktmp/home/usr/lib/python2.7/site-packages/powerline_status-2.6-py2.7.egg/powerline/bindings
@@ -116,7 +149,9 @@ set t_Co=256
 "let g:Powerline_symbols = 'fancy'
 " Reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
 
-" Easy Motion
+" ===
+" === Easy Motion
+" ===
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
@@ -129,7 +164,9 @@ nmap <Leader>l <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
-" CtrlP
+" ===
+" === CtrlP
+" ===
 " Change the default mapping and the default command to invoke CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -156,7 +193,9 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 " Ignore files in .gitignore
 "let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" NERDTree
+" ===
+" === NERDTree
+" ===
 ""开启Nerdtree时自动显示Bookmarks
 "let NERDTreeShowBookmarks=1
 ""自动开启Nerdtree
@@ -184,7 +223,9 @@ let NERDTreeIgnore = ['\.pyc$', '\.swp']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-" Vim-go
+" ===
+" === Vim-go
+" ===
 " Disable auto download
 let g:go_disable_autoinstall = 0
 " Disable warning for Vim 7.4
@@ -196,6 +237,9 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+" ===
+" === TagList
+" ===
 " Open the TagList Plugin
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
@@ -203,7 +247,9 @@ let Tlist_Exit_OnlyWindow=1
 "let Tlist_Auto_Open=1
 "let Tlist_Close_On_Select=1
 
-" Tagbar
+" ===
+" === Tagbar
+" ===
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [
@@ -234,12 +280,33 @@ let g:tagbar_type_go = {
 " For tagbar update slow
 set updatetime=500
 
-" Ctags
+" ===
+" === Undotree
+" ===
+noremap U :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+	nmap <buffer> r <plug>UndotreeNextState
+	nmap <buffer> u <plug>UndotreePreviousState
+	nmap <buffer> R 5<plug>UndotreeNextState
+	nmap <buffer> U 5<plug>UndotreePreviousState
+endfunc
+
+" ===
+" === Ctags
+" ===
 " Auto search tags file
 set tags=tags;
 "map <C-F12> <Esc>:!ctags -R .<cr>
 
-" Cscope
+" ===
+" === Cscope
+" ===
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 nmap <S-j> <Esc>:cn<cr>
 nmap <S-k> <Esc>:cp<cr>
@@ -256,7 +323,24 @@ nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-" UltiSnips
+" ===
+" === OmniCppComplete
+" ===
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
+let OmniCpp_MayCompleteDot = 1 " 输入 . 后自动补全
+let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全
+let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+" 自动关闭补全窗口
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest
+
+" ===
+" === UltiSnips
+" ===
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<S-j>"
@@ -266,16 +350,29 @@ let g:UltiSnipsJumpBackwardTrigger="<S-k>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" ===
+" === rainbow
+" ===
+let g:rainbow_active = 1
+
+" ===
+" === vim-illuminate
+" ===
+let g:Illuminate_delay = 750
+"hi illuminateWord cterm=undercurl gui=undercurl
+"hi illuminateWord cterm=underline gui=underline
+
 " }}}
 " My Functions: {{{1
 
 " Enable mouse function
-set mouse=n
+set mouse=a " Support mouse in all mode
+" set mouse=n " Support mouse in normal mode
 func! SetMouse()
-  if &mouse == "n"
-    set mouse=
+  if &mouse == ""
+    set mouse=a
   else
-    set mouse=n
+    set mouse=
   endif
 endfunc
 
@@ -283,10 +380,10 @@ endfunc
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
-		exec "!g++ % -DLOCAL -o   %<"
+		exec "!g++ % -DLOCAL -o %<"
 		exec "!time ./%<"
 	elseif &filetype == 'cpp'
-		exec "!g++ % -std=c++11 -DLOCAL -Dxiaoai -o    %<"
+		exec "!g++ % -std=c++11 -DLOCAL -Dxiaoai -o %<"
 		exec "!time ./%<"
 	elseif &filetype == 'java'
 		exec "!javac %"
@@ -350,8 +447,12 @@ endfunc
 " }}}
 " Hot Key Bindings: {{{1
 
+let mapleader="\<Space>"
+
 " Quit from insert mode
 inoremap jj <Esc>
+
+noremap ; :
 
 " Move to the start of line
 nnoremap H ^
@@ -372,14 +473,14 @@ if has('win32')
 	"vmap <S-Insert> "-d"+gP
 	"nmap <S-Insert> "+gP
 	vnoremap <C-c> "+y
-	nnoremap <C-c> "+y
-	vnoremap <C-v> "+p
-	nnoremap <C-v> "+p
+	nnoremap <C-c> "+Y
+	vnoremap <C-i> "+p
+	nnoremap <C-i> "+p
 elseif has('unix')
 	vnoremap <C-c> "+y
-	nnoremap <C-c> "+y
-	vnoremap <C-v> "+p
-	nnoremap <C-v> "+p
+	nnoremap <C-c> "+Y
+	vnoremap <C-i> "+p
+	nnoremap <C-i> "+p
 elseif has('mac')
 endif
 
@@ -390,22 +491,31 @@ nnoremap <silent> <C-h> gT
 " Previous Tab
 nnoremap <silent> <C-l> gt
 
-" Short keys
-map <F1> <Esc>0i//<Esc>
+" find and replace
+noremap \s :%s///g<left><left><left>
+
+" Disable the default s key
+noremap s <nop>
+
+" Window management
+noremap <Leader>q <Esc>:close<cr>
+
+" Shortkeys
+noremap <F1> <Esc>0i//<Esc>
 ""将F2设置为开关NERDTree的快捷键
-map <F2> :NERDTreeToggle<cr>
-map <F3> <Esc>:Ack<Space>
-map <F4> <Esc>:call SetMouse()<cr><Esc>
-map <F5> :call CompileRunGcc()<cr>
+noremap <F2> :NERDTreeToggle<cr>
+noremap <F3> <Esc>:Ack<Space>
+noremap <F4> <Esc>:call SetMouse()<cr><Esc>
+noremap <F5> :call CompileRunGcc()<cr>
 " Open tagbar plugin <F6>
-nmap <F6> :TagbarToggle<cr>
-map <F7> <Esc>:call KernelStyle()<cr><Esc>
+nnoremap <F6> :TagbarToggle<cr>
+noremap <F7> <Esc>:call KernelStyle()<cr><Esc>
 " map <F8> <Esc>:TlistToggle<cr><Esc>
 call Set80Word_v2()
-map <F9> <Esc>:call Set80Word_v2()<cr><Esc>
+noremap <F9> <Esc>:call Set80Word_v2()<cr><Esc>
 " Set paste
 set pastetoggle=<F10>
-map <F12> <Esc>:set list!<cr><Esc>
+noremap <F12> <Esc>:set list!<cr><Esc>
 
 " }}}
 " Autocmd: {{{1
