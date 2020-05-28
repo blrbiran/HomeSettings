@@ -1,5 +1,12 @@
 #!/bin/zsh
 
+# Machine related aliases
+alias vi='nvim'
+
+# nvim related
+export XDG_CONFIG_HOME=~/.config/
+export XDG_DATA_HOME=~/.config/
+
 # Golang related
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/go

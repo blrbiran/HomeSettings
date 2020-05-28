@@ -14,23 +14,43 @@ call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" Let plugin installed
-Plugin 'fatih/vim-go'
+" === Taglist
 Plugin 'majutsushi/tagbar'
+"Plugin 'vim-scripts/taglist.vim'
+
+" === File
 Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
+
+" === Moving
+Plugin 'easymotion/vim-easymotion'
+
+" === Misc
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'mbbill/undotree'
 
-" Color Theme
+" === Language Support
+Plugin 'fatih/vim-go'
+
+" === Search
+Plugin 'mileszs/ack.vim'
+
+" === Color Theme
 Plugin 'ajmwagar/vim-deus'
 
-" Visual Enhancement
+" === Visual Enhancement
 Plugin 'luochen1990/rainbow'
 Plugin 'RRethy/vim-illuminate'
 
-" Snippets
+" Statusbar
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'powerline/powerline'
+
+" === Snippets
 "Plugin 'Valloric/YouCompleteMe'
 " Track the engine
 Plugin 'SirVer/ultisnips'
@@ -109,7 +129,7 @@ else
 	set fileencoding=utf-8
 endif
 
-if exists('$TMUX')
+if exists('$TMUX') && !has('nvim')
 	set term=screen-256color
 endif
 
@@ -120,7 +140,7 @@ endif
 "set background=light
 "autocmd ColorScheme solarized hi Normal ctermbg=black
 "autocmd ColorScheme evening hi Normal ctermbg=black
-let g:solarized_termcolors=256
+let g:solarized_termcolors = 256
 "colorscheme solarized
 "colorscheme evening
 "colorscheme ir_black
@@ -142,11 +162,24 @@ color deus
 " === Powerline
 " ===
 " Before this, run "pip install powerline_status"
-set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
-set laststatus=2
-set t_Co=256
-let g:Powerline_symbols = 'fancy'
+"set rtp+=/Library/Python/2.7/site-packages/powerline/bindings/vim/
+"set laststatus=2
+"set t_Co=256
+"let g:Powerline_symbols = 'fancy'
 " Reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
+
+" ===
+" === Airline
+" ===
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#bufffer_nr_show = 1
+
+" ===
+" === Airline Themes
+" ===
+let g:airline_theme='jellybeans'
+"let g:airline_theme='deus'
 
 " ===
 " === Easy Motion
@@ -167,11 +200,11 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " === CtrlP
 " ===
 " Change the default mapping and the default command to invoke CtrlP
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<c-o>'
 let g:ctrlp_cmd = 'CtrlP'
 " Search more sub folders
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=5
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 5
 " When invoked without an explicit starting directory, CtrlP will set its local working directory according to this variable
 let g:ctrlp_working_path_mode = 'ra'
 " If none of the default markers (.git .hg .svn .bzr _darcs) are present in a project, you can define additional ones with g:ctrlp_root_markers
@@ -196,7 +229,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 " === NERDTree
 " ===
 ""开启Nerdtree时自动显示Bookmarks
-"let NERDTreeShowBookmarks=1
+"let NERDTreeShowBookmarks = 1
 ""自动开启Nerdtree
 "autocmd vimenter * NERDTree
 "打开vim时如果没有文件自动打开NERDTree
@@ -209,13 +242,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 ""窗口位置
-let g:NERDTreeWinPos='left'
+let g:NERDTreeWinPos = 'left'
 ""Window Size
-let g:NERDTreeSize=30
+let g:NERDTreeSize = 30
 ""窗口是否显示行号
-let g:NERDTreeShowLineNumbers=1
+let g:NERDTreeShowLineNumbers = 1
 ""不显示隐藏文件
-let g:NERDTreeHidden=0
+let g:NERDTreeHidden = 0
 ""过滤文件不显示
 let NERDTreeIgnore = ['\.pyc$', '\.swp']
 ""Making it prettier
@@ -238,11 +271,11 @@ let g:go_highlight_build_constraints = 1
 " === TagList
 " ===
 " Open the TagList Plugin
-"let Tlist_Show_One_File=1
-"let Tlist_Exit_OnlyWindow=1
-"let Tlist_Use_Right_Window=1
-"let Tlist_Auto_Open=1
-"let Tlist_Close_On_Select=1
+"let Tlist_Show_One_File = 1
+"let Tlist_Exit_OnlyWindow = 1
+"let Tlist_Use_Right_Window = 1
+"let Tlist_Auto_Open = 1
+"let Tlist_Close_On_Select = 1
 
 " ===
 " === Tagbar
@@ -339,13 +372,13 @@ set completeopt=menuone,menu,longest
 " === UltiSnips
 " ===
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<S-j>"
-let g:UltiSnipsJumpBackwardTrigger="<S-k>"
-"let g:UltiSnipsListSnippets="<c-i>"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<S-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-k>"
+"let g:UltiSnipsListSnippets = "<c-i>"
 
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit = "vertical"
 
 " ===
 " === rainbow
@@ -424,10 +457,10 @@ func! Set80Word_v2()
   endif
 endfunc
 
-let g:kerStyle="y"
+let g:kerStyle = "y"
 func! KernelStyle()
   if g:kerStyle == "y"
-    let g:kerStyle="n"
+    let g:kerStyle = "n"
     set shiftwidth=4
     set softtabstop=4
     set tabstop=4
@@ -444,7 +477,7 @@ endfunc
 " }}}
 " Hot Key Bindings: {{{1
 
-let mapleader="\<Space>"
+let mapleader = "\<Space>"
 
 " Quit from insert mode
 inoremap jj <Esc>
@@ -482,11 +515,16 @@ elseif has('mac')
 endif
 
 " New Tab
-nnoremap <silent> <C-n> :tabnew<cr>
+nnoremap <silent> <Leader>n :tabnew<cr>
 " Next Tab
 nnoremap <silent> <C-h> gT
 " Previous Tab
 nnoremap <silent> <C-l> gt
+
+" Next Buffer
+nnoremap <C-n> :bn<cr>
+" Previous Buffer
+nnoremap <C-p> :bp<cr>
 
 " find and replace
 noremap \s :%s///g<left><left><left>
