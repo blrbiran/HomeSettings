@@ -110,6 +110,8 @@ alias bbcr='source ~/code/shell/readCode.sh'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
+alias bbtagsc='ctags -R --c-kinds=+p --fields=+aS --extra=+q .'
+alias bbtagscpp='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
 bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old ; \
