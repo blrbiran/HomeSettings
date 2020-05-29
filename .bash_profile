@@ -128,4 +128,10 @@ bind -m vi-insert '\c-f':forward-word
 
 
 # Load machine specific settings
-source ~/.machine-specific.bash
+SPECIFIC_SETTING_PATH=~/.machine-specific.bash
+if [ ! -f ${SPECIFIC_SETTING_PATH} ];then
+	echo "Please touch ${SPECIFIC_SETTING_PATH} to define machine specific settings."
+else
+	source ${SPECIFIC_SETTING_PATH}
+fi
+
