@@ -401,10 +401,12 @@ let g:Illuminate_delay = 750
 set mouse=a " Support mouse in all mode
 " set mouse=n " Support mouse in normal mode
 func! SetMouse()
-  if &mouse == ""
-    set mouse=a
-  else
+  if &mouse == "a"
+    set mouse=n
+  elseif &mouse == "n"
     set mouse=
+  else
+    set mouse=a
   endif
 endfunc
 
@@ -529,7 +531,7 @@ nnoremap <C-n> :bn<cr>
 nnoremap <C-p> :bp<cr>
 
 " find and replace
-noremap \s :%s///g<left><left><left>
+noremap \g :%s///g<left><left><left>
 
 " Disable the default s key
 noremap s <nop>
@@ -542,11 +544,11 @@ noremap <F1> <Esc>0i//<Esc>
 ""将F2设置为开关NERDTree的快捷键
 noremap <F2> :NERDTreeToggle<cr>
 noremap <F3> <Esc>:Ack<Space>
-noremap <F4> <Esc>:call SetMouse()<cr><Esc>
 noremap <F5> :call CompileRunGcc()<cr>
 " Open tagbar plugin <F6>
 nnoremap <F6> :TagbarToggle<cr>
 noremap <F7> <Esc>:call KernelStyle()<cr><Esc>
+noremap <F8> <Esc>:call SetMouse()<cr><Esc>
 " map <F8> <Esc>:TlistToggle<cr><Esc>
 call Set80Word_v2()
 noremap <F9> <Esc>:call Set80Word_v2()<cr><Esc>
@@ -575,4 +577,11 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 autocmd filetype c,cpp set shiftwidth=8|set softtabstop=8|set tabstop=8|set noexpandtab
 
 " }}}
-source ~/.machine-specific.vim
+" Load Machine Specific Settings {{{1
+
+" Please touch ~/.machine-specific.vim to define machine specific settings.
+if !empty(glob('~/.machine-specific.vim'))
+  source ~/.machine-specific.vim
+endif
+
+" }}}
