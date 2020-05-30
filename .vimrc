@@ -14,22 +14,24 @@ call vundle#begin()
 " Let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" === Taglist
+" === Taglist & Functions
 Plugin 'majutsushi/tagbar'
 "Plugin 'vim-scripts/taglist.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 
-" === File
+" === File Management
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
 
 " === Moving
 Plugin 'easymotion/vim-easymotion'
 
-" === Misc
-Plugin 'ntpeters/vim-better-whitespace'
+" === Editor Enhancement
 Plugin 'tpope/vim-surround'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'scrooloose/nerdcommenter'
+
+" === Misc
 Plugin 'mbbill/undotree'
 
 " === Language Support
@@ -40,15 +42,22 @@ Plugin 'mileszs/ack.vim'
 
 " === Color Theme
 Plugin 'ajmwagar/vim-deus'
+"Plugin 'jacoborus/tender.vim'
 
 " === Visual Enhancement
 Plugin 'luochen1990/rainbow'
 Plugin 'RRethy/vim-illuminate'
+Plugin 'Yggdroot/indentLine'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'Mark--Karkat'
 
 " Statusbar
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'powerline/powerline'
+
+" Git
+Plugin 'airblade/vim-gitgutter'
 
 " === Snippets
 "Plugin 'Valloric/YouCompleteMe'
@@ -63,6 +72,9 @@ filetype plugin indent on    " required
 
 " }}}
 " Common Settings: {{{1
+
+" Should place before map <Leader> key
+let mapleader = "\<Space>"
 
 syntax on
 set nocompatible " Not compatible to VI
@@ -151,9 +163,8 @@ let g:solarized_termcolors = 256
 "colorscheme vividchalk
 "colorscheme github
 "colorscheme jellybeans
+"colorscheme tender
 color deus
-
-" reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
 
 " }}}
 " Plugin Settings: {{{1
@@ -190,8 +201,8 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 " s{char}{char} to move to {char}{char}
 nmap S <Plug>(easymotion-overwin-f2)
 " Move to line
-map  <Leader>l <Plug>(easymotion-bd-jk)
-nmap <Leader>l <Plug>(easymotion-overwin-line)
+"map  <Leader>l <Plug>(easymotion-bd-jk)
+"nmap <Leader>l <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
@@ -311,6 +322,12 @@ let g:tagbar_type_go = {
 \ }
 " For tagbar update slow
 set updatetime=500
+" tagbar width
+let g:tagbar_width = 40
+" tagbar position
+let g:tagbar_right = 1
+" auto close tagbar when selected
+"let g:tagbar_autoclose = 1
 
 " ===
 " === Undotree
@@ -394,21 +411,37 @@ let g:Illuminate_delay = 750
 "hi illuminateWord cterm=undercurl gui=undercurl
 "hi illuminateWord cterm=underline gui=underline
 
+" ===
+" === auto-pairs
+" ===
+" auto-pairs rules: ex1. Add space after comma. ',':' '
+"let g:AutoPairs = {',':' ', '(':')', '[':']', '{':'\}', "'":"'", '"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}
+let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", "`":"`", '```':'```'}
+
+" ===
+" === indentLine
+" ===
+" 设置Gvim的对齐线样式
+let g:indentLine_char = "┊"
+let g:indentLine_first_char = "┊"
+" 设置对齐线默认开1/关0状态
+let g:indentLine_enabled = 1
+" 设置 GUI 对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
+" let g:indentLine_color_gui = '#A4E57E'
+" 设置终端对齐线颜色，如果不喜欢可以将其注释掉采用默认颜色
+" let g:indentLine_color_term = 239
+
+" ===
+" === vim-gitgutter
+" ===
+let g:gitgutter_terminal_reports_focus = 0
+" don't set up any mappings at all
+let g:gitgutter_map_key = 0
+" To turn off vim-gitgutter by default
+let g:gitgutter_enabled = 0
+
 " }}}
 " My Functions: {{{1
-
-" Enable mouse function
-set mouse=a " Support mouse in all mode
-" set mouse=n " Support mouse in normal mode
-func! SetMouse()
-  if &mouse == "a"
-    set mouse=n
-  elseif &mouse == "n"
-    set mouse=
-  else
-    set mouse=a
-  endif
-endfunc
 
 " Press F5 for compile & run
 func! CompileRunGcc()
@@ -427,6 +460,19 @@ func! CompileRunGcc()
 	elseif &filetype == 'python'
 		exec "!time python %"
 	endif
+endfunc
+
+" Enable mouse function
+set mouse=a " Support mouse in all mode
+" set mouse=n " Support mouse in normal mode
+func! SetMouse()
+  if &mouse == "a"
+   set mouse=n
+  elseif &mouse == "n"
+   set mouse=
+  else
+   set mouse=a
+  endif
 endfunc
 
 " Highlight over 80 char
@@ -481,12 +527,13 @@ endfunc
 " }}}
 " Hot Key Bindings: {{{1
 
-let mapleader = "\<Space>"
-
 " Quit from insert mode
 inoremap jj <Esc>
 
 noremap ; :
+
+" Save current file
+nnoremap <Leader>s :w<cr>
 
 " Move to the start of line
 nnoremap H ^
@@ -497,8 +544,9 @@ nnoremap L $
 nnoremap <Leader>o :CtrlP .<cr>
 nnoremap <Leader>b :CtrlPBuffer<cr>
 nnoremap <Leader>t :CtrlPFunky<cr>
-" Save current file
-nnoremap <Leader>s :w<cr>
+" 设置对齐线开/关快捷键
+nnoremap <Leader>l :IndentLinesToggle<CR>
+nnoremap <Leader>g :GitGutterToggle<CR>
 
 " Setting system clipboard
 if has('win32')
@@ -519,7 +567,7 @@ elseif has('mac')
 endif
 
 " New Tab
-nnoremap <silent> <Leader>n :tabnew<cr>
+nnoremap <silent> <Leader>t :tabnew<cr>
 " Next Tab
 nnoremap <silent> <C-h> gT
 " Previous Tab
