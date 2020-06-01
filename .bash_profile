@@ -51,6 +51,11 @@ alias ggl='git ls'
 alias ggstash='git stash'
 ggrb() { git rebase -i HEAD~$1 ; }
 
+# == fzf
+alias fcd='cd $(find . -type d | fzf)'
+alias fgco='git checkout $(git branch | fzf)'
+alias fgcor='git checkout $(git branch -r | fzf)'
+
 alias fdn='find . -name'
 alias lc='ll | grep --color=auto'
 alias lsc='ls | grep'
