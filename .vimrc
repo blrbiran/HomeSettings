@@ -22,6 +22,8 @@ Plugin 'tacahiroy/ctrlp-funky'
 " === File Management
 Plugin 'scrooloose/nerdtree'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 " === Moving
 Plugin 'easymotion/vim-easymotion'
