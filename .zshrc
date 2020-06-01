@@ -173,6 +173,11 @@ alias ggll='git ll'
 alias ggl='git ls'
 alias ggstash='git stash'
 
+# == fzf
+alias fcd='cd $(find . -type d | fzf)'
+alias fgco='git checkout $(git branch | fzf)'
+alias fgcor='git checkout $(git branch -r | fzf)'
+
 alias fdn='find . -name'
 alias lc='ll | grep --color=auto '
 alias lsc='ls | grep '
