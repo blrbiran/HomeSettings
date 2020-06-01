@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 # Machine related aliases
+unalias fd
 alias nv='nvim'
 
 # nvim related
