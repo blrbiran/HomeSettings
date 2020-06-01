@@ -53,6 +53,7 @@ ggrb() { git rebase -i HEAD~$1 ; }
 
 # == fzf
 alias fcd='cd $(find . -type d | fzf)'
+alias fvi='vi $(find . -type f | fzf)'
 alias fgco='git checkout $(git branch | fzf)'
 alias fgcor='git checkout $(git branch -r | fzf)'
 
@@ -134,9 +135,9 @@ bind -m vi-insert '\c-f':forward-word
 
 # Load machine specific settings
 SPECIFIC_SETTING_PATH=~/.machine-specific.bash
-if [ ! -f ${SPECIFIC_SETTING_PATH} ];then
-	echo "Please touch ${SPECIFIC_SETTING_PATH} to define machine specific settings."
-else
+if [ -f ${SPECIFIC_SETTING_PATH} ];then
 	source ${SPECIFIC_SETTING_PATH}
+else
+	echo "Please touch ${SPECIFIC_SETTING_PATH} to define machine specific settings."
 fi
 

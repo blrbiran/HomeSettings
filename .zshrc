@@ -175,6 +175,7 @@ alias ggstash='git stash'
 
 # == fzf
 alias fcd='cd $(find . -type d | fzf)'
+alias fvi='vi $(find . -type f | fzf)'
 alias fgco='git checkout $(git branch | fzf)'
 alias fgcor='git checkout $(git branch -r | fzf)'
 
@@ -336,5 +337,5 @@ export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottl
 #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export HOMEBREW_NO_AUTO_UPDATE=true
 
-source ~/.machine-specific.zsh
+[ -f ~/.machine-specific.zsh ] && source ~/.machine-specific.zsh
 
