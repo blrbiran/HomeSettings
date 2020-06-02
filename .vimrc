@@ -15,6 +15,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " === Taglist & Functions
+Plugin 'chazy/cscope_maps'
 Plugin 'majutsushi/tagbar'
 "Plugin 'vim-scripts/taglist.vim'
 Plugin 'tacahiroy/ctrlp-funky'
@@ -99,7 +100,7 @@ set scrolloff=3 " cursor position when scroll
 set incsearch " do incremental searching
 set hlsearch " highlight searching results
 set ignorecase smartcase
-set autochdir " auto change workdir
+"set autochdir " auto change workdir
 set autoread " notify when file changed
 set history=1000
 

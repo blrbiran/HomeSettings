@@ -1,4 +1,19 @@
 #!/bin/zsh
+# === Place machine specific zsh settings here.
+
+export LANG=en_US.UTF-8
+
+# == Path settings
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/mysql/bin
+
+export NODE_PATH=/usr/local/lib/node_modules
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# Homebrew settings
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+#export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export HOMEBREW_NO_AUTO_UPDATE=true
 
 # Machine related aliases
 unalias fd
@@ -15,25 +30,9 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
 
 # Python
+# export PATH=$PATH:~/Library/Python/2.7/bin
+export PATH=$PATH:/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin
 export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-# Python has been installed as
-#   /usr/local/opt/python@3.8/bin/python3
-#
-# You can install Python packages with
-#   /usr/local/opt/python@3.8/bin/pip3 install <package>
-# They will install into the site-package directory
-#   /usr/local/opt/python@3.8/Frameworks/Python.framework/Versions/3.8/lib/python3.8/site-packages
-#
-# See: https://docs.brew.sh/Homebrew-and-Python
-#
-# python@3.8 is keg-only, which means it was not symlinked into /usr/local,
-# because this is an alternate version of another formula.
-#
-# If you need to have python@3.8 first in your PATH run:
-#   echo 'export PATH="/usr/local/opt/python@3.8/bin:$PATH"' >> ~/.zshrc
-#
-# For compilers to find python@3.8 you may need to set:
-#   export LDFLAGS="-L/usr/local/opt/python@3.8/lib"
 
 # sqlite & openssl
 export PATH=/usr/local/opt/sqlite/bin:$PATH
@@ -92,6 +91,28 @@ conda deactivate
 # == fzf related
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+#export KEYTIMEOUT=1
+
+function powerline_precmd() {
+#    PS1="$(powerline-shell --shell zsh $?)"
+    export PS1="$(powerline-shell $? --shell zsh 2> /dev/null)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+#    install_powerline_precmd
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

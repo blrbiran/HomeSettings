@@ -1,3 +1,4 @@
+#!/bin/bash
 # === Place machine specific bash settings here.
 
 # == PATH settings
