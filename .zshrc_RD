@@ -16,25 +16,34 @@ if [[ "$(uname)" = "Darwin" ]]; then # MacOS
 #  POWERLINE_RIGHT_A_COLOR_FRONT="black"
 #  POWERLINE_RIGHT_A_COLOR_BACK="red"
 #  POWERLINE_DISABLE_RPROMPT="false"
-  POWERLINE_HIDE_USER_NAME="true"
 #  POWERLINE_SHORT_HOST_NAME="true"
-  POWERLINE_HIDE_HOST_NAME="true"
-  POWERLINE_PATH="short"
 #  POWERLINE_SHOW_GIT_ON_RIGHT="false"
-#  POWERLINE_DETECT_SSH="true"
 #  POWERLINE_HIDE_VIRTUAL_ENV="true"
 #  POWERLINE_CUSTOM_CURRENT_PATH="%3~"
+  if false;then
+    POWERLINE_HIDE_USER_NAME="true"
+    POWERLINE_HIDE_HOST_NAME="true"
+    POWERLINE_PATH="short"
+    POWERLINE_DETECT_SSH="true"
 
-  ZSH_THEME="powerline"
+    ZSH_THEME="powerline"
+  else
+    export DEFAULT_USER="biran"
+    ZSH_THEME="agnoster"
+  fi
 else # Linux
-#  POWERLINE_HIDE_USER_NAME="true"
-#  POWERLINE_HIDE_HOST_NAME="true"
-#  POWERLINE_PATH="short"
-#  POWERLINE_DETECT_SSH="true"
+  if false;then
+    POWERLINE_HIDE_USER_NAME="true"
+    POWERLINE_HIDE_HOST_NAME="true"
+    POWERLINE_PATH="short"
+    POWERLINE_DETECT_SSH="true"
 
-#  ZSH_THEME="powerline"
-  ZSH_THEME="robbyrussell"
+    ZSH_THEME="powerline"
+  else
+    ZSH_THEME="robbyrussell"
+  fi
 fi
+
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="false"
 
@@ -81,26 +90,10 @@ plugins=(common-aliases)
 
 # User configuration
 
-export PATH=/mtkoss/git:$PATH
-PATH=~/usr/bin:~/code/shell:/worktmp/home/usr/bin:$PATH
-export PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/worktmp/home/usr/lib
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/worktmp/home/usr/lib/pkgconfig
-
-#alias sa='~/code/shell/searchFiles.sh'
-
-export P4PORT=10.17.1.181:2008
-export P4USER=ran.bi
-
-# source /mtktools/perforce/bash_p4
-
-export PYTHONPATH=/worktmp/home/usr/lib/python2.7/site-packages
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 export TERM="xterm-256color"
-alias tmux="tmux -2"
+#alias tmux="tmux -2"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -129,8 +122,8 @@ alias tmux="tmux -2"
 setopt hist_ignore_space
 unsetopt share_history
 
-alias ls=' ls'
 alias cd=' cd'
+alias ls=' ls'
 
 if [[ "$(uname)" = "Darwin" ]]; then # MacOS
   alias ll='ls -alh -G'
@@ -157,11 +150,11 @@ alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
 alias gcre='grep -rni --color=auto -E'
 alias gcrp='grep -rni --color=auto -P'
 
-alias ta='tmux -f ~/.tmux.conf.zsh_RD attach -t'
-alias tab='tmux -f ~/.tmux.conf attach -t'
-alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sessions | sed "s/^/[bash] /g"'
-alias ts='tmux -f ~/.tmux.conf.zsh_RD -L zsh new-session -s'
-alias tsb='tmux -f ~/.tmux.conf -L bash new-session -s'
+# alias ta='tmux -f ~/.tmux.conf attach -t'
+# alias tab='tmux -f ~/.tmux.conf.bash attach -t'
+# alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sessions | sed "s/^/[bash] /g"'
+# alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
+# alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
 
 unalias gg
 alias gg='git'
@@ -181,65 +174,39 @@ alias ggll='git ll'
 alias ggl='git ls'
 alias ggstash='git stash'
 
+# == fzf
+alias fcd='cd $(find . -type d | fzf)'
+alias fvi='vi $(find . -type f | fzf)'
+alias fgco='git checkout $(git branch | fzf)'
+alias fgcor='git checkout $(git branch -r | fzf)'
+
 alias fdn='find . -name'
 alias lc='ll | grep --color=auto'
 alias lsc='ls | grep'
 alias rezsh='source ~/.zshrc'
 alias h='history'
-alias ht='history | tail -n '
-#alias p='ps -f'
-alias upb='mtkbuild -o . -l -i'
-alias upx='mtkbuild -o . -l -i -x'
-alias upp='mtkbuild -o . -l -i -d -x'
+alias ht='history | tail -n'
 alias duc='du -h --max-depth=1'
 alias vs='emacs'
 alias vc='emacsclient'
-alias cdb='cd /worktmp/codebase/'
-alias cdc='cd ~/casws_mtk14576/'
-alias cdvendor='bbcg2 && cd ./vendor/mediatek/proprietary/'
-cdpl() {
-. ~/code/shell/readCode.sh && bbcgrepo && \
-cd ./vendor/mediatek/proprietary/bootable/bootloader/preloader/ ;
-if [ "$?" == "1" ];then
-	echo "no common preloader folder, try another"
-	cd ./bootable/bootloader/preloader-mtk/
-fi ; }
-cdlk() {
-. ~/code/shell/readCode.sh && bbcgrepo && \
-cd ./vendor/mediatek/proprietary/bootable/bootloader/lk/ ;
-if [ "$?" == "1" ];then
-	echo "no common lk folder, try another"
-	cd ./bootable/bootloader/lk-mtk/
-fi ; }
+
 alias cdconfig='bbcg1 && cd ./arch/arm64/configs/'
 alias cdconfig32='bbcg1 && cd ./arch/arm/configs/'
-alias cddts='bbcg1 && cd ./arch/arm64/boot/dts/mediatek/'
-alias cddts32='bbcg1 && cd ./arch/arm/boot/dts/mediatek/'
 alias cdusb='bbcg1 && cd ./drivers/usb/'
 alias vvusb='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/usb/"'
 alias cdgadget='bbcg1 && cd ./drivers/usb/gadget/'
 alias vvgadget='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/usb/gadget/"'
-alias cdusb20='bbcg1 && cd ./drivers/misc/mediatek/usb20/'
-alias vvusb20='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/misc/mediatek/usb20/"'
-alias cdusb11='bbcg1 && cd ./drivers/misc/mediatek/usb11/'
 alias cdspi='bbcg1 && cd ./drivers/spi/'
 alias cdrtc='bbcg1 && cd ./drivers/rtc/'
 alias vvrtc='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/rtc/"'
 alias cdmfd='bbcg1 && cd ./drivers/mfd/'
 alias cdinc='bbcg1 && cd ./include/'
 alias cdinclinux='bbcg1 && cd ./include/linux/'
-alias cdmtk='bbcg1 && cd ./drivers/misc/mediatek/'
 
 # Command line head / tail shortcuts
 alias -g G='| grep -i --color=auto'
 alias -g H='| head -n'
 
-alias yocas='export CAS_CONFIG=CONFIG_YOCTO_GCN_SPICE'
-alias unyocas='unset CAS_CONFIG'
-alias casrm='cas-remove'
-
-alias bbconf='vi ~/.bash_profile ~/.zshrc ~/.vimrc'
-alias bbdf='df -h | gc -vP "worktmp(?=/)"'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
@@ -247,21 +214,9 @@ alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
-bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old && \
-	echo "start rm old folder" && rm -rf old ; }
-bbpush() { git push mediatek HEAD:refs/for/$1 ; }
-bbcl() { cas-labels -b alps-mp-$1 ; }
-bbct() { s1=( $(sed -r "s/(alps)-(mp|dev)-([0-9a-z.]*)-/\3-$2-/g" <<< "$1"));
-cas-take $1 -n $s1 ;
-}
-bbct2() {
-s0=( $(grep --color=auto -Po "(?<=alps-mp-)[a-zA-Z0-9.\-_]*" <<< "$1") ) ;
-s1=( $(grep --color=auto -Eo "[a-zA-Z0-9.]*-" <<< "$s0" ) ) ;
-s2=$s1$2-${s0:${#s1}:${#s0}} ; cas-take $1 -n $s2 ; }
-bbct3() { cas-take alps-mp-$1 -n $2 ; }
+
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbmeldc() { cur=${PWD} ; meld $1/ $cur/ ; }
-bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};
 	vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
 bb2ack() { ack "$1" -l | xargs -I {} ack "$2" {} -H ; }
@@ -369,6 +324,5 @@ function zle-line-init zle-keymap-select {
     zle reset-prompt
 }
 
-zle -N zle-line-init
-zle -N zle-keymap-select
-export KEYTIMEOUT=1
+[ -f ~/.machine-specific.zsh ] && source ~/.machine-specific.zsh
+

@@ -44,16 +44,15 @@ else # Linux
   fi
 fi
 
-
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="false"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -62,7 +61,7 @@ fi
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -135,6 +134,7 @@ alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
 alias cd....='cd ../../../..'
+alias cd1='cd.'
 alias cd2='cd..'
 alias cd3='cd...'
 alias cd4='cd....'
@@ -144,11 +144,11 @@ alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
 
 unalias grep
-alias gc='grep -i --color=auto '
-alias gcr='grep -rni --color=auto '
-alias gcrng='grep -rni --color=auto --exclude-dir={.git} '
-alias gcre='grep -rni --color=auto -E '
-alias gcrp='grep -rni --color=auto -P '
+alias gc='grep -i --color=auto'
+alias gcr='grep -rni --color=auto'
+alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
+alias gcre='grep -rni --color=auto -E'
+alias gcrp='grep -rni --color=auto -P'
 
 # alias ta='tmux -f ~/.tmux.conf attach -t'
 # alias tab='tmux -f ~/.tmux.conf.bash attach -t'
@@ -156,8 +156,9 @@ alias gcrp='grep -rni --color=auto -P '
 # alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
 # alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
 
+unalias gg
 alias gg='git'
-alias ggbi='git remote -v && git branch -a | head -n 10 && echo "" && git branch -a | grep "\->"'
+alias ggbi='git remote -v && git branch -a | head -n 20 && echo "" && git branch -a | grep "\->"'
 alias ggs='git status'
 alias ggb='git branch'
 alias ggba='git branch -a'
@@ -180,32 +181,55 @@ alias fgco='git checkout $(git branch | fzf)'
 alias fgcor='git checkout $(git branch -r | fzf)'
 
 alias fdn='find . -name'
-alias lc='ll | grep --color=auto '
-alias lsc='ls | grep '
+alias lc='ll | grep --color=auto'
+alias lsc='ls | grep'
 alias rezsh='source ~/.zshrc'
 alias h='history'
+alias ht='history | tail -n'
 alias duc='du -h --max-depth=1'
 alias vs='emacs'
 alias vc='emacsclient'
 
-alias cdconfig='cd ./arch/arm64/configs/'
-alias cdconfig32='cd ./arch/arm/configs/'
-alias cddts='cd ./arch/arm64/boot/dts/mediatek/'
-alias cddts32='cd ./arch/arm/boot/dts/mediatek/'
-alias cdusb='cd ./drivers/usb/'
+alias cdconfig='bbcg1 && cd ./arch/arm64/configs/'
+alias cdconfig32='bbcg1 && cd ./arch/arm/configs/'
+alias cdusb='bbcg1 && cd ./drivers/usb/'
+alias vvusb='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/usb/"'
+alias cdgadget='bbcg1 && cd ./drivers/usb/gadget/'
+alias vvgadget='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/usb/gadget/"'
+alias cdspi='bbcg1 && cd ./drivers/spi/'
+alias cdrtc='bbcg1 && cd ./drivers/rtc/'
+alias vvrtc='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/rtc/"'
+alias cdmfd='bbcg1 && cd ./drivers/mfd/'
+alias cdinc='bbcg1 && cd ./include/'
+alias cdinclinux='bbcg1 && cd ./include/linux/'
+
+# Command line head / tail shortcuts
+alias -g G='| grep -i --color=auto'
+alias -g H='| head -n'
+
+alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
+alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
+
 bbmeld() { meld $1/$3 $2/$3 ; }
-bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
-bbfgcr() { var=$* ; find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
+bbmeldc() { cur=${PWD} ; meld $1/ $cur/ ; }
+bbv() { var=$*;file=${var%%:*};tmp=${var#*:};line=${tmp%%:*};
+	vi_para=$file" +"$line;echo $vi_para; vi $vi_para ; }
+bb2ack() { ack "$1" -l | xargs -I {} ack "$2" {} -H ; }
+bbfgcr() { var=$* ;
+	find . -type f -name $1 | xargs grep -ni --color=auto ${var#*\ } ; }
 bbvgcr() { vi $(grep -rni -P "$1" -l) ; }
 bbvlc() { vi $(ls | grep "$1") ; }
 
 # Useless bb
-bbhmost() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | LC_ALL=C sort | uniq -c | LC_ALL=C sort -rn | head -n 20 ; }
+bbhmost() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
+	LC_ALL=C sort | uniq -c | LC_ALL=C sort -rn | head -n 20 ; }
+bbhgc() { cat ~/.zsh_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
+	grep -i "$1" | uniq -c | sort -n ; }
 
 # zsh vi mode
 # Emacs mode
@@ -265,6 +289,7 @@ bindkey -M vicmd '\ed'   kill-word                         # Alt-d
 bindkey -M vicmd '\e[5~' history-beginning-search-backward # PageUp
 bindkey -M vicmd '\e[6~' history-beginning-search-forward  # PageDown
 
+
 # key bindings （HomeKey and EndKey)
 bindkey "\e[1~" beginning-of-line
 bindkey "\e[4~" end-of-line
@@ -298,44 +323,6 @@ function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
     zle reset-prompt
 }
-
-#zle -N zle-line-init
-#zle -N zle-keymap-select
-#export KEYTIMEOUT=1
-
-function powerline_precmd() {
-#    PS1="$(powerline-shell --shell zsh $?)"
-    export PS1="$(powerline-shell $? --shell zsh 2> /dev/null)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-if [ "$TERM" != "linux" ]; then
-#    install_powerline_precmd
-fi
-
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-export NODE_PATH=/usr/local/lib/node_modules
-
-export PATH=$PATH:/usr/local/mysql/bin
-
-# export PATH=$PATH:~/Library/Python/2.7/bin
-export PATH=$PATH:/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin
-# export MANPATH="/usr/local/man:$MANPATH"
-
-export LANG=en_US.UTF-8
-
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
-#export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
-export HOMEBREW_NO_AUTO_UPDATE=true
 
 [ -f ~/.machine-specific.zsh ] && source ~/.machine-specific.zsh
 
