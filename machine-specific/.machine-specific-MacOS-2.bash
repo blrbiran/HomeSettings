@@ -1,6 +1,19 @@
 #!/bin/bash
 # === Place machine specific bash settings here.
 
+# == PS1 settings
+#PS1="[\u@\h \W]\$"
+function git-branch-prompt {
+	local branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
+	if [ $branch ]; then
+		printf "\e[0;34m(\e[0;31m%s\e[0;34m)" ${branch}
+	fi
+}
+function set-bash-prompt {
+	PS1="\e[0;34mNerd@\e[0;32m\W $(git-branch-prompt)\e[0;35m \$\e[0m"
+}
+PROMPT_COMMAND=set-bash-prompt
+
 # == PATH settings
 export PATH=~/code/shell:~/usr/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib

@@ -91,6 +91,7 @@ alias bbtagsc='ctags -R --c-kinds=+p --fields=+aS --extra=+q .'
 alias bbtagscpp='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
+tt() { printf "\033];%s\007\n" $1 ; }
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbmeldc() { cur=${PWD} ;
 if [ "$2" == "" ];then

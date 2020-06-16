@@ -63,11 +63,14 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 
 " === Snippets
-"Plugin 'Valloric/YouCompleteMe'
 " Track the engine
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
+
+" == Complete
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-scripts/OmniCppComplete'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -394,7 +397,7 @@ set completeopt=menuone,menu,longest
 " === UltiSnips
 " ===
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = "<C-e>"
 let g:UltiSnipsJumpForwardTrigger = "<S-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-k>"
 "let g:UltiSnipsListSnippets = "<c-i>"
