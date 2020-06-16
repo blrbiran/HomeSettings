@@ -48,6 +48,19 @@ s2=$s1$2-${s0:${#s1}:${#s0}} ; cas-take $1 -n $s2 ; }
 bbct3() { cas-take alps-mp-$1 -n $2 ; }
 bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 
+# == PS1 settings
+#PS1="[\u@\h \W]\$"
+function git-branch-prompt {
+	local branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
+	if [ $branch ]; then
+		printf "\e[0;34m(\e[0;31m%s\e[0;34m)" ${branch}
+	fi
+}
+function set-bash-prompt {
+	PS1="\e[0;34mNerd@\e[0;32m\W $(git-branch-prompt)\e[0;35m \$\e[0m"
+}
+PROMPT_COMMAND=set-bash-prompt
+
 # == PATH settings
 export PATH=~/bin:~/usr/bin:$~/code/shell:/worktmp/home/usr/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/worktmp/home/usr/lib
