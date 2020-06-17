@@ -50,14 +50,30 @@ bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 
 # == PS1 settings
 #PS1="[\u@\h \W]\$"
+prompt_git=y
+function last-command-prompt {
+	if [ $? == 0 ];then
+		printf "\[\e[1;32m\]➔ "
+	else
+		printf "\[\e[1;31m\]✘ "
+	fi
+}
 function git-branch-prompt {
-	local branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
+	if [ ${prompt_git} == "y" ];then
+		branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
+	fi
+	# if branch exist
 	if [ $branch ]; then
-		printf "\e[0;34m(\e[0;31m%s\e[0;34m)" ${branch}
+		status=$(git status -uno 2>/dev/null)
+		#git dirty status
+		if [[ ! ${status} =~ "working tree clean" ]];then
+			state="\[\e[1;33m\] ✚"
+		fi
+		echo "\[\e[1;34m\](\[\e[0;33m\] \[\e[1;31m\]${branch}\[\e[1;34m\])${state}"
 	fi
 }
 function set-bash-prompt {
-	PS1="\e[0;34mNerd@\e[0;32m\W $(git-branch-prompt)\e[0;35m \$\e[0m"
+	PS1="$(last-command-prompt)\[\e[1;36m\]\W$(git-branch-prompt)\[\e[0m\] "
 }
 PROMPT_COMMAND=set-bash-prompt
 
