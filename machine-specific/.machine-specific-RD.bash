@@ -63,11 +63,20 @@ function git-branch-prompt {
 		branch=$(git symbolic-ref --short -q HEAD 2>/dev/null)
 	fi
 	# if branch exist
-	if [ $branch ]; then
+	if [ $branch ];then
 		status=$(git status -uno 2>/dev/null)
-		#git dirty status
-		if [[ ! ${status} =~ "working tree clean" ]];then
-			state="\[\e[1;33m\] ✚"
+		# git dirty status
+		if [[ ${status} =~ "nothing to commit" ]];then
+			state=""
+		elif [[ ${status} =~ "Changes to be committed" ]];then
+			state="\[\e[0;33m\] ●"
+		fi
+		if [[ ${status} =~ "Changes not staged for commit" ]];then
+			if [[ "${state}" == "" ]];then
+				state="\[\e[0;33m\] ✚"
+			else
+				state+="✚"
+			fi
 		fi
 		echo "\[\e[1;34m\](\[\e[0;33m\] \[\e[1;31m\]${branch}\[\e[1;34m\])${state}"
 	fi
