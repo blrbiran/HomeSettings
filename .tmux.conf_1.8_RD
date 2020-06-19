@@ -59,7 +59,10 @@ set-window-option -g window-status-format "#[dim]#I:#[default]#W#[fg=grey,dim]"
 set-window-option -g window-status-current-format "#[fg=cyan,bold]#I#[fg=blue]:#[fg=cyan]#W#[fg=dim]"
 
 # Plugins
-# tmux-resurrect
-run-shell ~/.tmux/tmux-resurrect/resurrect.tmux
+# tmux-resurrect (Cannot support by tmux 1.x)
+# mkdir -p ~/.tmux
+# cd ~/.tmux
+# git clone https://github.com/tmux-plugins/tmux-resurrect.git
+#run-shell ~/.tmux/tmux-resurrect/resurrect.tmux
 
 # reference: https://gist.github.com/jnaulty/55d03392c37e9720631a
