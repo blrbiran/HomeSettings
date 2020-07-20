@@ -21,7 +21,7 @@ alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
 mkcd() { mkdir $1 ; cd $1 ; }
 
-unalias grep
+unalias grep 2>/dev/null
 alias gc='grep -i --color=auto'
 alias gcr='grep -rni --color=auto'
 alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
@@ -32,7 +32,7 @@ alias ta='tmux -f ~/.tmux.conf attach -t'
 alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sessions | sed "s/^/[bash] /g"'
 alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
 
-unalias gg
+unalias gg 2>/dev/null
 alias gg='git'
 alias ggbi='git remote -v && git branch -a | head -n 20 && echo "" && git branch -a | grep "\->"'
 alias ggs='git status'
