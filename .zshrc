@@ -143,7 +143,7 @@ alias cd6='cd.... ; cd..'
 alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
 
-unalias grep
+unalias grep 2>/dev/null
 alias gc='grep -i --color=auto'
 alias gcr='grep -rni --color=auto'
 alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
@@ -156,7 +156,7 @@ alias gcrp='grep -rni --color=auto -P'
 # alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
 # alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
 
-unalias gg
+unalias gg 2>/dev/null
 alias gg='git'
 alias ggbi='git remote -v && git branch -a | head -n 20 && echo "" && git branch -a | grep "\->"'
 alias ggs='git status'
