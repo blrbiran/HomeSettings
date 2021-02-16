@@ -3,6 +3,9 @@
 
 export LANG=en_US.UTF-8
 
+# == Aliases settings
+alias cdp='cd ~/project/'
+
 # == Path settings
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
@@ -55,6 +58,13 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn
 #export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn
 export PATH=$PATH:$HOME/flutter/bin
+
+# ejabberd
+export PATH=$PATH:/usr/local/sbin
+
+# Android NDK
+export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
+export NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
 
 # For MacOS in Black Apple
 
