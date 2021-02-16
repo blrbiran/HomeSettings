@@ -628,7 +628,8 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe("norm
 " 解决crontab -e时，提示crontab: temp file must be edited in place
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-autocmd filetype c,cpp set shiftwidth=8|set softtabstop=8|set tabstop=8|set noexpandtab
+autocmd filetype c set shiftwidth=8|set softtabstop=8|set tabstop=8|set noexpandtab
+autocmd filetype cpp set shiftwidth=4|set softtabstop=4|set tabstop=4|set noexpandtab
 
 " }}}
 " Load Machine Specific Settings {{{1
