@@ -69,6 +69,8 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
-export PUB_HOSTED_URL=https://pub.flutter-io.cn
-export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
-export PATH=$PATH:$HOME/flutter/bin
+#export PUB_HOSTED_URL=https://pub.flutter-io.cn
+#export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL="https://mirrors.tuna.tsinghua.edu.cn/flutter"
+export PUB_HOSTED_URL="https://mirrors.tuna.tsinghua.edu.cn/dart-pub"
+export PATH=$PATH:$HOME/flutter-sdk/bin
