@@ -44,6 +44,7 @@ alias ggca='git commit --amend'
 alias ggco='git checkout'
 alias ggcp='git cherry-pick'
 alias ggrbi='git rebase -i'
+ggrb() { git rebase -i HEAD~$1 ; }
 alias ggdf='git diff'
 alias ggdfc='git diff --cached'
 alias ggll='git ll'

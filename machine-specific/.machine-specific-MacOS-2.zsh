@@ -42,7 +42,7 @@ export PATH=/usr/local/opt/sqlite/bin:$PATH
 export PATH=/usr/local/opt/openssl@1.1/bin:$PATH
 
 # Java related
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.1.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.10.jdk/Contents/Home
 export MAVEN_HOME=$HOME/apache-maven-3.6.3
 export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 
@@ -58,6 +58,9 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn
 #export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn
 export PATH=$PATH:$HOME/flutter/bin
+
+# MongoDB related
+export PATH=$PATH:/usr/local/opt/mongodb-community@4.2/bin
 
 # ejabberd
 export PATH=$PATH:/usr/local/sbin
