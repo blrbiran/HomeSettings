@@ -1,3 +1,6 @@
+[user]
+	name = biran
+	email = blrbiran@163.com
 [alias]
 	st = status
 	ci = commit
@@ -5,7 +8,18 @@
 	co = checkout
 	br = branch
 	df = diff
+	cp = cherry-pick
+	rb = rebase
+	rbi = rebase -i
+	rbc = rebase --continue
 	dfc = diff --cached
 	lg = log --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr)' --date=relative
 	ls = log --color --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %C(bold blue)<%an>%C(reset) %s %C(green)(%cd)' --abbrev-commit --date=iso
 	ll = log --color --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(bold blue)<%an>%C(reset) %C(green)(%cd)' --abbrev-commit --date=relative
+[pull]
+	rebase = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
