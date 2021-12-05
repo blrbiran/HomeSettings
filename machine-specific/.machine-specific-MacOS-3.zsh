@@ -43,7 +43,8 @@ export PATH=/usr/local/opt/sqlite/bin:$PATH
 export PATH=/usr/local/opt/openssl@1.1/bin:$PATH
 
 # Java related
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.10.jdk/Contents/Home
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.10.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 export MAVEN_HOME=$HOME/apache-maven-3.6.3
 export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 
@@ -55,14 +56,11 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 export PATH=$PATH:$HOME/flutter/bin
 
 # MongoDB related
-export PATH=$PATH:/usr/local/opt/mongodb-community@4.2/bin
-
-# ejabberd
-export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:/opt/homebrew/Cellar/mongodb-community/5.0.3/bin
 
 # Android NDK
-export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
-export NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
+#export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
+#export NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
 
 # For MacOS in Black Apple
 
