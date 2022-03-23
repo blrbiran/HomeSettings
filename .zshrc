@@ -205,6 +205,7 @@ alias cdmfd='bbcg1 && cd ./drivers/mfd/'
 alias cdinc='bbcg1 && cd ./include/'
 alias cdinclinux='bbcg1 && cd ./include/linux/'
 
+function ttt () { tmux a -t $1; echo $1; }
 # Command line head / tail shortcuts
 alias -g G='| grep -i --color=auto'
 alias -g H='| head -n'
@@ -216,6 +217,9 @@ alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
+alias rcd='cd ${PWD}'
+
+alias pod='arch -x86_64 pod'
 
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbmeldc() { cur=${PWD} ; meld $1/ $cur/ ; }

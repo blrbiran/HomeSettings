@@ -5,6 +5,7 @@ export LANG=en_US.UTF-8
 
 # == Aliases settings
 alias cdp='cd ~/project/'
+alias cdlets='cd ~/project/lets'
 
 # == Path settings
 export PATH=/opt/homebrew/bin:$PATH
@@ -53,7 +54,7 @@ export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn
 #export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn
-export PATH=$PATH:$HOME/flutter/bin
+export PATH=$PATH:/opt/flutter/bin
 
 # MongoDB related
 export PATH=$PATH:/opt/homebrew/Cellar/mongodb-community/5.0.3/bin
