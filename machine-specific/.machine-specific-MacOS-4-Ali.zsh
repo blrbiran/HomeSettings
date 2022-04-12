@@ -28,12 +28,12 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 export PATH=/opt/homebrew/bin:$PATH
 
 # Machine related aliases
-unalias fd
-alias nv='nvim'
+#unalias fd
+#alias nv='nvim'
 
 # nvim related
-export XDG_CONFIG_HOME=~/.config/
-export XDG_DATA_HOME=~/.config/
+#export XDG_CONFIG_HOME=~/.config/
+#export XDG_DATA_HOME=~/.config/
 
 # Golang related
 export GOROOT=/usr/local/opt/go/libexec
@@ -48,14 +48,14 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 # sqlite & openssl
 #export PATH=/usr/local/opt/sqlite/bin:$PATH
 export PATH=/opt/homebrew/opt/openssl@1.1/bin:$PATH
-export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+#export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+#export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
 
 # curl
 export PATH=/opt/homebrew/opt/curl/bin:$PATH
 
 # Java related
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-1.8.0_321.jdk/Contents/Home
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 export MAVEN_HOME=$HOME/apache-maven-3.8.5
@@ -63,7 +63,7 @@ export MAVEN_HOME=$HOME/apache-maven-3.8.5
 export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
 
 j8() {
-  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-1.8.0_321.jdk/Contents/Home ;
+  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home ;
   export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH ;
 }
 
@@ -90,15 +90,15 @@ export PATH=$PATH:/opt/homebrew/Cellar/mongodb-community/5.0.3/bin
 # added by Anaconda3 2019.03 installer
 # >>> conda init >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/biran/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+__conda_setup="$(CONDA_REPORT_ERRORS=false '${HOME}/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
 if [ $? -eq 0 ]; then
     \eval "$__conda_setup"
 else
-    if [ -f "/Users/biran/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/biran/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "${HOME}/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "${HOME}/anaconda3/etc/profile.d/conda.sh"
         CONDA_CHANGEPS1=false conda activate base
     else
-        \export PATH="/Users/biran/anaconda3/bin:$PATH"
+        \export PATH="${HOME}/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
