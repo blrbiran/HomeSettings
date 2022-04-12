@@ -146,6 +146,7 @@ mkcd() { mkdir $1 ; cd $1 ; }
 
 unalias grep 2>/dev/null
 alias gc='grep -i --color=auto'
+alias gnc='grep -vi --color=auto'
 alias gcr='grep -rni --color=auto'
 alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
 alias gcre='grep -rni --color=auto -E'
@@ -218,6 +219,9 @@ alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
 alias rcd='cd ${PWD}'
+
+tgz() { tar -czvf ${1}.tgz ${1} ; }
+alias untgz='tar -czvf'
 
 alias pod='arch -x86_64 pod'
 

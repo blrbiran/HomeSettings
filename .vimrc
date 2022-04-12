@@ -64,9 +64,9 @@ Plugin 'airblade/vim-gitgutter'
 
 " === Snippets
 " Track the engine
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 
 " == Complete
 "Plugin 'Valloric/YouCompleteMe'
@@ -604,7 +604,7 @@ nnoremap <F6> :TagbarToggle<cr>
 noremap <F7> <Esc>:call KernelStyle()<cr><Esc>
 noremap <F8> <Esc>:call SetMouse()<cr><Esc>
 " map <F8> <Esc>:TlistToggle<cr><Esc>
-call Set80Word_v2()
+" call Set80Word_v2()
 noremap <F9> <Esc>:call Set80Word_v2()<cr><Esc>
 " Set paste
 set pastetoggle=<F10>
@@ -618,7 +618,7 @@ augroup Reload_vimrc
 	autocmd!
 	autocmd! BufWritePost $MYVIMRC source % | echom "Reloaded " . $MYVIMRC | redraw
 	" Fold .vimrc when loaded
-	autocmd! BufEnter $MYVIMRC set foldenable | set foldmethod=marker
+	"autocmd! BufEnter $MYVIMRC set foldenable | set foldmethod=marker
 augroup END
 
 " Save cursor position

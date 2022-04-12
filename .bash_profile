@@ -114,6 +114,9 @@ bbhmost() { cat ~/.bash_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
 bbhgc() { cat ~/.bash_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
 	grep -i "$1" | uniq -c | sort -n ; }
 
+alias rcd='cd ${PWD}'
+tgz() { tar -czvf ${1}.tgz ${1} ; }
+alias untgz='tar -czvf'
 
 # set bash as vi mode
 set -o vi
