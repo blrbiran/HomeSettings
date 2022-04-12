@@ -27,7 +27,6 @@ alias cddts='bbcg1 && cd ./arch/arm64/boot/dts/mediatek/'
 alias cddts32='bbcg1 && cd ./arch/arm/boot/dts/mediatek/'
 alias cdusb20='bbcg1 && cd ./drivers/misc/mediatek/usb20/'
 alias vvusb20='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/misc/mediatek/usb20/"'
-alias cdusb11='bbcg1 && cd ./drivers/misc/mediatek/usb11/'
 alias cdmtk='bbcg1 && cd ./drivers/misc/mediatek/'
 
 #alias bbdf='df -h | gc -vP "worktmp(?=/)"'
@@ -85,41 +84,10 @@ function set-bash-prompt {
 PROMPT_COMMAND=set-bash-prompt
 
 # == PATH settings
-export PATH=~/bin:~/usr/bin:$~/code/shell:/worktmp/home/usr/bin:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/worktmp/home/usr/lib
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/worktmp/home/usr/lib/pkgconfig
-
-if false; then
-  # maven and build env setting
-  if [ "`cat /etc/issue |grep 10.04`" != "" ]; then
-    echo "10.04"
-    export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-10.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:/mtkoss/python/2.7.3-ubuntu-10.04/x86_64/bin:$PATH
-  elif [ "`cat /etc/issue |grep 12.04`" != ""  ]; then
-    echo "12.04"
-    export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-12.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
-  elif [ "`cat /etc/issue |grep 14.04`" != ""  ]; then
-    echo "14.04"
-    #export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/1.8.1-ubuntu-12.04/x86_64/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
-    export PATH=~/bin:/mtkoss/maven/3.2.1-ubuntu-10.04/x86_64/bin:/mtkoss/git/2.6.4-ubuntu-14.04/bin:/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64/bin:$PATH
-  else
-    echo "Unknown Version"
-  fi
-  export JAVA_HOME=/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64
-  export ANDROID_JAVA_HOME=/mtkoss/jdk/1.6.0_34-ubuntu-10.04/x86_64
-fi
-
-alias repo='/mtkoss/git/mtk_repo'
-export PATH=/mtkoss/git:$PATH
-export PATH=.repo/repo:$PATH
-export PATH=$PATH:/mtkoss/git/Jungle_scripts
-
-# == P4 settings
-export P4PORT=10.17.1.181:2008
-export P4USER=ran.bi
-source /mtktools/perforce/bash_p4
+export PATH=~/bin:~/usr/bin:$~/code/shell:/workspace/home/usr/bin:$PATH
 
 # == Python path
-export PYTHONPATH=/worktmp/home/usr/lib/python2.7/site-packages
+#export PYTHONPATH=/worktmp/home/usr/lib/python2.7/site-packages
 
 # == autojump
 [[ -s ${HOME}/.autojump/etc/profile.d/autojump.sh ]] && \
