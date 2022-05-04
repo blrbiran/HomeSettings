@@ -76,9 +76,9 @@ j8() {
 
 # Jenkins
 # To restart jenkins-lts after an upgrade:
-#   brew service restart jenkins-lts
+#   brew services restart jenkins-lts
 # Or, if you don't want/need a background service you can just run:
-#   $(brew --prefix)/opt/openjdk@11/bin/jaba -Dmail.smtp.starttls.enable=true -jar $(brew --prefix)/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress=127.0.0.1 --httpPort=8085
+#   $(brew --prefix)/opt/openjdk@11/bin/java -Dmail.smtp.starttls.enable=true -jar $(brew --prefix)/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress=127.0.0.1 --httpPort=8085
 export JENKINS_URL=http://localhost:8085/
 
 # Ali ADB
@@ -94,7 +94,7 @@ export PATH=$PATH:/opt/flutter/bin
 
 # MongoDB related
 # To start mongodb/brew/mongodb-community now and restart at login:
-#   brew service start mongodb/brew/mongodb-community
+#   brew services start mongodb/brew/mongodb-community
 # Or, if you don't want/need a background service you can just run:
 #   mongod --config $(brew --prefix)/etc/mongod.conf
 
