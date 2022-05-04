@@ -116,7 +116,7 @@ bbhgc() { cat ~/.bash_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
 
 alias rcd='cd ${PWD}'
 tgz() { tar -czvf ${1}.tgz ${1} ; }
-alias untgz='tar -czvf'
+alias untgz='tar -xzvf'
 
 # set bash as vi mode
 set -o vi

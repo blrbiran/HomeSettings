@@ -8,11 +8,11 @@ alias cdp='cd ~/project/'
 alias cdlets='cd ~/project/lets'
 
 # == Path settings
-export PATH=/opt/homebrew/bin:$PATH
+export PATH=$(brew --prefix)/bin:$PATH
 export PATH=$HOME/usr/bin:/usr/local/bin:$PATH
 export PATH=$PATH:/usr/local/mysql/bin
 
-export PATH=$PATH:/opt/homebrew/bin
+export PATH=$PATH:$(brew --prefix)/bin
 export NODE_PATH=/usr/local/lib/node_modules
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -57,7 +57,7 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 export PATH=$PATH:/opt/flutter/bin
 
 # MongoDB related
-export PATH=$PATH:/opt/homebrew/Cellar/mongodb-community/5.0.3/bin
+export PATH=$PATH:$(brew --prefix)/Cellar/mongodb-community/5.0.3/bin
 
 # Android NDK
 #export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b

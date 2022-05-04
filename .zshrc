@@ -221,7 +221,7 @@ alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
 alias rcd='cd ${PWD}'
 
 tgz() { tar -czvf ${1}.tgz ${1} ; }
-alias untgz='tar -czvf'
+alias untgz='tar -xzvf'
 
 alias pod='arch -x86_64 pod'
 
