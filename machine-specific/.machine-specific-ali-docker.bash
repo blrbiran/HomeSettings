@@ -2,7 +2,6 @@
 # === Place machine specific bash settings here.
 
 # == aliases and functions
-alias llc="ll | awk '{now=strftime(\"%d\",systime()); {if(\$7==(now)) { print }}}'"
 alias upb=''
 alias upp=''
 alias cdb='cd /workspace/codebase/'
