@@ -2,6 +2,7 @@
 # === Place machine specific bash settings here.
 
 # == aliases and functions
+alias llc="ll | awk '{now=strftime(\"%d\",systime()); {if(\$7==(now)) { print }}}'"
 alias upb=''
 alias upp=''
 alias cdb='cd /workspace/codebase/'
@@ -9,6 +10,7 @@ alias cdc='cd ~/workspace/'
 alias cdvendor='bbcg2 && cd ./vendor/'
 alias cdvr='bbcg2 && cd ./vendor/renesas'
 alias cdvm='bbcg2 && cd ./vendor/mtk'
+alias csrcmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
 cdpl() {
 . ~/code/shell/readCode.sh && bbcgrepo && \
 cd ./vendor/mediatek/proprietary/bootable/bootloader/preloader/ ;
@@ -23,8 +25,8 @@ if [ "$?" == "1" ];then
 	echo "no common lk folder, try another"
 	cd ./bootable/bootloader/lk-mtk/
 fi ; }
-alias cddts='bbcg1 && cd ./arch/arm64/boot/dts/mediatek/'
-alias cddts32='bbcg1 && cd ./arch/arm/boot/dts/mediatek/'
+alias cddts='bbcg1 && cd ./arch/arm64/boot/dts/'
+alias cddts32='bbcg1 && cd ./arch/arm/boot/dts/'
 alias cdusb20='bbcg1 && cd ./drivers/misc/mediatek/usb20/'
 alias vvusb20='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/misc/mediatek/usb20/"'
 alias cdmtk='bbcg1 && cd ./drivers/misc/mediatek/'
@@ -90,8 +92,8 @@ export PATH=~/bin:~/usr/bin:$~/code/shell:/workspace/home/usr/bin:$PATH
 #export PYTHONPATH=/worktmp/home/usr/lib/python2.7/site-packages
 
 # == autojump
-[[ -s ${HOME}/.autojump/etc/profile.d/autojump.sh ]] && \
-. ${HOME}/.autojump/etc/profile.d/autojump.sh
+[[ -s /usr/share/autojump/autojump.sh ]] && . /usr/share/autojump/autojump.sh
 
-[[ -s ${HOME}/.bashrc ]] && \
-. ${HOME}/.bashrc
+[ -s ${HOME}/.fzf.bash ]] && . ${HOME}/.fzf.bash
+
+[[ -s ${HOME}/.bashrc ]] && . ${HOME}/.bashrc

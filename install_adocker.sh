@@ -17,4 +17,4 @@ ln -s ${HOME}/workspace/home/HomeSettings/machine-specific/.machine-specific-ali
 mkdir ${HOME}/code
 ln -s ${HOME}/workspace/home/HomeSettings/code/shell ${HOME}/code/shell
 
-# sudo apt install ack-grep vim emacs tmux cscope ctags
+# sudo apt install ack-grep vim emacs tmux cscope ctags fzf autojump
