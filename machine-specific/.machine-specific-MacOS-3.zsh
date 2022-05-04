@@ -7,19 +7,19 @@ export LANG=en_US.UTF-8
 alias cdp='cd ~/project/'
 alias cdlets='cd ~/project/lets'
 
-# == Path settings
-export PATH=$(brew --prefix)/bin:$PATH
-export PATH=$HOME/usr/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/usr/local/mysql/bin
-
-export PATH=$PATH:$(brew --prefix)/bin
-export NODE_PATH=/usr/local/lib/node_modules
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # Homebrew settings
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
 #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export HOMEBREW_NO_AUTO_UPDATE=true
+
+export PATH=/opt/homebrew/bin:$PATH
+
+# == Path settings
+export PATH=$HOME/usr/bin:/usr/local/bin:$PATH
+export PATH=$PATH:/usr/local/mysql/bin
+
+export NODE_PATH=/usr/local/lib/node_modules
+# export MANPATH="/usr/local/man:$MANPATH"
 
 # Machine related aliases
 unalias fd
