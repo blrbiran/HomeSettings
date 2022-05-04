@@ -7,6 +7,7 @@ else # Linux
   alias ll='ls -alh --color'
   alias lll='ls -lh --color'
 fi
+alias llc="ll | awk '{now=strftime(\"%-d\",systime()); {if(\$7==(now)) { print }}}'"
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
