@@ -10,7 +10,7 @@ alias cdc='cd ~/workspace/'
 alias cdvendor='bbcg2 && cd ./vendor/'
 alias cdvr='bbcg2 && cd ./vendor/renesas'
 alias cdvm='bbcg2 && cd ./vendor/mtk'
-alias csrcmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
+alias bbxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
 cdpl() {
 . ~/code/shell/readCode.sh && bbcgrepo && \
 cd ./vendor/mediatek/proprietary/bootable/bootloader/preloader/ ;
@@ -94,6 +94,6 @@ export PATH=~/bin:~/usr/bin:$~/code/shell:/workspace/home/usr/bin:$PATH
 # == autojump
 [[ -s /usr/share/autojump/autojump.sh ]] && . /usr/share/autojump/autojump.sh
 
-[ -s ${HOME}/.fzf.bash ]] && . ${HOME}/.fzf.bash
+[[ -s ${HOME}/.fzf.bash ]] && . ${HOME}/.fzf.bash
 
 [[ -s ${HOME}/.bashrc ]] && . ${HOME}/.bashrc
