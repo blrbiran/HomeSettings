@@ -32,7 +32,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export HOMEBREW_NO_AUTO_UPDATE=true
 
-export PATH=$(brew --prefix)/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
 
 # Machine related aliases
 #unalias fd
