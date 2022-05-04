@@ -15,7 +15,7 @@
     #cscope -Rbkq -P $HERE
 #}
 
-bbcscope ()
+bballcscope ()
 {
     bbcg && \
     find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" > cscope.files && \
@@ -23,6 +23,12 @@ bbcscope ()
 }
 
 bbcurcscope ()
+{
+    find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" > cscope.files && \
+    cscope -Rbkq -i cscope.files
+}
+
+bbcscope ()
 {
     find . -name "*.h" -o -name "*.c" -o -name "*.cpp" -o -name "*.cc" -o -name "*.java" > cscope.files && \
     cscope -Rbkq -i cscope.files
@@ -38,7 +44,7 @@ bbcg ()
 {
     T=$(bbgettop);
     if [ "$T" ]; then
-        \cd $(bbgettop);
+        \cd ${T};
     else
         echo "Couldn't locate the top of the tree.  Try setting TOP.";
         return 1;
@@ -49,7 +55,7 @@ bbcgrepo ()
 {
     T=$(bbgetrepotop);
     if [ "$T" ]; then
-        \cd $(bbgetrepotop);
+        \cd ${T};
     else
         echo "Couldn't locate the top of the repo tree.  Try setting TOP.";
         return 1;
