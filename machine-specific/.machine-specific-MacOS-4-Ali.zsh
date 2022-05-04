@@ -13,6 +13,13 @@ ttt() {
   tt $1 ; tmux a -t $1 ;
 }
 
+alias ahb='adb -host'
+alias ahbr='adb -host remount'
+alias ahbd='adb -host devices'
+alias ahbs='adb -host shell'
+alias ahbpush='adb -host push'
+alias ahbpull='adb -host pull'
+
 # == Path settings
 export PATH=$HOME/usr/bin:/usr/local/bin:$PATH
 #export PATH=$PATH:/usr/local/mysql/bin
@@ -25,7 +32,7 @@ export NODE_PATH=/usr/local/lib/node_modules
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export HOMEBREW_NO_AUTO_UPDATE=true
 
-export PATH=/opt/homebrew/bin:$PATH
+export PATH=$(brew --prefix)/bin:$PATH
 
 # Machine related aliases
 #unalias fd
@@ -43,16 +50,16 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 
 # Python
 # export PATH=$PATH:~/Library/Python/2.7/bin
-#export PATH=/opt/homebrew/opt/python3/bin:$PATH
+#export PATH=$(brew --prefix)/opt/python3/bin:$PATH
 
 # sqlite & openssl
 #export PATH=/usr/local/opt/sqlite/bin:$PATH
-export PATH=/opt/homebrew/opt/openssl@1.1/bin:$PATH
-#export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-#export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export PATH=$(brew --prefix)/opt/openssl@1.1/bin:$PATH
+#export LDFLAGS="-L$(brew --prefix)/opt/openssl@3/lib"
+#export CPPFLAGS="-I$(brew --prefix)/opt/openssl@3/include"
 
 # curl
-export PATH=/opt/homebrew/opt/curl/bin:$PATH
+export PATH=$(brew --prefix)/opt/curl/bin:$PATH
 
 # Java related
 #export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
@@ -67,6 +74,13 @@ j8() {
   export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH ;
 }
 
+# Jenkins
+# To restart jenkins-lts after an upgrade:
+#   brew service restart jenkins-lts
+# Or, if you don't want/need a background service you can just run:
+#   $(brew --prefix)/opt/openjdk@11/bin/jaba -Dmail.smtp.starttls.enable=true -jar $(brew --prefix)/opt/jenkins-lts/libexec/jenkins.war --httpListenAddress=127.0.0.1 --httpPort=8085
+export JENKINS_URL=http://localhost:8085/
+
 # Ali ADB
 export PATH=$PATH:${HOME}/work/CloudSparrow
 export PATH=$PATH:${HOME}/work/CloudSparrow/ADB/mac
@@ -79,43 +93,16 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 export PATH=$PATH:/opt/flutter/bin
 
 # MongoDB related
-export PATH=$PATH:/opt/homebrew/Cellar/mongodb-community/5.0.3/bin
+# To start mongodb/brew/mongodb-community now and restart at login:
+#   brew service start mongodb/brew/mongodb-community
+# Or, if you don't want/need a background service you can just run:
+#   mongod --config $(brew --prefix)/etc/mongod.conf
 
 # Android NDK
 #export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
 #export NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
 
 # For MacOS in Black Apple
-
-# added by Anaconda3 2019.03 installer
-# >>> conda init >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '${HOME}/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "${HOME}/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "${HOME}/anaconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        \export PATH="${HOME}/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda init <<<
-
-# conda ran settings
-conda deactivate
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
 # == fzf related
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -142,6 +129,8 @@ function install_powerline_precmd() {
 if [ "$TERM" != "linux" ]; then
 #    install_powerline_precmd
 fi
+
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
