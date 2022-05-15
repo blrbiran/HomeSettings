@@ -177,6 +177,8 @@ alias ggll='git ll'
 alias ggl='git ls'
 alias ggstash='git stash'
 
+alias sscp='rsync -P --rsh=ssh -h'
+
 # == fzf
 alias fcd='cd $(find . -type d | fzf)'
 alias fvi='vi $(find . -type f | fzf)'

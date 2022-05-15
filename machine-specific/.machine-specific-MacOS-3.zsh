@@ -123,3 +123,5 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export GOOGLE_APPLICATION_CREDENTIALS=/var/service/config/lets-368e9-firebase-adminsdk-mvkc9-0417e7c207.json
+

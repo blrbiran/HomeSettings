@@ -13,12 +13,18 @@ ttt() {
   tt $1 ; tmux a -t $1 ;
 }
 
-alias ahb='adb -host'
-alias ahbr='adb -host remount'
-alias ahbd='adb -host devices'
-alias ahbs='adb -host shell'
-alias ahbpush='adb -host push'
-alias ahbpull='adb -host pull'
+alias abb='adb -host'
+alias abbr='adb -host remount'
+alias abbd='adb -host devices'
+alias abbs='adb -host shell'
+alias abbpush='adb -host push'
+alias abbpull='adb -host pull'
+
+# Proxy setting
+alias bbpxy='export http_proxy=socks5://localhost:13659'
+
+# Xquartz X11 setting
+export DISPLAY=:0
 
 # == Path settings
 export PATH=$HOME/usr/bin:/usr/local/bin:$PATH
@@ -71,7 +77,12 @@ export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
 
 j8() {
   export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home ;
-  export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH ;
+  export PATH=$JAVA_HOME/bin:$PATH ;
+}
+
+j11() {
+	export JAVA_HOME=$(brew --prefix)/Cellar/openjdk@11/11.0.14.1 ;
+  export PATH=$JAVA_HOME/bin:$PATH ;
 }
 
 # Jenkins
@@ -83,7 +94,7 @@ export JENKINS_URL=http://localhost:8085/
 
 # Ali ADB
 export PATH=$PATH:${HOME}/work/CloudSparrow
-export PATH=$PATH:${HOME}/work/CloudSparrow/ADB/mac
+export PATH=$PATH:${HOME}/work/CloudSparrow/ADB/mac:/opt/tools/platform-tools
 
 # flutter related
 export PUB_HOSTED_URL=https://pub.flutter-io.cn
@@ -98,13 +109,6 @@ export PATH=$PATH:/opt/flutter/bin
 # Or, if you don't want/need a background service you can just run:
 #   mongod --config $(brew --prefix)/etc/mongod.conf
 
-# Android NDK
-#export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
-#export NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
-
-# For MacOS in Black Apple
-
-# == fzf related
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
@@ -132,5 +136,7 @@ fi
 
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# == fzf related
+# Install fzf: $(brew --prefix)/opt/fzf/install
+[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
 
