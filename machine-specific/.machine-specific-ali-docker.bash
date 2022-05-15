@@ -9,7 +9,8 @@ alias cdc='cd ~/workspace/'
 alias cdvendor='bbcg2 && cd ./vendor/'
 alias cdvr='bbcg2 && cd ./vendor/renesas'
 alias cdvm='bbcg2 && cd ./vendor/mtk'
-alias bbxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
+alias xxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
+alias xxpkg='pushd . && bbcg2 && cd xmake && . xdirs && xmake image-stripped'
 cdpl() {
 . ~/code/shell/readCode.sh && bbcgrepo && \
 cd ./vendor/mediatek/proprietary/bootable/bootloader/preloader/ ;
