@@ -81,7 +81,7 @@ j8() {
 }
 
 j11() {
-	export JAVA_HOME=$(brew --prefix)/Cellar/openjdk@11/11.0.14.1 ;
+  export JAVA_HOME=$(brew --prefix)/Cellar/openjdk@11/11.0.14.1 ;
   export PATH=$JAVA_HOME/bin:$PATH ;
 }
 
