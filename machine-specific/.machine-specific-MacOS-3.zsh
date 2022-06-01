@@ -125,3 +125,9 @@ fi
 
 export GOOGLE_APPLICATION_CREDENTIALS=/var/service/config/lets-368e9-firebase-adminsdk-mvkc9-0417e7c207.json
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/biran/tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/biran/tools/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/biran/tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/biran/tools/google-cloud-sdk/completion.zsh.inc'; fi
+

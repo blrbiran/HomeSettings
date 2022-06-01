@@ -7,8 +7,11 @@ alias upp=''
 alias cdb='cd /workspace/codebase/'
 alias cdc='cd ~/workspace/'
 alias cdvendor='bbcg2 && cd ./vendor/'
-alias cdvr='bbcg2 && cd ./vendor/renesas'
-alias cdvm='bbcg2 && cd ./vendor/mtk'
+alias cdvr='bbcg2 && cd ./vendor/renesas/'
+alias cdvrl='bbcg2 && cd ./vendor/renesas/bsp/linux/'
+alias cdvm='bbcg2 && cd ./vendor/mtk/'
+alias cdvml='bbcg2 && cd ./vendor/mtk/linux/'
+alias cdrfs='bbcg2 && cd ./out/platforms/*/target/rootfs/'
 alias xxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
 alias xxpkg='pushd . && bbcg2 && cd xmake && . xdirs && xmake image-stripped'
 cdpl() {
@@ -35,7 +38,7 @@ alias cdmtk='bbcg1 && cd ./drivers/misc/mediatek/'
 alias bbdf='df -h'
 bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old ; \
 	echo "start rm old folder" && rm -rf old ; }
-bbpush() { git push mediatek HEAD:refs/for/$1 ; }
+bbpush() { git push yunos HEAD:refs/for/$1 ; }
 bbcl() { cas-labels -b alps-mp-$1 ; }
 bbct() { s1=( $(sed -r "s/(alps)-(mp|dev|trunk)-([0-9a-z.]*)-/\3-$2-/g" <<< "$1"));
 cas-take $1 -n $s1 ;

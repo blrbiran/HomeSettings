@@ -189,6 +189,7 @@ alias fdn='find . -iname'
 alias frn='find / -iname'
 alias fdd='find . -type d -iname'
 alias fdf='find . -type f -iname'
+fff() { find . -iname "*$1*" ; }
 alias lc='ll | grep -i --color=auto'
 alias lsc='ls | grep -i'
 alias rezsh='source ~/.zshrc'
