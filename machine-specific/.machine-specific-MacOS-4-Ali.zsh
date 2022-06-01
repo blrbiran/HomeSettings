@@ -4,7 +4,7 @@
 export LANG=en_US.UTF-8
 
 # == Aliases settings
-alias cdp='cd ~/project/'
+alias cdp='cd ~/work/Project/'
 alias cdlets='cd ~/project/lets'
 tt() {
   echo -e "\033];$1\007" ;
@@ -19,6 +19,7 @@ alias abbd='adb -host devices'
 alias abbs='adb -host shell'
 alias abbpush='adb -host push'
 alias abbpull='adb -host pull'
+abbc() { adb -host connect $1:8888 ; }
 
 # Proxy setting
 alias bbpxy='export http_proxy=socks5://localhost:13659'

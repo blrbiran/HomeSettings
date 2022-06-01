@@ -4,3 +4,5 @@
 #--color-line=bold blue
 #--color-match=bold yellow
 --ignore-file=match:/cscope.*\.out/
+--ignore-dir=.git
+--type-add=aliosrc:ext:sh,service,c,cpp,h
