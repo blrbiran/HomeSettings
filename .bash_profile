@@ -90,6 +90,10 @@ alias cdinclinux='bbcg1 && cd ./include/linux/'
 alias bbconf='vi ~/.bash_profile ~/.zshrc ~/.vimrc'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
+alias ccd0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
+alias ccd1='source ~/code/shell/readCode.sh ; bbcg'
+alias ccd2='source ~/code/shell/readCode.sh ; bbcgrepo'
+alias bbcg0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
@@ -97,6 +101,9 @@ alias bbtagsc='ctags -R --c-kinds=+p --fields=+aS --extra=+q .'
 alias bbtagscpp='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .'
 alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
+alias rcd='cd ${PWD}'
+alias bbc='BCURDIR=${PWD} ; source ~/code/shell/readCode.sh ; bbcgrepo ; BWORKDIR=${PWD} ; cd ${BCURDIR}'
+
 tt() { printf "\033];%s\007\n" $1 ; }
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbmeldc() { cur=${PWD} ;
@@ -119,7 +126,6 @@ bbhmost() { cat ~/.bash_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
 bbhgc() { cat ~/.bash_history | awk '{sub(/^[^;]*;/,"",$0);print $0}' | \
 	grep -i "$1" | uniq -c | sort -n ; }
 
-alias rcd='cd ${PWD}'
 tgz() { tar -czvf ${1}.tgz ${1} ; }
 alias untgz='tar -xzvf'
 

@@ -4,6 +4,7 @@
 # == aliases and functions
 alias upb=''
 alias upp=''
+alias cdp='cd ~/proj/'
 alias cdb='cd /workspace/codebase/'
 alias cdc='cd ~/workspace/'
 alias cdvendor='bbcg2 && cd ./vendor/'
@@ -12,6 +13,10 @@ alias cdvrl='bbcg2 && cd ./vendor/renesas/bsp/linux/'
 alias cdvm='bbcg2 && cd ./vendor/mtk/'
 alias cdvml='bbcg2 && cd ./vendor/mtk/linux/'
 alias cdrfs='bbcg2 && cd ./out/platforms/*/target/rootfs/'
+alias cdmap='bbcg2 && cd ./apps/map/'
+alias cdmap1='bbcg2 && cd ./apps/mapsdk/'
+alias cdmap2='bbcg2 && cd ./framework/npm/map_paas_components/'
+alias cdmap3='bbcg2 && cd ./aliyunos/apps/XMap/'
 alias xxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
 alias xxpkg='pushd . && bbcg2 && cd xmake && . xdirs && xmake image-stripped'
 cdpl() {
@@ -49,6 +54,14 @@ s1=( $(grep --color=auto -Eo "[a-zA-Z0-9.]*-" <<< "$s0" ) ) ;
 s2=$s1$2-${s0:${#s1}:${#s0}} ; cas-take $1 -n $s2 ; }
 bbct3() { cas-take alps-mp-$1 -n $2 ; }
 bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
+
+alias abb='adb -host'
+alias abbr='adb -host remount'
+alias abbd='adb -host devices'
+alias abbs='adb -host shell'
+alias abbpush='adb -host push'
+alias abbpull='adb -host pull'
+abbc() { adb -host connect $1:8888 ; }
 
 # == PS1 settings
 #PS1="[\u@\h \W]\$"
