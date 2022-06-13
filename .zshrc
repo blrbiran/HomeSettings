@@ -28,7 +28,11 @@ if [[ "$(uname)" = "Darwin" ]]; then # MacOS
 
     ZSH_THEME="powerline"
   else
-    export DEFAULT_USER="biran"
+    if [[ "${USERNAME}" = "banma3431" ]]; then
+      export DEFAULT_USER="banma-3431"
+    else
+      export DEFAULT_USER="biran"
+    fi
     ZSH_THEME="agnoster"
   fi
 else # Linux
@@ -86,7 +90,18 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(common-aliases)
+# git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+plugins=(common-aliases
+        sudo
+        web-search
+        copypath
+        copyfile
+        copybuffer
+        dirhistory
+        jsontools
+        zsh-autosuggestions
+        zsh-syntax-highlighting)
 
 # User configuration
 
@@ -195,6 +210,7 @@ alias lsc='ls | grep -i'
 alias rezsh='source ~/.zshrc'
 alias h='history'
 alias ht='history | tail -n'
+alias hs='history | grep -i'
 alias duc='du -h --max-depth=1'
 alias vs='emacs'
 alias vc='emacsclient'
@@ -219,6 +235,10 @@ alias -g H='| head -n'
 
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
+alias ccd0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
+alias ccd1='source ~/code/shell/readCode.sh ; bbcg'
+alias ccd2='source ~/code/shell/readCode.sh ; bbcgrepo'
+alias bbcg0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
