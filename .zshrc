@@ -28,7 +28,7 @@ if [[ "$(uname)" = "Darwin" ]]; then # MacOS
 
     ZSH_THEME="powerline"
   else
-    if [[ "${USERNAME}" = "banma3431" ]]; then
+    if [[ "${USERNAME}" = "banma-3431" ]]; then
       export DEFAULT_USER="banma-3431"
     else
       export DEFAULT_USER="biran"
