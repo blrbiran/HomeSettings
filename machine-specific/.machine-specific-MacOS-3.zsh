@@ -16,7 +16,11 @@ export PATH=/opt/homebrew/bin:$PATH
 
 # == Path settings
 export PATH=$HOME/usr/bin:/usr/local/bin:$PATH
-export PATH=$PATH:/usr/local/mysql/bin
+
+# Mysql
+# brew services restart mysql@5.7
+# /opt/homebrew/opt/mysql@5.7/bin/mysqld_safe --datadir=/opt/homebrew/var/mysql
+export PATH=$PATH:$(brew --prefix)/opt/mysql@5.7/bin
 
 export NODE_PATH=/usr/local/lib/node_modules
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -30,7 +34,7 @@ export XDG_CONFIG_HOME=~/.config/
 export XDG_DATA_HOME=~/.config/
 
 # Golang related
-export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=/opt/homebrew/Cellar/go/1.18.3/libexec
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
@@ -50,8 +54,8 @@ export MAVEN_HOME=$HOME/apache-maven-3.6.3
 export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 
 # flutter related
-export PUB_HOSTED_URL=https://pub.flutter-io.cn
-export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+#export PUB_HOSTED_URL=https://pub.flutter-io.cn
+#export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn
 #export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn
 export PATH=$PATH:/opt/flutter/bin
