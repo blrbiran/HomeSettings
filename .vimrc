@@ -629,7 +629,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe("norm
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 autocmd filetype c set shiftwidth=8|set softtabstop=8|set tabstop=8|set noexpandtab
-autocmd filetype cpp set shiftwidth=4|set softtabstop=4|set tabstop=4|set noexpandtab
+autocmd filetype cpp set shiftwidth=4|set softtabstop=4|set tabstop=4|set expandtab
 
 " }}}
 " Load Machine Specific Settings {{{1

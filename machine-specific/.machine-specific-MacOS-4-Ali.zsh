@@ -5,7 +5,7 @@ export LANG=en_US.UTF-8
 
 # == Aliases settings
 alias cdp='cd ~/work/Project/'
-alias cdlets='cd ~/project/lets'
+alias cdload='cd ~/load'
 tt() {
   echo -e "\033];$1\007" ;
 }
@@ -22,7 +22,7 @@ alias abbpull='adb -host pull'
 abbc() { adb -host connect $1:8888 ; }
 
 # Proxy setting
-alias bbpxy='export http_proxy=socks5://localhost:13659'
+alias bbpxy='export http_proxy=socks5h://127.0.0.1:13659 ; export https_proxy=socks5h://127.0.0.1:13659'
 
 # Xquartz X11 setting
 export DISPLAY=:0

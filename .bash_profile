@@ -7,7 +7,7 @@ else # Linux
   alias ll='ls -alh --color'
   alias lll='ls -lh --color'
 fi
-alias llc="ll | awk '{now=strftime(\"%-d\",systime()); {if(\$7==(now)) { print }}}'"
+alias llc="ls -alh | awk '{now=strftime(\"%-d\",systime()); {if(\$7==(now)) { print }}}'"
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
@@ -90,9 +90,10 @@ alias cdinclinux='bbcg1 && cd ./include/linux/'
 alias bbconf='vi ~/.bash_profile ~/.zshrc ~/.vimrc'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
-alias ccd0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
-alias ccd1='source ~/code/shell/readCode.sh ; bbcg'
-alias ccd2='source ~/code/shell/readCode.sh ; bbcgrepo'
+alias cdd0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
+alias cdd1='source ~/code/shell/readCode.sh ; bbcg'
+alias cdd2='source ~/code/shell/readCode.sh ; bbcgrepo'
+alias cdd3='source ~/code/shell/readCode.sh ; bbcgrepo && cd ..'
 alias bbcg0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
