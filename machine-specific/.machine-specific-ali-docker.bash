@@ -2,6 +2,7 @@
 # === Place machine specific bash settings here.
 
 # == aliases and functions
+alias ll='ls -alFh'
 alias upb=''
 alias upp=''
 alias cdp='cd ~/proj/'
@@ -12,12 +13,15 @@ alias cdvr='bbcg2 && cd ./vendor/renesas/'
 alias cdvrl='bbcg2 && cd ./vendor/renesas/bsp/linux/'
 alias cdvm='bbcg2 && cd ./vendor/mtk/'
 alias cdvml='bbcg2 && cd ./vendor/mtk/linux/'
+alias cdvq='bbcg2 && cd ./vendor/qcom/'
+alias cdvql='bbcg2 && cd ./vendor/qcom/bsp/linux/'
 alias cdrfs='bbcg2 && cd ./out/platforms/*/target/rootfs/'
 alias cdmap='bbcg2 && cd ./apps/map/'
 alias cdmap1='bbcg2 && cd ./apps/mapsdk/'
 alias cdmap2='bbcg2 && cd ./framework/npm/map_paas_components/'
 alias cdmap3='bbcg2 && cd ./aliyunos/apps/XMap/'
-alias xxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
+#alias xxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
+alias xxmake='pushd . && bbcg2 && cd xmake && . xmake.sh'
 alias xxpkg='pushd . && bbcg2 && cd xmake && . xdirs && xmake image-stripped'
 cdpl() {
 . ~/code/shell/readCode.sh && bbcgrepo && \
@@ -111,5 +115,9 @@ export PATH=~/bin:~/usr/bin:$~/code/shell:/workspace/home/usr/bin:$PATH
 [[ -s /usr/share/autojump/autojump.sh ]] && . /usr/share/autojump/autojump.sh
 
 [[ -s ${HOME}/.fzf.bash ]] && . ${HOME}/.fzf.bash
+
+export NVM_DIR="$HOME/.nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && \. "${NVM_DIR}/nvm.sh" # This loads nvm
+[[ -s "$NVM_DIR/bash_completion" ]] && \. "${NVM_DIR}/bash_completion" # This loads nvm bash_completion
 
 [[ -s ${HOME}/.bashrc ]] && . ${HOME}/.bashrc
