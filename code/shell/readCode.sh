@@ -65,6 +65,7 @@ bbcgrepo ()
 bbgettop ()
 {
     local TOPDIR=.git
+    local TOP=""
     if [ -n "$TOP" -a -d "$TOP/$TOPDIR" ]; then
         ( cd $TOP;
         PWD= /bin/pwd );
@@ -89,6 +90,7 @@ bbgettop ()
 bbgetrepotop ()
 {
     local TOPDIR=.repo
+    local TOP=""
     if [ -n "$TOP" -a -d "$TOP/$TOPDIR" ]; then
         ( cd $TOP;
         PWD= /bin/pwd );
