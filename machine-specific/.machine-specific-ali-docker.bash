@@ -20,8 +20,43 @@ alias cdmap='bbcg2 && cd ./apps/map/'
 alias cdmap1='bbcg2 && cd ./apps/mapsdk/'
 alias cdmap2='bbcg2 && cd ./framework/npm/map_paas_components/'
 alias cdmap3='bbcg2 && cd ./aliyunos/apps/XMap/'
-#alias xxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
-alias xxmake='pushd . && bbcg2 && cd xmake && . xmake.sh'
+cdrepos() {
+reIsNumber='^[0-9]+$'
+PARSE_PATH=$(echo $1 | rev | cut -d"/" -f2- | rev)
+PARSE_NAME=$(echo $1 | rev | cut -d"/" -f1 | rev)
+if [[ "$2" == "" ]]; then
+	echo "Print listed here:"
+	ls -al $PARSE_PATH/ | grep $PARSE_NAME ;
+elif [[ "$2" == "f" ]]; then
+	ls -al $PARSE_PATH/ | grep $PARSE_NAME ;
+	SELECT_NAME=$(ls -1 ${PARSE_PATH}/ | grep $PARSE_NAME | head -n 1) && cd ${PARSE_PATH}/${SELECT_NAME}
+elif [[ "$2" == "l" ]]; then
+	ls -al $PARSE_PATH/ | grep $PARSE_NAME ;
+	SELECT_NAME=$(ls -1 ${PARSE_PATH}/ | grep $PARSE_NAME | tail -n 1) && cd ${PARSE_PATH}/${SELECT_NAME}
+elif [[ "$2" =~ $reIsNumber ]] && [[ "$2" -ge "1"  ]] && [[ "$2" -le 9  ]]; then
+	ls -al $PARSE_PATH/ | grep $PARSE_NAME ;
+	SELECT_NAME=$(ls -1 ${PARSE_PATH}/ | grep $PARSE_NAME | head -n $2 | tail -n 1) && cd ${PARSE_PATH}/${SELECT_NAME}
+else
+	cd $1$2 ;
+fi ; }
+testint() {
+value=6 ;
+echo $1
+reIsNumber='^[0-9]+$'
+[[ "$1" =~ $reIsNumber ]] && { echo "number"; } || { echo "not a number"; }
+if [ "$1" -ge "1" ] && [ "$1" -le 9 ]; then
+	echo haha
+fi ;
+}
+vs7() { cdrepos /workspace/codebase/repos/VS7_pbase_ivi_rcarm3_ $1 ; }
+ep33l() { cdrepos /workspace/codebase/repos/EP33L_baseos_ivi_dev_android_poc_ $1 ; }
+sop3() { cdrepos /workspace/codebase/repos/pbase_ivi_rcarh3n_ $1 ; }
+yocto() { cdrepos /workspace/codebase/yocto/yocto_rcarm3_ $1 ; }
+
+vs7bootmeta() { . ~/usr/bin/vs7_bootmeta.sh ; }
+#alias xxxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
+alias xxxmake='pushd . && bbcg2 && cd xmake && . xmake.sh'
+alias xxmake='pushd . && bbcg2 && cd xmake && . xmake.sh rcarm3_eng && pushd +1'
 alias xxpkg='pushd . && bbcg2 && cd xmake && . xdirs && xmake image-stripped'
 cdpl() {
 . ~/code/shell/readCode.sh && bbcgrepo && \
@@ -61,6 +96,7 @@ bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 
 alias abb='adb -host'
 alias abbr='adb -host remount'
+alias abben="adb -host remount && adb -host shell \"echo 'enable n;' > /proc/alog\""
 alias abbd='adb -host devices'
 alias abbs='adb -host shell'
 alias abbpush='adb -host push'
@@ -116,8 +152,8 @@ export PATH=~/bin:~/usr/bin:$~/code/shell:/workspace/home/usr/bin:$PATH
 
 [[ -s ${HOME}/.fzf.bash ]] && . ${HOME}/.fzf.bash
 
-export NVM_DIR="$HOME/.nvm"
-[[ -s $NVM_DIR/nvm.sh ]] && . $NVM_DIR/nvm.sh # This loads nvm
-[[ -s $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[[ -s $NVM_DIR/nvm.sh ]] && . $NVM_DIR/nvm.sh # This loads nvm
+#[[ -s $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion # This loads nvm bash_completion
 
 [[ -s ${HOME}/.bashrc ]] && . ${HOME}/.bashrc
