@@ -53,6 +53,11 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 export MAVEN_HOME=$HOME/apache-maven-3.6.3
 export PATH=$PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 
+j11() { export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home ;
+	export PATH=$JAVA_HOME/bin:$PATH ; }
+j17() { export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home ;
+	export PATH=$JAVA_HOME/bin:$PATH ; }
+
 # flutter related
 #export PUB_HOSTED_URL=https://pub.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
@@ -62,6 +67,11 @@ export PATH=$PATH:/opt/flutter/bin
 
 # MongoDB related
 export PATH=$PATH:$(brew --prefix)/Cellar/mongodb-community/5.0.3/bin
+
+# Neo4j related
+#export NEO4J_HOME=~/project/lets/connectionGraph/neo4j-community-4.4.12
+export NEO4J_HOME=~/project/lets/connectionGraph/neo4j-community-5.1.0
+export PATH=$PATH:$NEO4J_HOME/bin
 
 # Android NDK
 #export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/android-ndk-r21b
@@ -106,6 +116,7 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export GOOGLE_APPLICATION_CREDENTIALS=/var/service/config/lets-368e9-firebase-adminsdk-mvkc9-0417e7c207.json
+export NEO4J_DEV_PASSWORD=BEhyr2eO_5f8jMYppgv3Gnqqhs1GYWh8w8dAt9diueo
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/biran/tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/biran/tools/google-cloud-sdk/path.zsh.inc'; fi
