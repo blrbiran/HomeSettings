@@ -15,8 +15,10 @@ ttt() {
 
 alias abb='adb -host'
 alias abbr='adb -host remount'
+alias abben="adb -host remount && adb -host shell \"echo 'enable n;' > /proc/alog\""
 alias abbd='adb -host devices'
-alias abbs='adb -host shell'
+alias abbs="adb -host remount && adb -host shell \"echo 'enable n;' > /proc/alog\" && adb -host shell"
+alias abbss='adb -host shell'
 alias abbpush='adb -host push'
 alias abbpull='adb -host pull'
 abbc() { adb -host connect $1:8888 ; }
@@ -136,6 +138,7 @@ if [ "$TERM" != "linux" ]; then
 fi
 
 [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+autoload -U compinit && compinit
 
 # == fzf related
 # Install fzf: $(brew --prefix)/opt/fzf/install

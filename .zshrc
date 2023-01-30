@@ -172,6 +172,7 @@ alias gcrp='grep -rni --color=auto -P'
 # alias tl='tmux -L zsh list-sessions | sed "s/^/[zsh] /g"; tmux -L bash list-sessions | sed "s/^/[bash] /g"'
 # alias ts='tmux -f ~/.tmux.conf -L zsh new-session -s'
 # alias tsb='tmux -f ~/.tmux.conf.bash -L bash new-session -s'
+alias pp='tmux popup -w 90% -h 90%  "tmux attach -t popup || tmux new -s popup"'
 
 unalias gg 2>/dev/null
 alias gg='git'
