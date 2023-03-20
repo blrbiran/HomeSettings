@@ -39,6 +39,11 @@ function set-bash-prompt {
 }
 #PROMPT_COMMAND=set-bash-prompt
 
+# Aliases
+#alias bbpxy='export http_proxy=socks5h://127.0.0.1:8081 ; export https_proxy=socks5h://127.0.0.1:8081'
+alias bbpxy='export http_proxy=socks5h://192.168.3.31:8889 ; export https_proxy=socks5h://192.168.3.31:8889'
+#alias bbpxy='export http_proxy=http://192.168.3.31:8888 ; export https_proxy=https://192.168.3.31:8888'
+
 # == PATH settings
 export PATH=~/code/shell:~/usr/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
