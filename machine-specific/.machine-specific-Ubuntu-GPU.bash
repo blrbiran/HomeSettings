@@ -40,6 +40,7 @@ function set-bash-prompt {
 #PROMPT_COMMAND=set-bash-prompt
 
 # Aliases
+alias cdp='cd ~/project/'
 #alias bbpxy='export http_proxy=socks5h://127.0.0.1:8081 ; export https_proxy=socks5h://127.0.0.1:8081'
 alias bbpxy='export http_proxy=socks5h://192.168.3.31:8889 ; export https_proxy=socks5h://192.168.3.31:8889'
 #alias bbpxy='export http_proxy=http://192.168.3.31:8888 ; export https_proxy=https://192.168.3.31:8888'
@@ -50,8 +51,9 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:~/usr/lib/pkgconfig
 
 # == GPU settings
-export PATH=/usr/local/cuda-11.5/bin:${PATH}
-export LD_LIBRARY_PATH=/usr/local/cuda-11.5/lib64:${LD_LIBRARY_PATH}
+export PATH=/usr/local/cuda-12.0/bin:${PATH}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:${LD_LIBRARY_PATH}
+export CUDA_HOME=/usr/local/cuda-12.0
 
 # == Python settings
 export PATH=${PATH}:~/.local/bin
@@ -92,5 +94,13 @@ else
     fi
 fi
 unset __conda_setup
+
+# conda install -c conda-forge conda-bash-completion
+CONDA_ROOT=~/anaconda3   # <- set to your Anaconda/Miniconda installation directory
+if [[ -r $CONDA_ROOT/etc/profile.d/bash_completion.sh  ]]; then
+    source $CONDA_ROOT/etc/profile.d/bash_completion.sh
+else
+    echo "WARNING: could not find conda-bash-completion setup script"
+fi
 # <<< conda initialize <<<
 
