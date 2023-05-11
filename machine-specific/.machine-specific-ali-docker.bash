@@ -5,8 +5,8 @@
 alias ll='ls -alFh'
 alias upb=''
 alias upp=''
-alias cdp='cd ~/proj/'
 alias cdb='cd /workspace/codebase/'
+alias cdp='cd /workspace/codebase/repos'
 alias cdc='cd ~/workspace/'
 alias cdvendor='bbcg2 && cd ./vendor/'
 alias cdvr='bbcg2 && cd ./vendor/renesas/'
@@ -16,6 +16,7 @@ alias cdvml='bbcg2 && cd ./vendor/mtk/linux/'
 alias cdvq='bbcg2 && cd ./vendor/qcom/'
 alias cdvql='bbcg2 && cd ./vendor/qcom/bsp/linux/'
 alias cdrfs='bbcg2 && cd ./out/platforms/*/target/rootfs/'
+alias cdobj='bbcg2 && cd ./out/platforms/*/target/obj/'
 alias cdmap='bbcg2 && cd ./apps/map/'
 alias cdmap1='bbcg2 && cd ./apps/mapsdk/'
 alias cdmap2='bbcg2 && cd ./framework/npm/map_paas_components/'
@@ -56,7 +57,21 @@ yocto() { cdrepos /workspace/codebase/yocto/yocto_rcarm3_ $1 ; }
 vs7bootmeta() { . ~/usr/bin/vs7_bootmeta.sh ; }
 #alias xxxmake='pushd . && bbcg2 && cd xmake && change_node.sh v8.10.0 && . xmake.sh'
 alias xxxmake='pushd . && bbcg2 && cd xmake && . xmake.sh'
-alias xxmake='pushd . && bbcg2 && cd xmake && . xmake.sh rcarm3_eng && pushd +1'
+xxmakesop2() {
+XXMAKE_BUILD_PROJ="rcarh3n_user"
+if [[ "$1" == "eng" ]]; then
+	XXMAKE_BUILD_PROJ="rcarh3n_eng"
+fi
+pushd . && bbcg2 && cd xmake && . xmake.sh ${XXMAKE_BUILD_PROJ} && pushd +1 ;
+}
+xxmake() {
+XXMAKE_BUILD_PROJ="rcarm3_user"
+if [[ "$1" == "eng" ]]; then
+	XXMAKE_BUILD_PROJ="rcarm3_eng"
+fi
+pushd . && bbcg2 && cd xmake && . xmake.sh ${XXMAKE_BUILD_PROJ} && pushd +1 ;
+}
+alias xxmakeprod='pushd . && bbcg2 && cd xmake && . xmake.sh rcarm3_user --with-platform_mode=P --enable-prod_mode=yes --with-fourgmod_version= && pushd +1'
 alias xxpkg='pushd . && bbcg2 && cd xmake && . xdirs && xmake image-stripped'
 cdpl() {
 . ~/code/shell/readCode.sh && bbcgrepo && \
@@ -82,7 +97,13 @@ alias cdmtk='bbcg1 && cd ./drivers/misc/mediatek/'
 alias bbdf='df -h'
 bbrmyocbuild() { mkdir old && mv build/ sstate-cache/ old ; \
 	echo "start rm old folder" && rm -rf old ; }
-bbpush() { git push yunos HEAD:refs/for/$1 ; }
+bbpush1() { git push yunos HEAD:refs/for/$1 ; }
+bbpush() {
+REMOTE_NAME=$(echo $1 | rev | cut -d"/" -f2- | rev)
+BRANCH_NAME=$(echo $1 | rev | cut -d"/" -f1 | rev)
+echo "git push ${REMOTE_NAME} HEAD:refs/for/${BRANCH_NAME}"
+git push ${REMOTE_NAME} HEAD:refs/for/${BRANCH_NAME}
+}
 bbcl() { cas-labels -b alps-mp-$1 ; }
 bbct() { s1=( $(sed -r "s/(alps)-(mp|dev|trunk)-([0-9a-z.]*)-/\3-$2-/g" <<< "$1"));
 cas-take $1 -n $s1 ;
@@ -93,6 +114,10 @@ s1=( $(grep --color=auto -Eo "[a-zA-Z0-9.]*-" <<< "$s0" ) ) ;
 s2=$s1$2-${s0:${#s1}:${#s0}} ; cas-take $1 -n $s2 ; }
 bbct3() { cas-take alps-mp-$1 -n $2 ; }
 bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
+bbtoolsvs7() {
+	export TOOLS_VS7=/workspace/codebase/repos/toolchain/vs7/aarch64-poky-linux-7.3-glibc-2.27 ;
+	export PATH=$TOOLS_VS7/bin:$PATH ;
+}
 
 alias abb='adb -host'
 alias abbr='adb -host remount'

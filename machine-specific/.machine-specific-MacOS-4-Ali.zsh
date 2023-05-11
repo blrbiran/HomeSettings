@@ -38,7 +38,11 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 # Homebrew settings
 #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export HOMEBREW_INSTALL_FROM_API=1
+export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
 export HOMEBREW_NO_AUTO_UPDATE=true
 
 export PATH=/opt/homebrew/bin:$PATH
@@ -144,3 +148,17 @@ autoload -U compinit && compinit
 # Install fzf: $(brew --prefix)/opt/fzf/install
 [ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/banma-3431/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/banma-3431/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/banma-3431/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/banma-3431/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

@@ -8,6 +8,11 @@ else # Linux
   alias lll='ls -lh --color'
 fi
 alias llc="ls -alh | awk '{now=strftime(\"%-d\",systime()); {if(\$7==(now)) { print }}}'"
+function llafter() {
+DSTTIME=$1
+ls -alh | awk -v dsttime="$1" '{if($8>=(dsttime)) { print }}' ;
+echo $1 ;
+}
 alias cd.='cd ..'
 alias cd..='cd ../..'
 alias cd...='cd ../../..'
@@ -52,6 +57,8 @@ alias ggdfc='git diff --cached'
 alias ggll='git ll'
 alias ggl='git ls'
 alias ggstash='git stash'
+alias ggsh='git show'
+alias gga3='git am -3 < '
 ggrb() { git rebase -i HEAD~$1 ; }
 
 # == fzf
@@ -112,6 +119,14 @@ alias rcd='cd ${PWD}'
 alias bbc='BCURDIR=${PWD} ; source ~/code/shell/readCode.sh ; bbcgrepo ; BWORKDIR=${PWD} ; cd ${BCURDIR}'
 
 tt() { printf "\033];%s\007\n" $1 ; }
+bbcp() {
+echo "cp $1/$3 $2/$3" ;
+cp $1/$3 $2/$3 ; }
+bbcpr() {
+echo "cp -rf $1/$3 $2/$3/../" ;
+cp -r $1/$3 $2/$3 ; }
+bbkdiff3() { kdiff3 $1/$3 $2/$3 ; }
+bbdiff() { diff -q $1/$3 $2/$3 ; }
 bbmeld() { meld $1/$3 $2/$3 ; }
 bbmeldc() { cur=${PWD} ;
 if [ "$2" == "" ];then
