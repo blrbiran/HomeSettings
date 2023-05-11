@@ -72,6 +72,11 @@ Plugin 'airblade/vim-gitgutter'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/OmniCppComplete'
 
+" Terminal & Tasks
+Plugin 'skywind3000/asynctasks.vim'
+Plugin 'skywind3000/asyncrun.vim'
+Plugin 'preservim/vimux'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -536,7 +541,7 @@ endfunc
 " Quit from insert mode
 inoremap jj <Esc>
 
-noremap ; :
+"noremap ; :
 
 " Save current file
 nnoremap <Leader>s :w<cr>
