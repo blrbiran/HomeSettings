@@ -216,6 +216,8 @@ alias ggstash='git stash'
 alias sscp='rsync -P --rsh=ssh -h'
 
 # == fzf
+# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# ~/.fzf/install
 alias fcd='cd $(find . -type d | fzf)'
 alias fvi='vi $(find . -type f | fzf)'
 alias fgco='git checkout $(git branch | fzf)'
