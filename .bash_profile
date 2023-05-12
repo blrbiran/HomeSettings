@@ -82,6 +82,8 @@ alias gga3='git am -3 < '
 ggrb() { git rebase -i HEAD~$1 ; }
 
 # == fzf
+# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# ~/.fzf/install
 alias fcd='cd $(find . -type d | fzf)'
 alias fvi='vi $(find . -type f | fzf)'
 alias fgco='git checkout $(git branch | fzf)'
