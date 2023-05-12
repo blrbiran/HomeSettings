@@ -255,7 +255,7 @@ let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 ""自动开启Nerdtree
 "autocmd vimenter * NERDTree
 "打开vim时如果没有文件自动打开NERDTree
-autocmd vimenter * if !argc()|NERDTree|endif
+"autocmd vimenter * if !argc()|NERDTree|endif
 "当NERDTree为剩下的唯一窗口时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 ""修改树的显示图标
