@@ -42,7 +42,7 @@ if [[ "0" = "1" ]]; then
 else
 	RANDOM_NAME=$(echo $RANDOM | md5 | head -c 20; echo ;)
 	RG_FILTER_PREFIX=/tmp/vim_fzf_${RANDOM_NAME} ;
-	rg --vimgrep $@ > ${RG_FILTER_PREFIX}_0.txt & ;
+	rg --vimgrep $@ > ${RG_FILTER_PREFIX}_0.txt &
 	RG_FILTER_TARGET=$(rg --vimgrep $@ | fzf --preview "~/code/shell/fzf_preview.sh {}") ;
 	echo ${RG_FILTER_TARGET} > ${RG_FILTER_PREFIX}.txt ;
 	grep -v "${RG_FILTER_TARGET}" ${RG_FILTER_PREFIX}_0.txt >> ${RG_FILTER_PREFIX}.txt ;
