@@ -147,6 +147,7 @@ autoload -U compinit && compinit
 # == fzf related
 # Install fzf: $(brew --prefix)/opt/fzf/install
 [ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+enable-fzf-tab
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

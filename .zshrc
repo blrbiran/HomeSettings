@@ -100,8 +100,12 @@ plugins=(common-aliases
         copybuffer
         dirhistory
         jsontools
+        fzf-tab
         zsh-autosuggestions
         zsh-syntax-highlighting)
+
+# fzf-tab: git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+# enable-fzf-tab
 
 # User configuration
 
@@ -169,16 +173,16 @@ alias gcrp='grep -rni --color=auto -P'
 alias rgh="rg --hidden --glob '!.git'"
 function vrg() {
 if [[ "0" = "1" ]]; then
-	RG_FILE=$(rg --vimgrep $@ | fzf --preview "~/code/shell/fzf_preview.sh {}" | awk -F':' '{printf "%s +%s", $1, $2}') ;
-	echo "vim $RG_FILE" ;
+	RG_FILE=$(rg --vimgrep $@ | fzf --preview "~/code/shell/fzf_preview.sh {}" | awk -F':' '{printf "%s +%s", $1, $2}') && \
+	echo "vim $RG_FILE" && \
 	vim $RG_FILE ;
 else
 	RANDOM_NAME=$(echo $RANDOM | md5 | head -c 20; echo ;)
 	RG_FILTER_PREFIX=/tmp/vim_fzf_${RANDOM_NAME} ;
 	rg --vimgrep $@ > ${RG_FILTER_PREFIX}_0.txt &
-	RG_FILTER_TARGET=$(rg --vimgrep $@ | fzf --preview "~/code/shell/fzf_preview.sh {}") ;
-	echo ${RG_FILTER_TARGET} > ${RG_FILTER_PREFIX}.txt ;
-	grep -v "${RG_FILTER_TARGET}" ${RG_FILTER_PREFIX}_0.txt >> ${RG_FILTER_PREFIX}.txt ;
+	RG_FILTER_TARGET=$(rg --vimgrep $@ | fzf --preview "~/code/shell/fzf_preview.sh {}") && \
+	echo ${RG_FILTER_TARGET} > ${RG_FILTER_PREFIX}.txt && \
+	grep -v "${RG_FILTER_TARGET}" ${RG_FILTER_PREFIX}_0.txt >> ${RG_FILTER_PREFIX}.txt && \
 	vim -q ${RG_FILTER_PREFIX}.txt ;
 	rm -vf ${RG_FILTER_PREFIX}_0.txt ${RG_FILTER_PREFIX}.txt ;
 fi
