@@ -64,6 +64,13 @@ if [[ "$1" == "eng" ]]; then
 fi
 pushd . && bbcg2 && cd xmake && . xmake.sh ${XXMAKE_BUILD_PROJ} && pushd +1 ;
 }
+xxmakelx() {
+XXMAKE_BUILD_PROJ="sa8155_user"
+if [[ "$1" == "eng" ]]; then
+	XXMAKE_BUILD_PROJ="sa8155_eng"
+fi
+pushd . && bbcg2 && cd xmake && . xmake.sh ${XXMAKE_BUILD_PROJ} --with-packagelevel=ivi_core --with-targettype=ivi  --enable-android-core --with-cartype=EP33L && pushd +1 ;
+}
 xxmake() {
 XXMAKE_BUILD_PROJ="rcarm3_user"
 if [[ "$1" == "eng" ]]; then
@@ -104,16 +111,6 @@ BRANCH_NAME=$(echo $1 | rev | cut -d"/" -f1 | rev)
 echo "git push ${REMOTE_NAME} HEAD:refs/for/${BRANCH_NAME}"
 git push ${REMOTE_NAME} HEAD:refs/for/${BRANCH_NAME}
 }
-bbcl() { cas-labels -b alps-mp-$1 ; }
-bbct() { s1=( $(sed -r "s/(alps)-(mp|dev|trunk)-([0-9a-z.]*)-/\3-$2-/g" <<< "$1"));
-cas-take $1 -n $s1 ;
-}
-bbct2() {
-s0=( $(grep --color=auto -Po "(?<=alps-mp-)[a-zA-Z0-9.\-_]*" <<< "$1") ) ;
-s1=( $(grep --color=auto -Eo "[a-zA-Z0-9.]*-" <<< "$s0" ) ) ;
-s2=$s1$2-${s0:${#s1}:${#s0}} ; cas-take $1 -n $s2 ; }
-bbct3() { cas-take alps-mp-$1 -n $2 ; }
-bbup() { ls $* | xargs -I {} mtkbuild -o . -l -i -d -x {} ; }
 bbtoolsvs7() {
 	export TOOLS_VS7=/workspace/codebase/repos/toolchain/vs7/aarch64-poky-linux-7.3-glibc-2.27 ;
 	export PATH=$TOOLS_VS7/bin:$PATH ;
@@ -175,10 +172,24 @@ export PATH=~/bin:~/usr/bin:$~/code/shell:/workspace/home/usr/bin:$PATH
 # == autojump
 [[ -s /usr/share/autojump/autojump.sh ]] && . /usr/share/autojump/autojump.sh
 
-[[ -s ${HOME}/.fzf.bash ]] && . ${HOME}/.fzf.bash
-
 #export NVM_DIR="$HOME/.nvm"
 #[[ -s $NVM_DIR/nvm.sh ]] && . $NVM_DIR/nvm.sh # This loads nvm
 #[[ -s $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion # This loads nvm bash_completion
 
 [[ -s ${HOME}/.bashrc ]] && . ${HOME}/.bashrc
+
+# auto complete like zsh
+bind 'set show-all-if-ambiguous on'
+bind 'set completion-ignore-case on'
+bind 'set colored-stats on'
+bind 'set history-preserve-point on'
+
+#bind 'set show-all-if-unmodified on'
+#bind 'set bell-style none'
+#bind 'TAB:menu-complete'
+
+# https://www.gnu.org/software/bash/manual/html_node/A-Programmable-Completion-Example.html
+#complete -o filenames -o nospace -o bashdefault -F _comp_cd c
+#complete -o nospace -F _comp_cd c
+
+[[ -s ${HOME}/.fzf.bash ]] && . ${HOME}/.fzf.bash

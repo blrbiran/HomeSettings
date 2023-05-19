@@ -114,6 +114,7 @@ if [ "$TERM" != "linux" ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+enable-fzf-tab
 
 export GOOGLE_APPLICATION_CREDENTIALS=/var/service/config/lets-368e9-firebase-adminsdk-mvkc9-0417e7c207.json
 export NEO4J_DEV_PASSWORD=BEhyr2eO_5f8jMYppgv3Gnqqhs1GYWh8w8dAt9diueo
@@ -138,4 +139,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
