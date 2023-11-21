@@ -560,7 +560,7 @@ nnoremap <Leader>l :IndentLinesToggle<CR>
 nnoremap <Leader>g :GitGutterToggle<CR>
 
 " Setting system clipboard
-if has('win32')
+if has('win32') || has('win64')
 	"vmap <C-Insert> "+y
 	"nmap <C-Insert> "+y
 	"vmap <S-Insert> "-d"+gP
@@ -570,11 +570,16 @@ if has('win32')
 	vnoremap <C-i> "+p
 	nnoremap <C-i> "+p
 elseif has('unix')
-	vnoremap <C-c> "+y
-	nnoremap <C-c> "+Y
-	vnoremap <C-i> "+p
-	nnoremap <C-i> "+p
-elseif has('mac')
+	if has('mac')
+		" OSX
+		set clipboard+=unnamed
+	else
+		" linux, bsd, etc
+		vnoremap <C-c> "+y
+		nnoremap <C-c> "+Y
+		vnoremap <C-i> "+p
+		nnoremap <C-i> "+p
+	endif
 endif
 
 " New Tab

@@ -143,6 +143,9 @@ unsetopt share_history
 
 alias cd=' cd'
 alias ls=' ls'
+alias sl='exa -l --git'
+alias sll='exa -l'
+alias ba='bat --theme="OneHalfDark"'
 
 if [[ "$(uname)" = "Darwin" ]]; then # MacOS
   alias ll='ls -alh -G'
@@ -229,12 +232,17 @@ alias fgcor='git checkout $(git branch -r | fzf)'
 
 alias fdn='find . -iname'
 alias frn='find / -iname'
-alias fdd='find . -type d -iname'
-alias fdf='find . -type f -iname'
-fff() { find . -iname "*$1*" ; }
+alias fff='find . \( -type -f -o -type l \) -iname'
+fdd() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type d -iname $1 -print ; }
+fdl() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type l -iname $1 -print ; }
+fdf() { find . \( -name ".git" -o -name ".repo" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
+fdff() { find . \( -name ".git" -o -name ".repo" -o -name "out" -o -name "build" -o -name "tmp" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
 alias lc='ll | grep -i --color=auto'
 alias lsc='ls | grep -i'
+alias resh='source ~/.zshrc'
+alias esh='vim ~/.zshrc ~/.machine-specific.zsh'
 alias rezsh='source ~/.zshrc'
+alias rezshe='vim ~/.zshrc ~/.machine-specific.zsh'
 alias h='history'
 alias ht='history | tail -n'
 alias hs='history | grep -i'

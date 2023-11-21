@@ -194,4 +194,3 @@ if [ -f ${SPECIFIC_SETTING_PATH} ];then
 else
 	echo "Please touch ${SPECIFIC_SETTING_PATH} to define machine specific settings."
 fi
-

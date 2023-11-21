@@ -22,6 +22,7 @@ alias abbss='adb -host shell'
 alias abbpush='adb -host push'
 alias abbpull='adb -host pull'
 abbc() { adb -host connect $1:8888 ; }
+alias bbrgzkernelinit='rg "Booting Linux on physical CPU 0x0" -z *_kernellog.txt.gz'
 
 # Proxy setting
 alias bbpxy='export http_proxy=socks5h://127.0.0.1:13659 ; export https_proxy=socks5h://127.0.0.1:13659'
@@ -42,7 +43,8 @@ export HOMEBREW_INSTALL_FROM_API=1
 export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+#export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 export HOMEBREW_NO_AUTO_UPDATE=true
 
 export PATH=/opt/homebrew/bin:$PATH
@@ -56,10 +58,12 @@ export PATH=/opt/homebrew/bin:$PATH
 #export XDG_DATA_HOME=~/.config/
 
 # Golang related
-export GOROOT=/usr/local/opt/go/libexec
+#export GOROOT=/usr/local/opt/go/libexec
+export GOROOT=$(brew --prefix)/Cellar/go/1.20.7/libexec
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
+# go env -w GOPROXY="https://goproxy.cn,direct"
 
 # Python
 # export PATH=$PATH:~/Library/Python/2.7/bin
@@ -110,6 +114,12 @@ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 #export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn
 export PATH=$PATH:/opt/flutter/bin
 
+# Rust settings
+export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+source "$HOME/.cargo/env"
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # MongoDB related
 # To start mongodb/brew/mongodb-community now and restart at login:
 #   brew services start mongodb/brew/mongodb-community
@@ -147,7 +157,22 @@ autoload -U compinit && compinit
 # == fzf related
 # Install fzf: $(brew --prefix)/opt/fzf/install
 [ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
+
+# == fzf-tab related
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# preview directory's content with exa when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
 enable-fzf-tab
+
+# The fuck function
+eval $(thefuck --alias)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
