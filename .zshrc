@@ -232,11 +232,12 @@ alias fgcor='git checkout $(git branch -r | fzf)'
 
 alias fdn='find . -iname'
 alias frn='find / -iname'
-alias fff='find . \( -type -f -o -type l \) -iname'
+alias fff='find . \( -type f -o -type l \) -iname'
 fdd() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type d -iname $1 -print ; }
 fdl() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type l -iname $1 -print ; }
 fdf() { find . \( -name ".git" -o -name ".repo" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
 fdff() { find . \( -name ".git" -o -name ".repo" -o -name "out" -o -name "build" -o -name "tmp" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
+
 alias lc='ll | grep -i --color=auto'
 alias lsc='ls | grep -i'
 alias resh='source ~/.zshrc'
