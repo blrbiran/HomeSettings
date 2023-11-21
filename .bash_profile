@@ -1,5 +1,9 @@
 alias ls=' ls'
 alias cd=' cd'
+alias pcp='time rsync --progress -ah'
+alias sl='exa -l --git'
+alias sll='exa -l'
+alias ba='bat --theme="OneHalfDark"'
 
 if [[ "$(uname)" = "Darwin" ]]; then # MacOS
   alias ll='ls -alh -G'
@@ -7,7 +11,8 @@ else # Linux
   alias ll='ls -alh --color'
   alias lll='ls -lh --color'
 fi
-alias llc="ls -alh | awk '{now=strftime(\"%-d\",systime()); {if(\$7==(now)) { print }}}'"
+alias llc="ls -alh | tail --lines +4 | awk '{now=strftime(\"%-d\",systime()); {if(\$7==(now)) { print }}}'"
+alias llcfiles="ls -alh | tail --lines +4 | awk '{now=strftime(\"%-d\",systime()); {if(\$7==(now)) { print }}}' | tail --lines +3 | awk '{printf \"%s \",\$9}'"
 function llafter() {
 DSTTIME=$1
 ls -alh | awk -v dsttime="$1" '{if($8>=(dsttime)) { print }}' ;
@@ -25,7 +30,7 @@ alias cd5='cd.... ; cd.'
 alias cd6='cd.... ; cd..'
 alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
-mkcd() { mkdir $1 ; cd $1 ; }
+mkcd() { mkdir -p $1 ; cd $1 ; }
 
 unalias grep 2>/dev/null
 alias gc='grep -i --color=auto'
@@ -33,6 +38,16 @@ alias gcr='grep -rni --color=auto'
 alias gcrng='grep -rni --color=auto --exclude-dir={.git}'
 alias gcre='grep -rni --color=auto -E'
 alias gcrp='grep -rni --color=auto -P'
+function cgc()
+{
+if [ "1" = "0" ]; then
+	find . -name .repo -prune -o -name .git -prune -o -name out -prune -o -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \) \
+	-exec grep --color -ni "$@" {} +
+else
+	find . -name .repo -prune -o -name .git -prune -o -name out -prune -o -type f \( -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.h' -o -name '*.hpp' \) \
+	-exec rg --color=auto -i --vimgrep "$@" {} +
+fi
+}
 alias rgh="rg --hidden --glob '!.git'"
 function vrg() {
 	RANDOM_NAME=$(echo $RANDOM | md5sum | head -c 20; echo ;)
@@ -85,12 +100,18 @@ alias fgcor='git checkout $(git branch -r | fzf)'
 
 alias fdn='find . -iname'
 alias frn='find / -iname'
-alias fdd='find . -type d -iname'
-alias fdf='find . -type f -iname'
-fff() { find . -iname "*$1*" ; }
+alias fff='find . \( -type f -o -type l \) -iname'
+fdd() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type d -iname $1 -print ; }
+fdl() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type l -iname $1 -print ; }
+fdf() { find . \( -name ".git" -o -name ".repo" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
+fdff() { find . \( -name ".git" -o -name ".repo" -o -name "out" -o -name "build" -o -name "tmp" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
+
 alias lc='ll | grep -i --color=auto'
 alias lsc='ls | grep -i'
+alias resh='source ~/.bash_profile'
+alias esh='vim ~/.bash_profile ~/.machine-specific.bash'
 alias rebash='source ~/.bash_profile'
+alias rebashe='vim ~/.bash_profile ~/.machine-specific.bash'
 alias h='history'
 alias ht='history | tail -n '
 psefb() { [[ "$1" == "a"  ]] && { ps -ef | head -n 1 && ps -ef | tail -n +2 | sort -rnk4 ;  } || { ps -ef | head -n 1 && ps -ef | tail -n +2 | sort -rnk4 | head -n 20 ;  }  }
@@ -101,32 +122,34 @@ alias psaux='ps -aux --sort -pcpu'
 alias duc='du -h --max-depth=1'
 alias vs='emacs'
 alias vc='emacsclient'
-alias cdconfig='bbcg1 && cd ./arch/arm64/configs/'
-alias cdconfig32='bbcg1 && cd ./arch/arm/configs/'
-alias cdusb='bbcg1 && cd ./drivers/usb/'
+alias cdconfig='bbcg1 ./arch/arm64/configs/'
+alias cdconfig32='bbcg1 ./arch/arm/configs/'
+alias cdusb='bbcg1 ./drivers/usb/'
 alias vvusb='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/usb/"'
-alias cdgadget='bbcg1 && cd ./drivers/usb/gadget/'
+alias cdgadget='bbcg1 ./drivers/usb/gadget/'
 alias vvgadget='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/usb/gadget/"'
-alias cdspi='bbcg1 && cd ./drivers/spi/'
-alias cdrtc='bbcg1 && cd ./drivers/rtc/'
+alias cdspi='bbcg1 ./drivers/spi/'
+alias cdrtc='bbcg1 ./drivers/rtc/'
 alias vvrtc='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/rtc/"'
-alias cdmfd='bbcg1 && cd ./drivers/mfd/'
+alias cdmfd='bbcg1 ./drivers/mfd/'
 alias vvmfd='bbcg1 && tmux send-keys -t $(tmux display-message -p "#S") "vi ./drivers/mfd/"'
-alias cdinc='bbcg1 && cd ./include/'
-alias cdinclinux='bbcg1 && cd ./include/linux/'
+alias cdinc='bbcg1 ./include/'
+alias cdinclinux='bbcg1 ./include/linux/'
 
-alias bbconf='vi ~/.bash_profile ~/.zshrc ~/.vimrc'
+alias vipure='vim -u NONE'
+alias bbconf='vim ~/.bash_profile ~/.zshrc ~/.vimrc'
 alias bbviewcode='source ~/code/shell/readCode.sh'
 alias bbcr='source ~/code/shell/readCode.sh'
-alias cdd0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
+alias cdd0='source ~/code/shell/readCode.sh ; bbcg ..'
 alias cdd='source ~/code/shell/readCode.sh ; bbcg'
 alias cdd1='source ~/code/shell/readCode.sh ; bbcg'
 alias cdd2='source ~/code/shell/readCode.sh ; bbcgrepo'
-alias cdd3='source ~/code/shell/readCode.sh ; bbcgrepo && cd ..'
-alias bbcg0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
+alias cdd3='source ~/code/shell/readCode.sh ; bbcgrepo ..'
+alias bbcg0='source ~/code/shell/readCode.sh ; bbcg ..'
 alias bbcg1='source ~/code/shell/readCode.sh ; bbcg'
 alias bbcg2='source ~/code/shell/readCode.sh ; bbcgrepo'
 alias bbccs='source ~/code/shell/readCode.sh ; bbcurcscope'
+alias bbgodir='source ~/code/shell/readCode.sh ; godir '
 alias bbtagsc='ctags -R --c-kinds=+p --fields=+aS --extra=+q .'
 alias bbtagscpp='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .'
 alias csd='cscope -d'
