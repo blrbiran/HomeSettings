@@ -51,6 +51,7 @@ Plugin 'ajmwagar/vim-deus'
 Plugin 'luochen1990/rainbow'
 Plugin 'RRethy/vim-illuminate'
 Plugin 'Yggdroot/indentLine'
+autocmd Filetype json let g:indentLine_enabled = 0
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Mark--Karkat'
 
@@ -579,6 +580,8 @@ elseif has('unix')
 		nnoremap <C-c> "+Y
 		vnoremap <C-i> "+p
 		nnoremap <C-i> "+p
+    vnoremap <leader>tc y<cr>:call system("tmux load-buffer -", @0)<cr>gv
+    nnoremap <leader>tp :let @0 = system("tmux save-buffer -")<cr>"0p<cr>g;
 	endif
 endif
 
