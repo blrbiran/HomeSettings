@@ -1,0 +1,5 @@
+# default.custom.yaml
+
+patch:
+  switcher/hotkeys:
+    - F4
