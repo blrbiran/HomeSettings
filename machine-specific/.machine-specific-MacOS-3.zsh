@@ -41,7 +41,7 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 
 # Python
 # export PATH=$PATH:~/Library/Python/2.7/bin
-export PATH=$PATH:/Users/biran/Library/Python/3.8/bin
+#export PATH=$PATH:/Users/biran/Library/Python/3.8/bin
 
 # sqlite & openssl
 export PATH=/usr/local/opt/sqlite/bin:$PATH
