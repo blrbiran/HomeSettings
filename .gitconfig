@@ -3,6 +3,8 @@
 	email = blrbiran@163.com
 [alias]
 	st = status
+	sh = show
+	shst = show --stat
 	ci = commit
 	cia = commit --amend
 	co = checkout

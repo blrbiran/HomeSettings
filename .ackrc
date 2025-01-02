@@ -4,5 +4,9 @@
 #--color-line=bold blue
 #--color-match=bold yellow
 --ignore-file=match:/cscope.*\.out/
+--ignore-file=match:/.pyc/
 --ignore-dir=.git
+--ignore-dir=.next
+--ignore-dir=.venv
+--ignore-dir=venv
 --type-add=aliosrc:ext:sh,service,c,cpp,h
