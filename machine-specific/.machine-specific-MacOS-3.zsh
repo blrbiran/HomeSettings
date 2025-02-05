@@ -58,6 +58,12 @@ j11() { export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/
 j17() { export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home ;
 	export PATH=$JAVA_HOME/bin:$PATH ; }
 
+# nvm related
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh"  ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+
 # flutter related
 #export PUB_HOSTED_URL=https://pub.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
