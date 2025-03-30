@@ -1,38 +1,198 @@
 {
-    "vim.leader": "<space>",
-    "vim.sneak": true,
-    "vim.hlsearch": true,
-    "vim.incsearch": true,
-    "vim.smartcase": true,
-    "vim.useSystemClipboard": true,
-    "vim.useCtrlKeys": true,
-    "vim.insertModeKeyBindings": [{
-        "before": ["j", "j"],
-        "after": ["<Esc>"]
-    }],
-    "vim.normalModeKeyBindingsNonRecursive": [{
-        "before": ["<leader>", "s"],
-        "commands": ["workbench.action.files.save"]
-    }, {
-        "before": ["<leader>", "m"],
-        "commands": ["bookmarks.toggle"]
-    }, {
-        "before": ["<leader>", "b"],
-        "commands": ["bookmarks.list"]
-    }],
-    "vim.visualModeKeyBindingsNonRecursive": [{
-        "before": [">"],
-        "commands": ["editor.action.indentLines"]
-    }, {
-        "before": ["<"],
-        "commands": ["editor.action.outdentLines"]
-    }],
-    "vim.handleKeys": {},
-    // easy motion settings
-    "vim.easymotion": true,
-    // surround settings
-    "vim.surround": true,
-    "[jsonc]": {
-        "editor.defaultFormatter": "HookyQR.beautify"
+  "editor.tabSize": 4,
+  "vim.leader": "<space>",
+  "vim.sneak": true,
+  "vim.mouseSelectionGoesIntoVisualMode": false,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.smartcase": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": false,
+  "vim.highlightedyank.color": "rgba(150, 150, 150, 0.3)",
+  "vim.searchHighlightColor": "rgba(250, 250, 170, 0.5)",
+  "vim.overrideCopy": false,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
     }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["<leader>", "m"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["<leader>", "b"],
+      "commands": ["bookmarks.list"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "vim.handleKeys": {},
+  // easy motion settings
+  "vim.easymotion": true,
+  // surround settings
+  "vim.surround": true,
+  "[jsonc]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[c]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": false
+  },
+  "[cpp]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": false
+  },
+  "[h]": {
+    "editor.tabSize": 4,
+    "editor.formatOnSave": false
+  },
+  "[markdown]": {
+    // "editor.quickSuggestions": {
+    //   "other": "on",
+    //   "comments": "off",
+    //   "strings": "off"
+    // }
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
+  },
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.tslint": true,
+  //   "source.fixAll.eslint": true
+  // },
+  // An array of language ids which should be validated by ESLint
+  "eslint.validate": [
+    "vue",
+    "html",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "eslint.alwaysShowStatus": true,
+  // Auto Imports
+  // "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "prompt",
+  "javascript.updateImportsOnFileMove.enabled": "prompt",
+  "javascript.suggest.autoImports": true,
+  "sync.gist": "d48557e208b4dd8be722d46696ce9535",
+  "workbench.startupEditor": "welcomePage",
+  "magic-code.agreement": "Agree",
+  "alios.sdk.sdk_root": "/Users/banma-3431/.sdk",
+  "alios.sdk.repository": "https://user.release.alios.cn/source/manifest",
+  "alios.sdk.access_token": "",
+  "alios.JAVA_HOME": "/Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home",
+  "magic-code.showHomePage": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "git.confirmSync": false,
+  "C_Cpp.files.exclude": {
+    "bak": true,
+    "**/build": true,
+    "**/.git": true
+  },
+  "C_Cpp.workspaceParsingPriority": "low",
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  // "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Monokai",
+  "workbench.editor.wrapTabs": true,
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "markdown-mermaid.languages": ["mermaid"],
+  "editor.wordWrap": "on",
+  "oneDarkPro.vivid": true,
+  "diffEditor.maxComputationTime": 0,
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "git.openRepositoryInParentFolders": "never",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "aoneCopilot.userToken": "13_ByPHvSvD43xhWGw-M",
+  "aoneCopilot.inlineSuggest.enabled": {
+    "*": true
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "@azure.argTenant": "",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "security.workspace.trust.startupPrompt": "never",
+  "security.workspace.trust.banner": "always"
+  // "bookmarks.saveBookmarksInProject": true
 }
