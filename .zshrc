@@ -143,6 +143,8 @@ unsetopt share_history
 
 alias cd=' cd'
 alias ls=' ls'
+alias pcp='rsync --progress -arh'
+# alias pcp='time rsync --progress -ah'
 alias sl='exa -l --git'
 alias sll='exa -l'
 alias ba='bat --theme="OneHalfDark"'
@@ -208,6 +210,7 @@ alias ggs='git status'
 alias ggb='git branch'
 alias ggba='git branch -a'
 alias ggbd='git branch -d'
+alias ggpushup='git push --set-upstream origin $(git branch --show-current)'
 alias ggc='git commit'
 alias ggca='git commit --amend'
 alias ggco='git checkout'
@@ -270,6 +273,10 @@ alias -g G='| grep -i --color=auto'
 alias -g H='| head -n'
 
 alias bbviewcode='source ~/code/shell/readCode.sh'
+#alias bbvdiff='vim -c "call BinaryDiff()" -O'
+bbvdiff() {
+  vimdiff -u NONE -N <(xxd $1) <(xxd $2);
+}
 alias bbcr='source ~/code/shell/readCode.sh'
 alias cdd0='source ~/code/shell/readCode.sh ; bbcg && cd ..'
 alias cdd1='source ~/code/shell/readCode.sh ; bbcg'

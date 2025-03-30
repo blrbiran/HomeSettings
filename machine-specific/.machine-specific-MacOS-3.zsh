@@ -17,6 +17,10 @@ export PATH=/opt/homebrew/bin:$PATH
 # == Path settings
 export PATH=$HOME/usr/bin:/usr/local/bin:$PATH
 
+
+# pipx path
+export PATH="$PATH:/Users/biran/.local/bin"
+
 # Mysql
 # brew services restart mysql@5.7
 # /opt/homebrew/opt/mysql@5.7/bin/mysqld_safe --datadir=/opt/homebrew/var/mysql
