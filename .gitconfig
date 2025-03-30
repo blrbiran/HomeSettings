@@ -11,6 +11,7 @@
 	br = branch
 	df = diff
 	cp = cherry-pick
+	pushup = push --set-upstream origin
 	rb = rebase
 	rbi = rebase -i
 	rbc = rebase --continue
@@ -26,3 +27,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential]
+	helper = store

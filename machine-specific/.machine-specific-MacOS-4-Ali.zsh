@@ -13,16 +13,48 @@ ttt() {
   tt $1 ; tmux a -t $1 ;
 }
 
+alias rcp='rsync -Wav --progress'
+alias sshg="sshpass -p 'root' ssh"
+alias scpg="sshpass -p 'root' scp -O"
 alias abb='adb -host'
 alias abbr='adb -host remount'
-alias abben="adb -host remount && adb -host shell \"echo 'enable n;' > /proc/alog\""
+alias abben="adb -host shell \"echo 'enable n;' > /proc/alog\" && adb -host remount "
 alias abbd='adb -host devices'
-alias abbs="adb -host remount && adb -host shell \"echo 'enable n;' > /proc/alog\" && adb -host shell"
+alias abbs="adb -host wait-for-device && adb -host shell \"echo 'enable n;' > /proc/alog\" && adb -host remount && adb -host shell"
 alias abbss='adb -host shell'
 alias abbpush='adb -host push'
 alias abbpull='adb -host pull'
-abbc() { adb -host connect $1:8888 ; }
+alias abbdis='adb -host disconnect'
+abbc() {
+if [[ "$2" == "" ]];then
+  adb -host connect $1:8888 ;
+else
+  adb -host connect $1:$2 ;
+fi
+}
 alias bbrgzkernelinit='rg "Booting Linux on physical CPU 0x0" -z *_kernellog.txt.gz'
+function bbrg() {
+	local print_cmd=false
+	local always_color=""
+	local with_less=""
+	while getopts "ncl" opt; do
+		case $opt in
+			n) print_cmd=true ;;
+			c) always_color="--color=always" ;;
+			l) always_color="--color=always" ; with_less=" | less" ;;
+		esac
+	done
+	shift $((OPTIND-1))
+	local filename_short="$1"
+	shift
+	local sort_option="-j1"
+	# local sort_option="--sort-files"
+	local rg_cmd="rg ${sort_option} $@ -z ${always_color} *${filename_short}*.txt* ${with_less}"
+	eval $rg_cmd
+	if $print_cmd; then
+		echo "Search result as above, command: ${rg_cmd}"
+	fi
+}
 
 # Proxy setting
 alias bbpxy='export http_proxy=socks5h://127.0.0.1:13659 ; export https_proxy=socks5h://127.0.0.1:13659'
@@ -36,6 +68,11 @@ export PATH=$HOME/usr/bin:/usr/local/bin:$PATH
 
 export NODE_PATH=/usr/local/lib/node_modules
 # export MANPATH="/usr/local/man:$MANPATH"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Homebrew settings
 #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
@@ -68,6 +105,13 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 # Python
 # export PATH=$PATH:~/Library/Python/2.7/bin
 #export PATH=$(brew --prefix)/opt/python3/bin:$PATH
+
+# pipx
+export PATH="$PATH:~/.local/bin"
+
+# Kotlin
+export KOTLIN_HOME=$HOME/kotlin/kotlin-native-prebuilt-macos-aarch64-2.0.20
+export PATH=$PATH:$KOTLIN_HOME/bin
 
 # sqlite & openssl
 #export PATH=/usr/local/opt/sqlite/bin:$PATH
@@ -174,17 +218,17 @@ enable-fzf-tab
 # The fuck function
 eval $(thefuck --alias)
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/banma-3431/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/banma-3431/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/banma-3431/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/banma-3431/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+## >>> conda initialize >>>
+## !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/Users/banma-3431/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/Users/banma-3431/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/Users/banma-3431/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/Users/banma-3431/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<

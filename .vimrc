@@ -368,12 +368,12 @@ set tags=tags;
 " ===
 " === Cscope
 " ===
-set cscopequickfix=s-,c-,d-,i-,t-,e-
-nmap <S-j> <Esc>:cn<cr>
-nmap <S-k> <Esc>:cp<cr>
+" set cscopequickfix=s-,c-,d-,i-,t-,e-
+" nmap <S-j> <Esc>:cn<cr>
+" nmap <S-k> <Esc>:cp<cr>
 
 " Default search tag than cscope
-set cscopetagorder=0
+" set cscopetagorder=0
 
 nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -455,6 +455,14 @@ let g:gitgutter_enabled = 0
 " }}}
 " My Functions: {{{1
 
+" Binary diff mode
+function! BinaryDiff()
+  exe "%!xxd"
+  wincmd w
+  exe "%!xxd"
+  windo diffthis
+endfunction
+
 " Press F5 for compile & run
 func! CompileRunGcc()
 	exec "w"
@@ -517,6 +525,11 @@ func! Set80Word_v2()
     "set textwidth=0
     let g:wordline_on = "n"
   endif
+endfunc
+
+func! NoNumberShow()
+  set nu!
+  set rnu!
 endfunc
 
 let g:kerStyle = "y"
@@ -611,6 +624,7 @@ noremap <F1> <Esc>0i//<Esc>
 ""将F2设置为开关NERDTree的快捷键
 noremap <F2> :NERDTreeToggle<cr>
 noremap <F3> <Esc>:Ack<Space>
+noremap <F4> :call NoNumberShow()<cr>
 noremap <F5> :call CompileRunGcc()<cr>
 " Open tagbar plugin <F6>
 nnoremap <F6> :TagbarToggle<cr>

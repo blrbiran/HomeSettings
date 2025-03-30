@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import zstandard as zstd
+import codecs
+import os
+
+
+def decompress_zst_files(directory):
+    """
+    Decompresses all zstandard compressed files in the given directory and saves the decompressed data to txt files
+    """
+    # Get all files in the given directory
+    files = os.listdir(directory)
+    # Iterate over all files
+    for file in files:
+        # Check if the file is a zst file
+        if file.endswith('.zst') or file.endswith('.Z'):
+            # Open the zst file in read mode
+            with open(os.path.join(directory, file), 'rb') as compressed_file:
+                # Create a zstd decompressor object
+                dctx = zstd.ZstdDecompressor()
+                # Decompress the file
+                with dctx.stream_reader(compressed_file) as reader:
+                    # Read the decompressed data
+                    decompressed_data = reader.read()
+
+            # Write the decompressed data to a txt file with the same name as the zst file
+            with codecs.open(os.path.join(directory, file[:file.index('txt.')] + "txt"), 'w', encoding='utf-8', errors='ignore') as f:
+                f.write(decompressed_data.decode('utf-8', errors='ignore'))
+
+
+# Example usage
+decompress_zst_files(os.getcwd())
