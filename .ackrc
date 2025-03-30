@@ -10,3 +10,7 @@
 --ignore-dir=.venv
 --ignore-dir=venv
 --type-add=aliosrc:ext:sh,service,c,cpp,h
+--type-add=c:ext:c,cpp,cc,cxx,h,hpp,hh,hxx
+--type-add=h:ext:h,hpp,hh,hxx
+--type-add=sh:ext:sh
+--type-add=service:ext:service

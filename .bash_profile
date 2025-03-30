@@ -1,6 +1,7 @@
 alias ls=' ls'
 alias cd=' cd'
-alias pcp='time rsync --progress -ah'
+alias pcp='rsync --progress -arh'
+# alias pcp='time rsync --progress -ah'
 alias sl='exa -l --git'
 alias sll='exa -l'
 alias ba='bat --theme="OneHalfDark"'
@@ -101,10 +102,14 @@ alias fgcor='git checkout $(git branch -r | fzf)'
 alias fdn='find . -iname'
 alias frn='find / -iname'
 alias fff='find . \( -type f -o -type l \) -iname'
-fdd() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type d -iname $1 -print ; }
-fdl() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type l -iname $1 -print ; }
-fdf() { find . \( -name ".git" -o -name ".repo" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
-fdff() { find . \( -name ".git" -o -name ".repo" -o -name "out" -o -name "build" -o -name "tmp" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
+# fdd() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type d -iname $1 -print ; }
+# fdl() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type l -iname $1 -print ; }
+# fdf() { find . \( -name ".git" -o -name ".repo" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
+# fdff() { find . \( -name ".git" -o -name ".repo" -o -name "out" -o -name "build" -o -name "tmp" \) -prune -o \( -type f -o -type l \) -iname $1 -print ; }
+fdd() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type d -iname $@ ; }
+fdl() { find . \( -name ".git" -o -name ".repo" \) -prune -o -type l -iname $@ ; }
+fdf() { find . \( -name ".git" -o -name ".repo" \) -prune -o \( -type f -o -type l \) -iname $@ ; }
+fdff() { find . \( -name ".git" -o -name ".repo" -o -name "out" -o -name "build" -o -name "tmp" \) -prune -o \( -type f -o -type l \) -iname $@ ; }
 
 alias lc='ll | grep -i --color=auto'
 alias lsc='ls | grep -i'
@@ -139,6 +144,10 @@ alias cdinclinux='bbcg1 ./include/linux/'
 alias vipure='vim -u NONE'
 alias bbconf='vim ~/.bash_profile ~/.zshrc ~/.vimrc'
 alias bbviewcode='source ~/code/shell/readCode.sh'
+#alias bbvdiff='vim -c "call BinaryDiff()" -O'
+bbvdiff() {
+  vimdiff -u NONE -N <(xxd $1) <(xxd $2);
+}
 alias bbcr='source ~/code/shell/readCode.sh'
 alias cdd0='source ~/code/shell/readCode.sh ; bbcg ..'
 alias cdd='source ~/code/shell/readCode.sh ; bbcg'
@@ -156,6 +165,8 @@ alias csd='cscope -d'
 alias cdu='source ~/code/shell/cdmisc.sh ; cdup'
 alias rcd='cd ${PWD}'
 alias bbc='BCURDIR=${PWD} ; source ~/code/shell/readCode.sh ; bbcgrepo ; BWORKDIR=${PWD} ; cd ${BCURDIR}'
+bbtarx() { pv ${1} | tar -xz ; }
+# bbtarx() { tar -xz --checkpoint=.100 ${1} ; }
 
 tt() { printf "\033];%s\007\n" $1 ; }
 bbcp() {
