@@ -32,8 +32,10 @@ local function translator(input, seg)
  num_d1=math.modf(num_d)
  date3=tostring(num_m1).."月"..tostring(num_d1).."日"
  yield(Candidate("d", seg.start, seg._end, date3, " "))
- -- yield(Candidate("d", seg.start, seg._end, os.date("%Y/%m/%d"), " "))
- yield(Candidate("d", seg.start, seg._end, os.date("%Y-%m-%d"), " "))
+ ------------------------------------------------------------------------------------
+ --普通日期3，类似2022-1-1
+--  yield(Candidate("d", seg.start, seg._end, os.date("%Y-%m-%d"), " "))
+ -- yield(Candidate("d", seg.start, seg._end, os.date("%Y/%m/%d"), " ")
  ------------------------------------------------------------------------------------
  --大写日期，类似二〇二〇年十一月二十六日
 --  date_y=date_y:gsub("%d",{

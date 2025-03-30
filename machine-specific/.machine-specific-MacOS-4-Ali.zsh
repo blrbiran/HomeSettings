@@ -32,7 +32,7 @@ else
   adb -host connect $1:$2 ;
 fi
 }
-alias bbrgzkernelinit='rg "Booting Linux on physical CPU 0x0" -z *_kernellog.txt.gz'
+alias bbrgzkernelinit='rg "Booting Linux on physical CPU 0x0" -z *_kernellog.txt.zst'
 function bbrg() {
 	local print_cmd=false
 	local always_color=""
