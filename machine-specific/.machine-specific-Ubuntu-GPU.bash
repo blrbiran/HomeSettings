@@ -42,8 +42,9 @@ function set-bash-prompt {
 # Aliases
 alias cdp='cd ~/project/'
 #alias bbpxy='export http_proxy=socks5h://127.0.0.1:8081 ; export https_proxy=socks5h://127.0.0.1:8081'
-alias bbpxy='export http_proxy=socks5h://192.168.3.31:8889 ; export https_proxy=socks5h://192.168.3.31:8889'
-#alias bbpxy='export http_proxy=http://192.168.3.31:8888 ; export https_proxy=https://192.168.3.31:8888'
+alias bbpxy='export http_proxy=socks5h://192.168.3.8:8889 ; export https_proxy=socks5h://192.168.3.8:8889'
+alias bbpxy0='export http_proxy= ; export https_proxy='
+alias bbpxy2='export http_proxy=http://192.168.3.8:8888 ; export https_proxy=https://192.168.3.8:8888'
 
 # == PATH settings
 export PATH=~/code/shell:~/usr/bin:$PATH
@@ -51,9 +52,9 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/usr/lib
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:~/usr/lib/pkgconfig
 
 # == GPU settings
-export PATH=/usr/local/cuda-12.0/bin:${PATH}
-export LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:${LD_LIBRARY_PATH}
-export CUDA_HOME=/usr/local/cuda-12.0
+export PATH=/usr/local/cuda-11.7/bin:${PATH}
+export LD_LIBRARY_PATH=/usr/local/cuda-11.7/lib64:${LD_LIBRARY_PATH}
+export CUDA_HOME=/usr/local/cuda-11.7
 
 # == Python settings
 export PATH=${PATH}:~/.local/bin
@@ -104,3 +105,6 @@ else
 fi
 # <<< conda initialize <<<
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
