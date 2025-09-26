@@ -4,7 +4,7 @@
 import zstandard as zstd
 import codecs
 import os
-
+import sys
 
 def decompress_zst_files(directory):
     """
@@ -16,19 +16,25 @@ def decompress_zst_files(directory):
     for file in files:
         # Check if the file is a zst file
         if file.endswith('.zst') or file.endswith('.Z'):
-            # Open the zst file in read mode
-            with open(os.path.join(directory, file), 'rb') as compressed_file:
-                # Create a zstd decompressor object
-                dctx = zstd.ZstdDecompressor()
-                # Decompress the file
-                with dctx.stream_reader(compressed_file) as reader:
-                    # Read the decompressed data
-                    decompressed_data = reader.read()
+            try:
+                # Open the zst file in read mode
+                with open(os.path.join(directory, file), 'rb') as compressed_file:
+                    # Create a zstd decompressor object
+                    dctx = zstd.ZstdDecompressor()
+                    # Decompress the file
+                    with dctx.stream_reader(compressed_file) as reader:
+                        # Read the decompressed data
+                        decompressed_data = reader.read()
 
-            # Write the decompressed data to a txt file with the same name as the zst file
-            with codecs.open(os.path.join(directory, file[:file.index('txt.')] + "txt"), 'w', encoding='utf-8', errors='ignore') as f:
-                f.write(decompressed_data.decode('utf-8', errors='ignore'))
+                # Write the decompressed data to a txt file with the same name as the zst file
+                with codecs.open(os.path.join(directory, file[:file.index('txt.')] + "txt"), 'w', encoding='utf-8', errors='ignore') as f:
+                    f.write(decompressed_data.decode('utf-8', errors='ignore'))
+            except Exception as e:
+                print(f"Error decompressing file {file}: {e}")
 
 
-# Example usage
-decompress_zst_files(os.getcwd())
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        decompress_zst_files(os.getcwd())
+    elif len(sys.argv) == 2:
+        decompress_zst_files(sys.argv[1])

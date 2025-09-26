@@ -13,6 +13,8 @@ ttt() {
   tt $1 ; tmux a -t $1 ;
 }
 
+alias cnpm="npm --registry=https://registry.npmmirror.com --cache=$HOME/.npm/.cache/cnpm --disturl=https://npmmirror.com/mirrors/node --userconfig=$HOME/.cnpmrc"
+
 alias rcp='rsync -Wav --progress'
 alias sshg="sshpass -p 'root' ssh"
 alias scpg="sshpass -p 'root' scp -O"
@@ -49,7 +51,7 @@ function bbrg() {
 	shift
 	local sort_option="-j1"
 	# local sort_option="--sort-files"
-	local rg_cmd="rg ${sort_option} $@ -z ${always_color} *${filename_short}*.txt* ${with_less}"
+	local rg_cmd="rg ${sort_option} \"$@\" -z ${always_color} *${filename_short}*.txt* ${with_less}"
 	eval $rg_cmd
 	if $print_cmd; then
 		echo "Search result as above, command: ${rg_cmd}"
@@ -96,7 +98,7 @@ export PATH=/opt/homebrew/bin:$PATH
 
 # Golang related
 #export GOROOT=/usr/local/opt/go/libexec
-export GOROOT=$(brew --prefix)/Cellar/go/1.20.7/libexec
+export GOROOT=$(brew --prefix)/Cellar/go@1.23/1.23.12/libexec
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin:$GOBIN
@@ -110,24 +112,29 @@ export PATH=$PATH:$GOROOT/bin:$GOBIN
 export PATH="$PATH:~/.local/bin"
 
 # Kotlin
-export KOTLIN_HOME=$HOME/kotlin/kotlin-native-prebuilt-macos-aarch64-2.0.20
+export KOTLIN_HOME=$HOME/kotlin/kotlin-native-prebuilt-macos-aarch64-2.2.20
 export PATH=$PATH:$KOTLIN_HOME/bin
 
 # sqlite & openssl
-#export PATH=/usr/local/opt/sqlite/bin:$PATH
-export PATH=$(brew --prefix)/opt/openssl@1.1/bin:$PATH
-#export LDFLAGS="-L$(brew --prefix)/opt/openssl@3/lib"
-#export CPPFLAGS="-I$(brew --prefix)/opt/openssl@3/include"
+# export PATH=/usr/local/opt/sqlite/bin:$PATH
+# export PATH=$(brew --prefix)/opt/openssl@1.1/bin:$PATH
+# export LDFLAGS="-L$(brew --prefix)/opt/openssl@3/lib"
+# export CPPFLAGS="-I$(brew --prefix)/opt/openssl@3/include"
 
 # curl
 export PATH=$(brew --prefix)/opt/curl/bin:$PATH
 
+# wireshark
+export PATH=$PATH:/Applications/Wireshark.app/Contents/MacOS
+
 # Java related
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_321.jdk/Contents/Home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
-export MAVEN_HOME=$HOME/apache-maven-3.8.5
-#export MAVEN_HOME=$HOME/apache-maven-3.6.3
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+# sudo ln -sfn /opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-17.jdk
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home
+# sudo ln -sfn /opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-21.jdk
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home
+export MAVEN_HOME=$HOME/apache-maven-3.9.11
 export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH
 
 j8() {
@@ -148,7 +155,7 @@ j11() {
 export JENKINS_URL=http://localhost:8085/
 
 # Ali ADB
-export PATH=$PATH:${HOME}/work/CloudSparrow
+# export PATH=$PATH:${HOME}/work/CloudSparrow
 export PATH=$PATH:${HOME}/work/CloudSparrow/ADB/mac:/opt/tools/platform-tools
 
 # flutter related
@@ -156,7 +163,7 @@ export PUB_HOSTED_URL=https://pub.flutter-io.cn
 export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 #export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn
 #export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn
-export PATH=$PATH:/opt/flutter/bin
+# export PATH=$PATH:/opt/flutter/bin
 
 # Rust settings
 export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
@@ -220,14 +227,14 @@ eval $(thefuck --alias)
 
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!
-#__conda_setup="$('/Users/banma-3431/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+#__conda_setup="$('/Users/biran/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 #if [ $? -eq 0 ]; then
 #    eval "$__conda_setup"
 #else
-#    if [ -f "/Users/banma-3431/anaconda3/etc/profile.d/conda.sh" ]; then
-#        . "/Users/banma-3431/anaconda3/etc/profile.d/conda.sh"
+#    if [ -f "/Users/biran/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/Users/biran/anaconda3/etc/profile.d/conda.sh"
 #    else
-#        export PATH="/Users/banma-3431/anaconda3/bin:$PATH"
+#        export PATH="/Users/biran/anaconda3/bin:$PATH"
 #    fi
 #fi
 #unset __conda_setup
