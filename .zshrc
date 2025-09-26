@@ -28,8 +28,8 @@ if [[ "$(uname)" = "Darwin" ]]; then # MacOS
 
     ZSH_THEME="powerline"
   else
-    if [[ "${USERNAME}" = "banma-3431" ]]; then
-      export DEFAULT_USER="banma-3431"
+    if [[ "${USERNAME}" = "biran" ]]; then
+      export DEFAULT_USER="biran"
     else
       export DEFAULT_USER="biran"
     fi
@@ -167,6 +167,7 @@ alias cd6='cd.... ; cd..'
 alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
 mkcd() { mkdir -p $1 ; cd $1 ; }
+vhich() { vi $(which $1) ; }
 
 unalias grep 2>/dev/null
 alias gc='grep -i --color=auto'
