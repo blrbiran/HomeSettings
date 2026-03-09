@@ -32,6 +32,7 @@ alias cd6='cd.... ; cd..'
 alias cd7='cd.... ; cd...'
 alias cd8='cd.... ; cd....'
 mkcd() { mkdir -p $1 ; cd $1 ; }
+vhich() { vi $(which $1) ; }
 
 unalias grep 2>/dev/null
 alias gc='grep -i --color=auto'
