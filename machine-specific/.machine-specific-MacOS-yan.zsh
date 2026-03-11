@@ -62,18 +62,7 @@ j11() { export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/
 j17() { export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home ;
 	export PATH=$JAVA_HOME/bin:$PATH ; }
 
-# nvm related
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh"  ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-
-# flutter related
-#export PUB_HOSTED_URL=https://pub.flutter-io.cn
-#export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
-#export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn
-#export PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn
-export PATH=$PATH:/opt/flutter/bin
 
 # MongoDB related
 export PATH=$PATH:$(brew --prefix)/Cellar/mongodb-community/5.0.3/bin
@@ -124,7 +113,7 @@ if [ "$TERM" != "linux" ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-enable-fzf-tab
+# enable-fzf-tab
 
 export GOOGLE_APPLICATION_CREDENTIALS=/var/service/config/lets-368e9-firebase-adminsdk-mvkc9-0417e7c207.json
 export NEO4J_DEV_PASSWORD=BEhyr2eO_5f8jMYppgv3Gnqqhs1GYWh8w8dAt9diueo
@@ -152,3 +141,10 @@ unset __conda_setup
 
 . "$HOME/.cargo/env"
 
+# nvm related
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# OpenClaw Completion
+source "/Users/biran/.openclaw/completions/openclaw.zsh"
