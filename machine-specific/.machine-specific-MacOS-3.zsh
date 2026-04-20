@@ -150,5 +150,10 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+# Added by Antigravity
+export PATH="/Users/biran/.antigravity/antigravity/bin:$PATH"
+
+# rust settings
 . "$HOME/.cargo/env"
 
