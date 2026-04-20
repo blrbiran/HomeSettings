@@ -31,7 +31,7 @@ if [[ "$(uname)" = "Darwin" ]]; then # MacOS
     if [[ "${USERNAME}" = "biran" ]]; then
       export DEFAULT_USER="biran"
     else
-      export DEFAULT_USER="biran"
+      export DEFAULT_USER="${USERNAME}"
     fi
     ZSH_THEME="agnoster"
   fi
