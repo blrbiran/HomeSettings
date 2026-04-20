@@ -58,6 +58,100 @@ function bbrg() {
 	fi
 }
 
+function gg_fetch() {
+    local max_retries=10
+    local retry_delay=3
+
+    # 改进的深度检测
+    if [ "$(git rev-parse --is-shallow-repository)" != "true" ]; then
+        echo "Repository is not shallow. Using standard fetch."
+        git fetch origin
+        return $?
+    fi
+
+    # 参数处理
+    local start_depth=${1:-100}
+    local max_depth=${2:-1000}
+    local step=${3:-50}
+    local max_step=1000  # 最大步长限制
+
+    # 获取远程分支数量（改进版本）
+    local remote_count
+    remote_count=$(git ls-remote --heads origin | wc -l 2>/dev/null || echo "1000")
+
+    # 如果无法获取远程信息，使用保守值
+    if [ "$remote_count" -lt 1 ]; then
+        remote_count=1000
+    fi
+
+    echo "Starting progressive fetch: start_depth=$start_depth, max_depth=$max_depth, step=$step"
+
+    local current_depth=$start_depth
+    local consecutive_success=0
+    local retry_count=0
+
+    while [ $current_depth -le $max_depth ] && [ $retry_count -lt $max_retries ]; do
+        echo "Attempting to fetch depth: $current_depth"
+
+        if git fetch --depth $current_depth origin; then
+            echo "✓ Successfully fetched depth: $current_depth"
+            consecutive_success=$((consecutive_success + 1))
+            retry_count=0  # 重置重试计数
+
+            # 动态调整步长
+            if [ $consecutive_success -ge 2 ]; then
+                local new_step=$((step * 2))
+                if [ $new_step -le $max_step ]; then
+                    echo "Increasing step size from $step to $new_step"
+                    step=$new_step
+                fi
+                consecutive_success=0
+            fi
+
+            current_depth=$((current_depth + step))
+
+            # 防止超过最大深度
+            if [ $current_depth -gt $max_depth ]; then
+                current_depth=$max_depth
+            fi
+
+        else
+            echo "✗ Failed to fetch depth: $current_depth"
+            retry_count=$((retry_count + 1))
+            consecutive_success=0
+
+            if [ $retry_count -lt $max_retries ]; then
+                echo "Retrying in ${retry_delay}s... (attempt $retry_count/$max_retries)"
+                sleep $retry_delay
+                # 指数退避
+                retry_delay=$((retry_delay * 2))
+            else
+                echo "Max retries exceeded at depth $current_depth"
+                break
+            fi
+
+            # 失败时减小步长
+            if [ $step -gt 10 ]; then
+                local new_step=$((step / 2))
+                echo "Reducing step size from $step to $new_step"
+                step=$new_step
+            fi
+        fi
+    done
+
+    # 最终尝试完整fetch
+    if [ $current_depth -ge $max_depth ]; then
+        echo "Attempting full fetch..."
+        if git fetch origin; then
+            echo "✓ Full fetch completed successfully"
+        else
+            echo "✗ Full fetch failed, but progressive fetch reached depth $current_depth"
+        fi
+    fi
+
+    echo "Progressive fetch completed. Final depth: $current_depth"
+}
+
 # Proxy setting
 alias bbpxy='export http_proxy=socks5h://127.0.0.1:13659 ; export https_proxy=socks5h://127.0.0.1:13659'
 
@@ -72,9 +166,9 @@ export NODE_PATH=/usr/local/lib/node_modules
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Homebrew settings
 #export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
@@ -89,8 +183,8 @@ export HOMEBREW_NO_AUTO_UPDATE=true
 export PATH=/opt/homebrew/bin:$PATH
 
 # Machine related aliases
-#unalias fd
-#alias nv='nvim'
+unalias fd
+alias nv='nvim'
 
 # nvim related
 #export XDG_CONFIG_HOME=~/.config/
@@ -239,3 +333,10 @@ eval $(thefuck --alias)
 #fi
 #unset __conda_setup
 ## <<< conda initialize <<<
+
+# OpenClaw Completion
+source "/Users/biran/.openclaw/completions/openclaw.zsh"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
