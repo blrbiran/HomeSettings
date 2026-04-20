@@ -144,6 +144,8 @@ export TERM="xterm-256color"
 setopt hist_ignore_space
 unsetopt share_history
 
+setopt nonomatch
+
 alias cd=' cd'
 alias ls=' ls'
 alias pcp='rsync --progress -arh'

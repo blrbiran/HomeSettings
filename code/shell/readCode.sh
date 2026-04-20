@@ -1,20 +1,5 @@
 #!/bin/bash
 
-#bbcscope ()
-#{
-    #bbcg && \
-    #PWD= /bin/pwd && \
-    #local HERE=$PWD && \
-    #cscope -Rbkq -P $HERE
-#}
-
-#bbcurcscope ()
-#{
-    #PWD= /bin/pwd && \
-    #local HERE=$PWD && \
-    #cscope -Rbkq -P $HERE
-#}
-
 bballcscope ()
 {
     bbcg && \
@@ -47,7 +32,7 @@ bbcg ()
         if [ x"$1" = x"" ]; then
             \cd ${T};
         else
-            \cd ${T}/$1
+            eval "\cd ${T}/$1"
         fi
     else
         echo "Couldn't locate the top of the tree.  Try setting TOP.";
@@ -62,7 +47,7 @@ bbcgrepo ()
         if [ x"$1" = x"" ]; then
             \cd ${T};
         else
-            \cd ${T}/$1
+            eval "\cd ${T}/$1"
         fi
     else
         echo "Couldn't locate the top of the repo tree.  Try setting TOP.";

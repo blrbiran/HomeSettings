@@ -6,6 +6,7 @@ import codecs
 import os
 import sys
 
+
 def decompress_zst_files(directory):
     """
     Decompresses all zstandard compressed files in the given directory and saves the decompressed data to txt files
@@ -16,8 +17,8 @@ def decompress_zst_files(directory):
     for file in files:
         # Check if the file is a zst file
         if file.endswith('.zst') or file.endswith('.Z'):
+            # Open the zst file in read mode
             try:
-                # Open the zst file in read mode
                 with open(os.path.join(directory, file), 'rb') as compressed_file:
                     # Create a zstd decompressor object
                     dctx = zstd.ZstdDecompressor()
@@ -38,3 +39,4 @@ if __name__ == '__main__':
         decompress_zst_files(os.getcwd())
     elif len(sys.argv) == 2:
         decompress_zst_files(sys.argv[1])
+
