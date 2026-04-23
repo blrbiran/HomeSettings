@@ -1,0 +1,3 @@
+[submodule "rime/macos"]
+	path = rime/macos
+	url = https://github.com/blrbiran/rime_bolt.git
